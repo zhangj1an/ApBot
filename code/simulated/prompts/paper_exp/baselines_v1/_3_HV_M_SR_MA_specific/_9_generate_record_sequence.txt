@@ -1,0 +1,40 @@
+We built an internal model to reason about appliance execution. The code of the internal model is as follows. 
+
+wwwww
+
+However, during execution, we realise our modelling of the variable with name: xxxxx is wrong. In particular, we applied action: sssss, when we think the simulator is at state 
+
+ttttt,
+
+so that we can achieve our intended goal of "qqqqq". However, the simulator feedback shows rrrrr, suggesting there is a mismatch.
+
+Can you firstly return identify the variable that we need to update definition with?
+
+If variable xxxxx is defined directly, just return variable_name = "xxxxx". 
+
+If variable xxxxx is initialised as None in our internal model code, and can be assigned dynamically to other variables like var_a, var_b and var_c. When it has error when variable xxxxx is assigned to var_c, then you should return variable_name = "var_c". 
+
+Note that variable_name should be a variable existing in our internal model code. 
+
+Here is the entire execution record, containing action at each step and the observed result. Note that for the same variable, the actual appliance may have similar but different expression. Just match xxxxx with the variable with the closest semantic meaning. 
+
+yyyyy
+
+Can you firstly decide whether the variable xxxxx is DiscreteVariable or ContinuousVariable based on the record? Generate "variable_is_continuous = True" as python code if it is continuous. Otherwise generate "variable_is_continuous = False".
+
+Take a look at the feature_list to find out which action can affect the value of variable xxxxx. Suppose the action has name action_x as string. Then record the action as effective_action = action_x.
+
+Then, can you identify the step that indicates the initial variable value? For example, suppose the variable value is initially and 3 and may or may not stays at 3 for multiple steps. After apply an certain action, the records starts to become 4, 5, 6, ... 9, 10, 3, 4, 5, 6... Then the last step with variable value of 3 is the step we are looking for. Record down the step index as step_index. Record down the action taken in that step as first_observed_action_taken. Ignore the numbers in the tuple and just record down the string. Then starting from the step_index, extract the entire sequence of variable values and save it as record_sequence. For example, if the execution record says:
+
+[
+{step_index: 1, action: (action_a, 2), observation: variable_b = 5}, 
+{step_index: 2, action: (action_b, 3), observation: variable_b = 5},
+{step_index: 3, action: (action_c, 5), observation: variable_b = 5},
+{step_index: 4, action: (action_d, 1), observation: variable_b = 6},
+{step_index: 5, action: (action_d, 1), observation: variable_b = 7},
+{step_index: 6, action: (action_d, 1), observation: variable_b = 8},
+]
+
+Then you should return first_observed_action_taken = action_c, step_index = 3, and record_sequence = [5, 6, 7, 8]. Please make sure to find the smallest step index possible, start looking from step 1 onwards. For record_sequence, If the variable is continuous, return list item as int or float type. If the variable is discrete, return list item as string type. For record_sequence, please make sure the first values starts from the one in the step_index. In the above example, since the step index = 3, we should record variable_b from step 3, which is [5, 6, 7, 8].
+
+To summarise, you need to return 6 variables: variable_name, variable_is_continuous, effective_action, step_index, first_observed_action_taken and record_sequence. Due to our system design, the step_index can only be either 0 or 1. Just return python code and nothing else as I need to directly execute these four variables. 

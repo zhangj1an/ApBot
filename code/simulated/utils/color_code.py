@@ -1,0 +1,5 @@
+bright_red = "#FF0000"
+bright_yellow = "#FFFF00"
+bright_blue = "#0000FF"
+bright_orange = "#FFA500"
+bright_green = "#00FF00"

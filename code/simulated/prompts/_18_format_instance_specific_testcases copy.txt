@@ -1,0 +1,38 @@
+I have a set of commands that a user may use to instruct a robot to operate an appliance. Here is the original set of commands with all the target variable values. 
+
+xxxxx 
+
+Here is the set of proposed target state of the appliance with reference to the appliance simulator. 
+
+yyyyy 
+
+Please output a list to organise the information nicely. The list looks likes this: [{command1}, {command2}, ... {command 20}], whereby each command is a dictionary that looks like this: {"id": 1 (it would be a integer between 1 to 20), "command": xxxx (natural language text), "target_state": yyyyy (natural language text), "important_target_states": zzzzz (natural langauge text), "feasible": 1 (1 or 0, 0 means not feasible.) } 
+
+I have an example to illustrate. For the original command text:
+ "1. "Air fry chicken wings until crispy."
+   - Condition: Chicken wings weights around 1kg and need to be cooked at 200°C for 25 minutes.", 
+and the proposed target state text: 
+"1. **"Air fry chicken wings until crispy."**
+   ```python
+   On (initial state)
+   ```
+
+    After setting:
+   ```python
+   mode: temperature_setting_step_1
+   variable_timer_setting_minutes: 30
+   variable_temperature_setting_celsius: 200
+   ```
+   Steps: Turn temperature dial clockwise 8 times to set 200°C and timer dial 6 times to set 30 minutes."
+
+The command dictionary will look like this: 
+
+{"id":1, "command": “Air fry chicken wings until crispy. Chicken wings weights around 1kg and need to be cooked at 200°C for 25 minutes.", "target_state": {"mode": "(temperature_setting, 1)",
+   "variable_timer_setting_minutes": "30"
+   "variable_temperature_setting_celsius": "200"}, "important_target_states": {"variable_timer_setting_minutes": "30",
+   "variable_temperature_setting_celsius": "200"},
+   "feasible": 1}. 
+
+The command text must include all the target variable values as long as they are mentioned. The important target states should only retain variable values that can determine if a command is executed succesfully. For example, if the operation mode does not matter, it can be removed. Please indent the output nicely so that it is easy to read and try to avoid using '\n'. 
+
+If the task cannot be accomplished, the entry "feasible" should be 0, and the "important_target_states" should be an empty string "". 

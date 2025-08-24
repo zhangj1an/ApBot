@@ -1,0 +1,293 @@
+The user manual of an appliance is as follows. 
+
+xxxxx
+
+The list of available actions that can be executed on this appliance is as follows. 
+
+yyyyy
+
+The code template of all the Variable() and InputString() classes, Feature(), and Appliance() Object is as follows. 
+
+zzzzz
+
+The list of variables for this appliance is as follows. 
+
+hhhhh
+
+The feature of the appliance is implemented as follows.
+
+wwwww
+
+Please help me write a Simulator() object that includes all the action effect of the appliance. 
+
+##########################################
+### Overall Structure of the Simulator ### 
+##########################################
+
+A Simulator() object has three major components: variables, features and actions. The variables and feature list are already given, you can directly call them when creating the Simulator() class. The actions can be used to adjust variable values at specified feature steps.  Please implement all the actions of the Simulator(). The Simulator() object must inherit from Appliance() object. 
+
+Let’s use an example. Suppose we have a microwave with user manual describing a clock setting feature like this:
+
+"""
+**1. Clock Setting**
+1) Press " CLOCK " once, the hour figure flash;
+2) Press "up arrow" or "down arrow" to adjust the hour figures, the input time should be within 0--23.
+3) Press " CLOCK ", the minute figures will flash.
+4) Turn "up arrow" or "down arrow" to adjust the minute figures, the input time should be within 0--59.
+5) Press " CLOCK " to finish clock setting. ":" will flash, the "clock symbol" indicator will go out. The clock setting has been finished.
+"""
+
+We are given a list of available actions for this microwave: 
+press_up_arrow_button, press_down_arrow_button, press_clock_button, 
+
+We are also given a list of available variables for this microwave: 
+variable_clock_setting_hour = ContinuousVariable(value_range=[0, 23], current_value=0, step_value=1)
+variable_clock_setting_minute = ContinuousVariable(value_range=[0, 59], current_value=0, step_value=1)
+
+The feature list is given as follows: 
+
+feature_list = {}
+feature_list["clock_setting"] = [
+        {"step": 1,”actions”: ["press_clock_button"]}, 
+        {"step": 2,”actions": [“press_up_arrow_button", "press_down_arrow_button"], "variable": "variable_clock_setting_hour"}, 
+        {"step": 3, "actions": ["press_clock_button"]}, 
+        {"step": 4, "actions": ["press_up_arrow_button", "press_down_arrow_button"], "variable": "variable_clock_setting_minute"}, 
+        {"step": 5, "actions": ["press_clock_button”]}]
+simulator_feature = Feature(feature_list=feature_list, current_value=("empty", 1))
+
+Then, the Simulator class will look like this: 
+
+class Simulator(Appliance):
+
+    def reset(self):
+        self.feature = simulator_feature
+        self.variable_clock_setting_hour = variable_clock_setting_hour
+        self.variable_clock_setting_minute = variable_clock_setting_minute
+
+   def press_clock_button(self): 
+        …
+
+   def press_up_arrow_button(self):
+       …. 
+
+   def press_down_arrow_button(self):
+       ….
+
+The reset function should initialise the feature, all the variables and possibly input strings by directly calling the given code. You can include other list or dict that helps with execution. Please do not re-write them to save space. The Simulator() class should create a function for each action. 
+
+################################# 
+### Format of the Actions ### 
+################################# 
+
+In a single feature step, an action can have three roles: 1. change the feature, 2. change the variable’s setting, such as value range or step value based on circumstances, and 3. change the variable values. Therefore, in each action, the code should have these components:
+
+1, based on the action, decide whether the action will result in a feature change by calling self.feature.update_progress(action_name).
+2, identify the variable that can be adjusted by this action, if any, by calling current_variable = self.get_current_variable(action_name)
+3, (optional) in some specific feature steps, the configuration of a certain variable_x including value ranges and step values can be changed. Change the variable settings by calling the self.variable_x.set_value_ranges_steps() function. A variable might also be set to a fixed value by calling self.variable_x.set_current_value(a_value)
+4, assign variable to a value. You can either set it to the next or previous value in the value range, by calling self.assign_variable_to_next(current_variable, **kwargs), self.assign_variable_to_prev(current_variable, **kwargs); or set it to a fixed value by calling self.a_certain_variable.set_current_value(“a_certain_value”). 
+
+For actions that achieves steps 1,2,4 without having to change a variable to a fixed value, or change a variable’s value range or step value, you can directly call self.press_button_and_set_next() or self.press_button_and_set_prev(). These two functions are already implemented in Appliance(). In the above microwave example, the action “press_up_arrow_button” in the “clock_setting” feature can be implemented in the following way. 
+def press_up_arrow_button(self): 
+    self.execute_action_and_set_prev(“press_up_arrow_button”)
+
+If an action is used in more than one feature, then the actions require custom implementation. This is becasue in different features, the effect of an action onto variables might be different. In this case, you need to write the action effect for each feature. A sample can be:
+
+def press_a_certain_button(self): 
+	self.feature.update_progress(“press_a_certain_button")
+	current_feature = self.feature.current_value[0]
+	if current_feature == "feauture_a":
+		# write a type of effect 
+	elif current_feature == "feature_b":
+		# write a type of effect 
+
+
+
+###############################################
+### Actions requiring custom implementation ### 
+###############################################
+Here we describe some special action effects. 
+
+Condition 1: An action, in certain features, might set a variable to a fixed value, conditioned on the action type. For example, press “power_off” will always set variable_power to “off”. Or, press a "popcorn" button will always set the menu to "popcorn". You can implement the function as such:
+def press_a_certain_button(self): 
+	self.feature.update_progress(“press_a_certain_button")
+	current_feature = self.feature.current_value[0]
+	if current_feature == "feature_a":
+		self.a_certain_variable.set_current_value(“a_certain_value_x”)
+	if current_feature == "feature_b" :
+		self.a_certain_variable.set_current_value("a_certain_value_y")
+
+For every single action in every feature it is in, please check the corresponding feature_list item's comment to see whether its action effect will be setting a variable to a fixed value. Do not miss out any such action effects. For example, pressing the power_on button might always set the power to on, and pressing the start button might always set "start running" to on. 
+
+Condition 2: Sometimes, an action will change a variable’s value range or step value, conditioned on the action type or feature step. Please check the user manual for all features so that you do not miss out these conditions. Below gives an example of a microwave. The assignment of variable_menu_setting is dependent on the current value of variable_menu_index. The cooking weight options is can be obtained from menu_setting_dict, with the dictionary key being the current value variable_menu_index. 
+
+# variable A 
+variable_menu_index = DiscreteVariable(["A-1", "A-2", "A-3"], "A-1")
+
+# variable B
+variable_menu_setting = None 
+
+# variable B1, B2, B3, ... 
+variable_menu_setting_a1 = DiscreteVariable([200, 400], 200)
+variable_menu_setting_a2 = DiscreteVariable([250, 350, 450], 250)
+variable_menu_setting_a3 = DiscreteVariable([200, 300, 400], 200)
+
+# the mapping dictionary
+menu_setting_dict = {
+    "A-1": variable_menu_setting_a1,
+    "A-2": variable_menu_setting_a2,
+    "A_3": variable_menu_setting_a3
+}
+
+Suppose pressing the “menu” button will firstly change the value of variable_menu_index (according to a rule written in the feature list) and then will set the variable_menu_setting to a different variable.  Then this menu button pressing action can be implemented as:
+
+def press_menu_button(self): 
+	# changes the variable_menu_index to the next value, as defined by the feature list
+	self.execute_action_and_set_next(“press_menu_button")
+	# change the variable_menu_setting to a specific one based on the value of the variable_menu_index
+	self.variable_menu_setting = self.menu_setting_dict[str(self.variable_menu_index.get_current_value())]
+
+Alternatively, suppose pressing the "A-1" button will firstly change the value of variable_menu_index to "A-1", and then will set the variable_menu_setting to a different variable. Then this A-1 button pressing action can be implemented as:
+
+def press_A_1_button(self): 
+	# changes the variable_menu_index to a fixed value A-1
+	self.variable_menu_index.set_current_value("A-1")
+	# change the variable_menu_setting to variable_menu_setting_a1
+	self.variable_menu_setting = self.variable_menu_setting_a1 
+	self.variable_menu_setting.next()
+
+You can also use “if self.feature.get_current_value == (“feature_x”, “step_y”)” to check for feature step, and use “a_certain_variable.set_value_range_and_step()” directly to change the value range and step value.
+
+Condition 3: For press and hold actions, you can add a condition to check whether the duration exceeds those required. Set the default parameter input to satisfy the condition. For example, 
+	def press_and_hold_a_certain_button(self, duration = 3):
+        if duration >= 1:
+            self.execute_action_and_set_next("press_and_hold_a_certain_button")
+
+
+################################################################# 
+###  Creating Meta Actions for functionally similar buttons like numbers or alphabet ### 
+### Parsing Input Strings for Number buttons and alphabet buttons
+#################################################################
+
+In case you encounter appliances that have number pads (0-9) or alphabet(a-z) buttons, and meta_actions_dicts are created, remember to include the variable_input_string, meta_actions_dict, meta_actions_on_number (or/and meta_actions_on_alphabet) into the Simualtor object. Otherwise, you should not add these variables into your object.
+
+The action effects of these number pads (0-9) or alphabet(a-z) buttons are highly repetitive. To save space, you can just create a meta action, and each specific button parameterises this meta function. Use number pads as an example. The meta-action is called press_number_button, and then inside each number button, you can call this press_number_button. We now implement a version of the press_number_button() below. 
+
+	def press_number_button(self, action_name, digit):
+        # Update feature and set variable based on input string
+        self.feature.update_progress(action_name)
+        variable = self.get_current_variable(action_name)
+        variable_name = self.feature.get_current_variable(action_name)
+        current_feature = self.feature.current_value[0]
+        self.variable_input_string.add_digit(digit)
+        value = self.process_input_string(current_feature, variable_name)
+        variable.set_current_value(value)
+
+Then, you can create action regarding each button with respect to this function. For example, 
+	def press_number_0_button(self): 
+        	self.press_number_button("press_number_0_button", "0")
+
+This version is already given in the code library in Appliance class. If you need to modify it, you can create your own version of press_number_button(). 
+
+In the press_number_button(), process_input_string() is used to convert number pads input into valid variable values. NOte that press_number_button() itself cannot assign any input digit to variable values. This process must be done in process_input_string(). 
+
+Then, in the Simulator() object, please create this process_input_string(intended_feature, variable_name) function.
+
+For example, suppose variable_x = TimeVariable(value_ranges_steps = [("00:00:00", "00:99:99", 30)], current_value = "00:00:00"). When used to adjust (variable_x in feature_a), the input adjusts MM:SS, so a input of "830" will be converted to a value of 00:08:30. When used to adjust (variable_x in feature_b), the input adjusts HH:MM, so an input of "830" will be converted to a value of 08:30:00. When used to adjust (variable_x in feature_c), the input adjusts MM, so an input of "16" will be converted to a value of 00:16:00. Then you need to do the following:
+
+class Simualator(Appliance):
+	def reset(self):
+		... (the aforementioned variable assignments)
+		self.variable_input_string = VariableInputString()
+		self.meta_actions_dict = meta_actions_dict
+		self.meta_actions_on_number = self.meta_actions_on_number
+	
+	def get_origianl_input(self, goal_string, intended_feature, variable_name):
+		...
+	
+	def process_input_string(self, intended_feature, variable_name):
+		raw_input = self.variable_input_string.input_string 
+		if (variable_name == "variable_x" and intended_feature == "feature_a"):
+			# time variable HH:MM:SS, only modify MM:SS, the last 4 digits 
+			time_string = "00" + str(value).zfill(4)
+			return f"{time_string[:2]}:{time_string[2:4]}:{time_string[4:]}"
+		elif (variable_name == "variable_x" and intended_feature == "feature_b"):
+			# time variable HH:MM:SS, only modify HH:MM, the first 4 digits 
+			time_string = str(value).zfill(4) + "00"
+			return f"{time_string[:2]}:{time_string[2:4]}:{time_string[4:]}" 
+		elif (variable_name == "variable_x" and intended_feature == "feature_c"):
+			# time variable HH:MM:SS, only modify MM, the middle 2 digits  
+			time_string = "00" + str(value).zfill(2) + "00"
+			return f"{time_string[:2]}:{time_string[2:4]}:{time_string[4:]}" 
+
+Please closely examine the feature list to go through all features, and for each variable that rely on meta actions on numbers or alphabets to adjust their values, include them in the process_input_string() to convert input strings to variable values. Example of such variables include power, amount, menu, weight, time, etc. One feature might contain multiple such variables. Note that both the variable name and feature name must exists in the condition in the format: (variable_name == 'variable_name' and intended_feature == 'feature_name'). 
+
+Then, please create a get_original_input() function. This function does the opposite of process_input_string(). It takes in a variable value. Conditioned on feature name and variable name, it outputs a string of numbers or alphabets that can achieve this variable value. For example, suppose variable_x = TimeVariable(value_ranges_steps = [("00:00:00", "00:99:99", 30)], current_value = "00:00:00"), variable_y = TimeVariable(value_ranges_steps = [("00:00:00", "00:99:99", 30)], current_value = "00:00:00"). During input, the user manual specifies that variable_x in feature_a only adjust the part on HH:MM, then a goal value of "00:06:00" requires an input of "0006". variable_y in feature_b only adjusts the part on MM:SS, then a goal value of "00:06:00" requires an input of "0600". variable_z in feature_c only adjusts the part on MM, then a goal value of "00:06:00" requires an input of "06". Then a sample code is as below.
+
+class Simualator(Appliance):
+	...
+	def get_original_input(self, goal_string, intended_feature, variable_name):
+		digits_only = ''.join(char for char in str(goal_string) if char.isdigit()) 
+		variable_name = self.feature.get_current_variable(action_name)
+		if (variable_name == "variable_x" and intended_feature == "feature_a"):
+			# the required input is HH:MM, remove the last two digits 
+			result = digits_only[:-2].lstrip('0')
+            return result if result else '0'
+		elif (variable_name == "variable_y" and intended_feature == "feature_b"):
+			#  the required input is MM:SS, remove the first two digits
+			results = digits_only[2:].lstrip('0')
+			return result if result else '0'
+		elif (variable_name == "variable_z" and intended_feature == "feature_c"):
+			# the required input is MM, remove the first and last two digits
+			results = digits_only[2:4].lstrip('0')
+			return result if result else '0'
+
+For each condition listed in the get_original_input() function and press_number_button() function, please create a condition to convert variable values into input strings. This is because we need to rely on get_original_input() to decide on the sequence of actions to take to achieve this target value. For each condition, please write a reason as Python comment to explain why you get the original input in this way, as examplified by the above comments.
+
+For example, suppose in press_number_button, in feature_a and variable_x, all the input digits w will set variable_x to a value of "w cups". Then you need to in get_original_input(), create a condition of (feature_a, variable_x), and convert the variable value of "w cups" back to "w". 
+
+Please check the required input for time carefully, as each feature has different format.
+
+For every single action, please list all the feature in which it appears in the "if current_feature ==..." condition. The for each such feature, examine its action effects. Possible action effects can include one of the five possible scenarios below.
+
+For action effects in each individual feature:
+1. the typical "self.execute_action_and_set_prev(“press_up_arrow_button”)" effect. 
+2. set some variables to a fixed value. Note that in the same action effect function, the same variable can only have either its value set to a fixed value, or go through "execute_action_and_set_next/prev". The same variable cannot have both this two action effects. 
+3. change a variable's value range or step value.
+4. check press and hold button durations. 
+5. process input string and get original input if number pads or alphabet buttons are involved.
+
+If in all features, the action effect is all the typical "self.execute_action_and_set_prev(“press_up_arrow_button”)" effect, then you can just write this without any condition. 
+
+If you decided to split the action effect into individual features, then all the action effects should be under conditions. There should be no global effects. 
+ 
+#################################################################
+### Implementing global condition checkers using run_action() ### 
+#################################################################
+
+Inside Appliance(), we implement a run_action(action_name) wrapper function to call the each action. The reason why we need to add this wrapper function for action execution is because sometimes, conditions need to be checked before an action can be executed. For example, if an appliance has power on / off functions, then when the appliance is turned off, the appliance will only respond to “power on” function. Similarly, if an appliance’s child lock is on, then it will only respond to power on/off actions or unlock actions. Moreover, some variable values need to be adjusted before an action can be executed. For example, if a variable’s value is treated as a cache and needs to be cleared and re-initialised when no longer in this mode step, then in the run_action function, we should erase its value first before proceeding to execute the required action. 
+
+Some examples are as follows. Before creating the run_action function, you can go through the feature list and variable list once to see if anything can be added to the run_action() function. 
+	
+	def run_action(self, action_name, execution_times=1, **kwargs):
+		# only model this condition if the appliance has "variable_input_string" as a variable, and has actions involving 0-9 number pads or a-z alphabet pads, and if the feature step is not about adjusting input strings, erase the variable_input_string.
+        if action_name not in meta_actions_dict.values():
+            self.variable_input_string.input_string = ""
+
+		# if the appliance is locked
+        	if self.variable_lock.get_current_value() == "locked" and all(item not in action_name for item in ["press_stop_button”, “press_power_button”]):
+            		self.display = “child lock: locked"
+            		return self.display
+		
+		# If the appliance can be turned off using a button, add the condition below.
+		# The variable_on_off represents the machine's power state ("on" or "off").
+		# This is different from variable_cooking_power and variable_start_running, which are meant for setting power levels or starting a function, and do not affect the machine's overall power state.
+		if self.variable_on_off.get_current_value() == "off" and all(item not in action_name for item in ["press_on_off_button"]):
+			self.display = "power: off"
+			return super().run_action(action_name, execution_times, **kwargs)
+
+############################################### 
+### Overall code generation format  ###
+############################################### 
+
+With all the information listed above, please help me create Simulator() for this user manual. All the object classes listed above like Feature, Variable, DiscreteVariable, ContinuousVariable, TimeVariable, InputString, TimeInputString and Appliance will all be imported as a library, so do not include them or write import statements. Instead, you can directly call them. All the initiated variables like simulator_feature or input_strings are also available and will be imported, please do not include it in the output. In the Simulator Class, if an action is not included in the given feature list, do not write that action. If an action can result in a variable to change its step value, initial value or value range or change to a fixed value, remember to write the action method accordingly. Please only return Python code (comments are allowed), as I need to directly exec() on the replied message. For each action, use a python comment to briefly explain its effect on variables (including step value, initial value or value range or change to a fixed value) and features, if any.
+

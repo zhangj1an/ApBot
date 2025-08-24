@@ -1,0 +1,63 @@
+The user manual of the appliance is as follows:
+
+xxxxx
+
+The list of available actions of the appliance is: 
+
+hhhhh
+
+The user command is:
+
+zzzzz
+
+Currently, the past actions taken and received feedbacks are as follows: 
+
+yyyyy
+
+The list of adjustable variables of this appliance is as follows:
+
+uuuuu
+
+Based on the past feedbacks, please firstly decide whether the task has been achieved. If every variable has been set to target value, directly return the following as Python code: 
+
+variable_next_action = "end"
+adjusting_variable_name = ""
+expected_feedback = ""
+reason = "Everything has been set, we can end."
+
+If the task has not been achieved yet, please pick an variable that has not achieve target value specified by the user command. Then generate the next action to set this variable. Then, please please decide whether it is directly adjusting the variale values from one of the listed variables above. If yes, please list the variable name and the target value of the variable. Otherwise leave these two fields empty. Please also give a short reason of why you choose this action. 
+
+When generating actions, please only generate the ones listed in the available actions. For example, if the listed action has one called “press_power_button”, you can call it once by returning “run_action('press_power_button', execution_times=1)”. You can also call it multiple times. For example, if you want to call “press_power_button” by 3 times, you can return “run_action('press_power_button', execution_times=3)”. You can also decide to execute this action 0 times, by calling “run_action('press_power_button', execution_times=0)”. If an action needs to be called multiple times when adjusting a variable, try to call it in one go as much as possible to reduce inference cost. For example, if you can call “run_action('press_power_button', 1)” and “run_action('press_power_button', 1)”, try to call it as “run_action('press_power_button', 2)” instead. If you decide that the task has been achieved, return “end” (note it should be "end", not "run_action('end')"). 
+
+If the returned digital display looks too wrong, it means the action cannot be executed to the right place, the task is infeasible. Therefore, you can call 'end' to end the execution early. 
+
+In particular, a press_and_hold action must be called with a duration of specific seconds. For example, if an action is called "press_and_hold_program_button_and_water_level_button", and it must be pressed for at least 5 seconds to work, then you can call it by returning "run_action("press_and_hold_program_button_and_water_level_button", execution_times=1, duration=5)". If you are not sure how long it needs to be pressed, you can just set the duration to be 10 to be safe. 
+
+Note that if the appliance's power can be turned on or off, or can be set to start running or pause, remember to set these parameters.
+
+The expected feedback refers to observable digital feedbacks. When you are adjusting a variable value, the expected feedback is the updated variable value. Note that the exepcted feedback must be a value in the variable value range listed in the code above. In other cases, the action effect is used to switch between features, therefore there won't be any obvious feedbacks. 
+
+You should return four Python variables: 1. variable_next_action, which is a string starts with "run_action"; 2. adjusting_variable_name, which is the name of the variable that the action is directly adjusting. If the action is not adjusting any variables, leave it empty; 3. expected_feedback, which is a target value of the adjusting_variable_name. If the action is not adjusting any variables, leave it empty. 4. reason, which is a short string that explains why you chose this action. Some examples are as follows:
+
+variable_next_action = "run_action(press_start_button', execution_times = 1)"
+adjusting_variable_name = "variable_start_running"
+expected_feedback = 'on'
+reason = "the previous settings are done, so now we start the machine. "
+
+or 
+
+variable_next_action = "run_action('press_confirm_button', execution_times = 1)"
+adjusting_variable_name = ""
+expected_feedback = ""
+reason = "now we finish setting the hour of the clock time, so need to press confirm button."
+
+or 
+
+variable_next_action = "end"
+adjusting_variable_name = ""
+expected_feedback = ""
+reason = "the task has been achieved."
+
+Please just return these four variables in Python, as I am going to directly eval() the responses. Each round, please only return one action, and the simulator will return the corresponding digital display. The current state of the world model will also update accordingly when the execution process progresses.
+
+If you have tried multiple times and realise the target variable values cannot be achieved exactly, you can just let go and return "end", to save inference cost. Thanks!

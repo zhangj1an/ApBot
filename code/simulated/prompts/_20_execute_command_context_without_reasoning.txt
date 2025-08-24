@@ -1,0 +1,30 @@
+The list of available actions of the appliance is: 
+
+hhhhh
+
+The user command is:
+
+zzzzz
+
+The goal state to achieve the command is:
+
+wwwww
+
+
+The relevant part of the appliance user manual that helps command execution is:
+
+xxxxx
+
+Current state of the appliance is: 
+
+The default state of the appliance without any information available.
+
+Please generate actions to achieve the task. When generating actions, please only generate the ones listed in the available actions. For example, if the listed action has one called “press_power_button”, you can call it once by returning “run_action('press_power_button', execution_times=1)”. You can also call it multiple times. For example, if you want to call “press_power_button” by 3 times, you can return “run_action('press_power_button', execution_times=3)”. If an action needs to be called multiple times when adjusting a variable, try to call it in one go as much as possible to reduce inference cost. For example, if you can call “run_action('press_power_button', 1)” and “run_action('press_power_button', 1)”, try to call it as “run_action('press_power_button', 2)” instead. If you decide that the task has been achieved, return “end” (note it should be "end", not "run_action('end')"). 
+
+Please note that the world model of the appliance is inferred and may not necessarily be true, so the inferred model state is just for reference. As long as the inferred state based on feedback looks reasonably close to goal state out of all available choices, you can take it as correct and move on. Furthermore, if the returned digital display looks too wrong, it means the action cannot be executed to the right place, the task is infeasible. Therefore, you can call 'end' to end the execution early too. 
+
+In particular, a press_and_hold action must be called with a duration of specific seconds. For example, if an action is called "press_and_hold_program_button_and_water_level_button", and it must be pressed for at least 5 seconds to work, then you can call it by returning "run_action("press_and_hold_program_button_and_water_level_button", execution_times=1, duration=5)". If the user manual did not specify how long it needs to be pressed, you can just set the duration to be 10 to be safe. 
+
+Every time when you return an action, please just return the plaintext without any comments, as I am going to directly eval() the responses to apply this action using Python to directly interact with the appliance simulator. Each round, please only return one action, and the simulator will return the corresponding digital display. The current state of the world model will also update accordingly when the execution process progresses.
+
+If you have tried multiple times and realise the target variable values cannot be achieved exactly, you can just let go and return "end", to save inference cost. Thanks!

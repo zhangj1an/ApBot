@@ -1,0 +1,51 @@
+The appliance user manual is as follows:
+
+ttttt
+
+Based on the user manual, we modelled the appliance mechanism to be as follows:
+
+xxxxx 
+
+We have not execute any action, so we have not received any feedback from the appliance yet. 
+
+We want to achieve the following task:
+
+zzzzz 
+
+With reference to the feature list, can you propose the next action to take to achieve this goal, give the target variable value you hope to achieve with this action, and give a short reason? If the action is not directly adjusting a variable value, you can leave the expected feedback empty.
+
+The list of available actions that we can use to interact with the appliance is: 
+
+hhhhh
+
+When generating actions, please only generate the ones listed in the available actions. For example, if the listed action has one called “press_power_button”, you can call it once by returning “run_action('press_power_button', execution_times=1)”. You can also call it multiple times. For example, if you want to call “press_power_button” by 3 times, you can return “run_action('press_power_button', execution_times=3)”. If an action needs to be called multiple times when adjusting a variable, try to call it in one go as much as possible to reduce inference cost. For example, if you can call “run_action('press_power_button', 1)” and “run_action('press_power_button', 1)”, try to call it as “run_action('press_power_button', 2)” instead.  
+
+In particular, a press_and_hold action must be called with a duration of specific seconds. For example, if an action is called "press_and_hold_program_button_and_water_level_button", and it must be pressed for at least 5 seconds to work, then you can call it by returning "run_action("press_and_hold_program_button_and_water_level_button", execution_times=1, duration=5)". If you are not sure how long it needs to be pressed, you can just set the duration to be 10 to be safe. 
+
+Note that if the appliance's power can be turned on or off, or can be set to start running or pause, remember to set these parameters.
+
+Your reply should be three python variable: 1. proposed_action, which is a string representing an executable action. 2. expected_feedback, which is the target variable value you expect to achieve using this action. If the action is not adjusting any variables, you should leave it empty. 3. reason, which is a short string that explains why you chose this action.
+
+Some example replies are: 
+
+proposed_action = "run_action('press_and_hold_start_button', execution_times = 1, duration = 3)"
+expected_feedback = "the variable_start_running becomes 'on'."
+reason = "the previous settings are done, so now we start the machine. "
+
+or 
+
+proposed_action = "run_action('press_number_1_button', execution_times = 1)"
+expected_feedback = "the variable_time becomes '00:01'."
+reason = "we need to press number pads to adjust clock time."
+
+or 
+
+proposed_action = "run_action(press_confirm_button', execution_times = 1)" 
+expected_feedback = ""
+reason = "now we finish setting the hour of the clock time, so need to press confirm button."
+
+You can be cautious and execute the actions one by one, there is no need to achieve the goal in one action. 
+
+Please only return the three Python variables, as I am going to directly eval() the responses to apply this action using Python to directly interact with the appliance simulator. The simulator will return the corresponding digital display. The current state of the world model will also update accordingly when the execution process progresses.
+
+

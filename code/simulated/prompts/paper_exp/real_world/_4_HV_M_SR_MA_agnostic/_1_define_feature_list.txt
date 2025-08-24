@@ -1,0 +1,167 @@
+Below is the user manual of this appliance. 
+
+xxxxx 
+
+Below is the list of actions that can be applied to this appliance. 
+
+yyyyy 
+
+Below is the list of variables of this appliance.
+
+zzzzz 	
+
+Below is the code template of the Feature() class that is helpful for modelling appliance features:
+
+hhhhh
+
+The user manual of an appliance describes all the features of an appliance. Each feature contains a step-by-step instruction to achieve a particular task. The criteria for successfully achieving a task is to set the related variables to their target values. Variables can be adjusted by executing some actions. Based on the user manual, list of available actions and list of variables of the appliance, please list all the features of the appliance. 
+
+############################# 
+### format of a feature ### 
+#############################
+
+Suppose the user manual describes a feature like this:
+
+"""
+**1. Clock Setting**
+1) Press " CLOCK " once, the hour figure flash;
+2) Press "up arrow" or "down arrow" to adjust the hour figures, the input time should be within 0--23.
+3) Press " CLOCK ", the minute figures will flash.
+4) Turn "up arrow" or "down arrow" to adjust the minute figures, the input time should be within 0--59.
+5) Press " CLOCK " to finish clock setting. ":" will flash, the "clock symbol" indicator will go out. The clock setting has been finished.
+"""
+
+We are given a list of available actions for this microwave: 
+press_up_arrow_button, press_down_arrow_button, press_clock_button, 
+
+We are also given a list of available variables for this microwave: 
+variable_clock_setting_hour, variable_clock_setting_minute
+
+We will create a feature_list to include this feature. In this example, the created feature_list will look like this:
+
+feature_list = {}
+feature_list["clock_setting"] = [
+        {"step": 1,”actions”: ["press_clock_button"]}, 
+        {"step": 2,”actions": [“press_up_arrow_button", "press_down_arrow_button"], "variable": "variable_clock_setting_hour"}, 
+        {"step": 3, "actions": ["press_clock_button"]}, 
+        {"step": 4, "actions": ["press_up_arrow_button", "press_down_arrow_button"], "variable": "variable_clock_setting_minute"}, 
+        {"step": 5, "actions": ["press_clock_button”]}]
+
+Remeber to include actions with similar function into the same step. For example, suppose variable_x can be set to "x1" by action_x1, and set to "x2" by action_x2. Then write the feature as feature_list["set_var_x"] = [{"step": 1, "actions": ["action_x1", "action_x2"], "variable": "variable_x"}].
+
+We will now explain the format of the feature list. The feature list is a dictionary. Each feature is a dictionary item. This dictionary item contains the step-by-step procedure as a list, and contains methods to adjust all the variables required to complete a task. Each list includes a sequence of steps, each step is a dictionary. Each step can only describe one and only one of the capabilities below. If a user manual sentence contains multiple capabilities below, you need to break it down into several steps. 
+
+1. Activation of starting to set a variable value. 
+2. Setting a variable value.
+3. Confirmation of finish setting a variable value.
+
+Each step contains three parts: step index, the list of actions that can be executed in this step, and the only variable that can be adjusted by these actions. The variable naming convention is variable_{functionality_name}_{variable_name}, such as “variable_{clock_setting}_{hour}”. The variables and actions can only be selected from the ones given. Only use actions and variables if they are explicitly described in the user manual. Please go through the variable and action list to ensure all the items explicitly described by the user manual are mentioned in the feature list. 
+
+When modelling actions, be careful about actions included in the feature step. If dial can only be turned in one direction, only include that direction as effective action. For example, suppose when turning the dial clockwise, we will adjust the time. when turning the dial anti-clockwise, we will adjust the power. Then you should create two seperate features: 
+
+feature_list["adjust_time"] = [
+        {"step": 1, "actions": ["turn_dial_clockwise"], 
+        "variable": "variable_time"}
+]
+
+feature_list["adjust_power"] = [
+        {"step": 1, "actions": ["turn_dial_anticlockwise"], 
+        "variable": "variable_power"}
+]
+
+Ignore this paragraph if there is no variables called "variable_input_string". Note that input strings should not be included in the feature list. If there are any input strings, you can add a comment in the feature list beside its corresponding variable saying that the variable should be parsed from this input string. 
+
+This feature list will be processed by the Feature() class in the code template above. Please include the following line in your script: 
+
+simulator_feature = Feature(feature_list=feature_list, current_value=("empty", 1))
+
+After initiating the Feature() object, a specific step in the feature list can be accessed via a tuple (feature_name, step), such as (“clock_setting”, 3). Given the current feature and the new incoming action, Feature() can check whether this action will update the progress to the next step or switch the feature to another one by calling the update_progress(action). If there are special cases regarding functionality, you can inherit the Feature() object and create your custom function. Remember to change the "simulator_feature" code accordingly. The code for Feature() itself and the list of actions and variables are fully provided in the library, so please do not include them in your response to save space. Just output the code, no need explanation or import statements. 
+
+
+######################################
+### Conditions to create a feature ### 
+######################################
+
+Please only model the features that is relevant to this type of appliances (e.g. cooking features is relevant for a pressure cooker). If a feature describes complex features, then do not model this feature. Examples include but not limited to: wifi connection, external app controls, remote controller functions, reset, clean or replace of physical parts like aircon filters or coffee bean hopper, feedback from indicator lights or touchscreens, press and hold buttons to quickly switch values (e.g. press and hold "+" button to quickly increase time), multi-stage operation, memory function, sound/audio related configurations, query or adjust variables after the machine has started operation. 
+
+If a feature is only mentioned when introducing buttons, switches or dials, but that description is not complete enough to constitute a feature in its own, then do not create it. For example, when introducing a dial as a “timer” dial, and the description says, “the dial can be pressed to adjust cooking time”, without mentioning the detail in step-wise instructions, then ignore this feature. Only when the feature is explained in the user manual clearly with step-wise instructions, then model it. 
+
+Usually the use manual will have a section or paragraph dedicated to each feature, then a feature list can be created for that feature. 
+
+Try to split variable adjustments into seperate features, unless it is really conditioned on previous steps. For example, if in the same user manual paragraph, two variable adjustments are listed. Let's say one is to set child lock, another is to replace faulty filters. Or one is to set cooking time when the cooking process have not started, but another is to set cooking time when the appliance already started cooking. Then these two variables are used in different contexts, and should be seperately listed. The feature_list code should be:
+
+feature_list["adjust_var_a] = [{"step": 1, "actions": ["action_a"], "variable": "variable_a"}]
+feature_list["adjust_var_b] = [{"step": 1, "actions": ["action_b"], "variable": "variable_b"}]
+
+Always try to split procedures into ones with shorter steps, so we can use them combinatorially. 
+
+Some features cannot be split because the later steps are conditioned on previous steps. Examples include firstly select a menu, then adjust its menu settings. Then you should model the feature as a whole. Furthermore, if you realise when setting menus, multiple features uses the same actions to adjust the same variables, you should represent them as one single feature. To double check and confirm, usually your variable will have these two names: variable_menu_index and variable_menu_setting. 
+
+For example, a microwave has the following two features: 
+
+1. Defrost. Firstly press menu button to set menu to defrost, then use number pads to set defrost weight.
+
+2. Cook Pizza. Firstly press menu button to set menu to pizza, then use number pads to set cooking weight. 
+
+Then they should be represented as:
+feature_list["set_menu"] = 
+[
+        {"step": 1, "actions": ["press_menu_button"], "variable": "variable_menu_index"},
+        {"step": 2, "actions": meta_actions_on_numbers, "variable": "variable_menu_setting"}
+]
+
+Sometimes, a feature might also describe two different ways to set the same variable. Then you should split the feature into two seperate methods so the procedure is clearer. For example, suppose a variable_time can be set both by pressing "+" "-" button or by pressing number pads. Then the feature_list code should be: 
+
+feature_list["adjust_variable_time_using_plus_minus"] = [{"step": 1, "actions": ["press_plus_button", "press_minus_button"], "variable": "variable_time"}]
+feature_list["adjust_variable_time_using_number"] = [{"step": 1, "actions": meta_actions_on_numbers, "variable": "variable_time"}]
+
+Use press_and_hold_... actions when the user manual specifies a required duration (e.g., "hold for 15s", "press for 5 seconds"). This indicates that the button needs to be held for that amount of time to trigger the effect. If duration is not specified or if the manual indicates a short tap is sufficient, use the normal press_... action.
+
+Avoid modeling press-and-hold actions if they are only used to speed up incremental adjustments (e.g., long-press "+" to quickly increase time), as this implies the same effect can be achieved through repeated presses. However, if press and hold action can toggle child lock, you can model it.
+
+Please check the user manual carefully and make sure that all features are modelled. Only exclude the aforementioned features that are too complicated.
+
+#############################################
+### Modelling more advanced features ### 
+#############################################
+
+If two consecutive steps in a feature is modifying the same variable, they should be merged into the same step. For example, if both “lock” and “unlock” action are modifying the variable_child_lock and are in consecutive steps in a feature, these two actions should appear in the same step. 
+
+If an action always results in a specific variable being assigned a fixed value, this effect should be explicitly modeled in the feature list. In such cases, the affected variable should be included in the corresponding step. A "comment" field should be added to indicate the fixed value assignment, and quote the relevant raw user manual text. For example, if pressing the start button will always set variable_start_cooking to "on", the feature will be:
+
+feature_list["some_feature"] = [
+    {"step": 1, "actions": ["some_action"], "variable": "some_variable"},
+    {"step": 2, "actions": ["press_start_button"], "variable": "variable_start_cooking", "comment": "value always set to on"}
+]
+
+Sometimes in a step, one single action (e.g. press a button) will affect more than one variable. For example, on a microwave, pressing a "start" button can both start the cooking process and add the cooking time by 30 seconds. For the variables that will have its value assigned to a fixed value, write them as a "comment" attribute in that step, include the variable name and the target value. This will be helpful when we implement the action effects of the appliance later. The above example can be written as:
+
+feature_list["a certain feature"] = {
+        {"step": 1, "actions": ["press_start_button"], "variable": "variable_cooking_time", "comment": "variable_start_cooking: set to on "}
+}
+ 
+In case you encounter number buttons or alphabet buttons, you should always make the feature list more compact by creating additional meta-actions that includes a fixed group of actions, then include meta-actions in the feature list. For example, one meta-action can be meta_actions_on_number = ["press_number_1_button", "press_number_2_button", "press_number_3_button", "press_number_4_button", "press_number_5_button", "press_number_6_button", "press_number_7_button", "press_number_8_button", "press_number_9_button", "press_number_0_button"]. Then in the feature_list, instead of listing all the 10 actions, you should just write meta_actions_on_number. The naming convention is “meta_actions_on” followed by the name of the groups of actions. You should always create either meta_actions_on_number or meta_actions_on_alphabet for numbers and alphabets to make the feature_list more concise. Here we provide meta_actions_on_number in the code template and you can directly quote them, and you can create your own meta_actions variable.
+
+These number buttons and alphabet buttons would have an action effect of adding a string character on a existing variable. For example, press_number_1_button, then press_number_3_button can make the timer to change from 0 minutes to 13 minutes. Please create a variable called meta_actions_dict to store these action effects. The key is the intended string character that one wants to add and the item is the corresponding action that can cause this effect. In our example, it will be: 
+
+meta_actions_dict = {
+        "1": "press_number_1_button",
+        "3": "press_number_3_button",
+}
+
+For every action in the meta-actions list, please create a corresponding entry in the meta_actions_dict. Our sample meta_actions_dict includes the mapping of number related actions, but you need to create your own dict if new mappings are involved.
+
+If the variable input string needs to be utilised to parse the input of numbers or alphabets, please add a python comment beside that feature step in the feature list. This will be a useful reminder when we implement the action effect of the appliance later. The variable_input_string can not be a valid "variable" value. For example, 
+
+feature_list["clock"] =  [
+        {"step": 1,"actions": ["a"]},
+        {"step": 2,"actions": meta_actions_on_numbers, "variable": "variable_clock", "comment": "requires parsting from variable_input_string"} 
+        {"step": 3,"actions": ["a"]} ]
+
+You should only include meta_actions_on_numbers if the actions contain pressing number pads. Otherwise you should not include it. 
+
+Among the given available actions that is not used in any features, include it in the "null" feature. For example,  suppose action "a", "b", "c" is not used in any feature. Then in the feature of feature_list["null"] =  [{"step": 1,”actions”: ["a", "b", "c"]}]. 
+
+Among the given variables that is not used in any features, include it in the "null" feature. For example,  suppose variable "a", "b", "c" is not used in any feature. Then in the feature of feature_list["null"] =  [{"step": 1,”actions”: [], "missing_variables": ["a", "b", "c"]}]. 
+
+If all variables and actions are modelled, feature_list["null"] = [{"step": 1,”actions”: [], "missing_variables": []}]

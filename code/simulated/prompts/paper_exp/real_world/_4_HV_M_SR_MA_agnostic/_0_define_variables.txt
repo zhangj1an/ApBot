@@ -1,0 +1,111 @@
+Below is the list of actions that can be applied to this appliance. 
+
+xxxxx
+
+Below is the user manual of this appliance, and the list of observed control panel elements (which might include the value range of certain variables). 
+yyyyy
+
+hhhhh
+
+Below is some code template that is included as a library can be directly used.
+zzzzz 
+
+The user manual of an appliance can describe multiple features. Inside each feature, actions can be applied to adjust different variables. Given the list of actions and the user manual, please write down a list of variables that can be adjusted by these actions. A variable refers to an appliance configuration that can be adjusted, such as power, temperature, time, mode and so on. 
+
+#######################################
+###conditions to create an variable ###
+#######################################
+I will give an example. Suppose an appliance has a “clock setting” feature, whereby the user manual says: 
+
+“””
+**1. Clock Setting**
+1) Press " CLOCK " once, the hour figure flash;
+2) Press "up arrow" or "down arrow" to adjust the hour figures, the input time should be within 0--23.
+3) Press " CLOCK ", the minute figures will flash.
+4) Turn "up arrow" or "down arrow" to adjust the minute figures, the input time should be within 0--59.
+5) Press " CLOCK " to finish clock setting. ":" will flash, the "clock symbol" indicator will go out. The clock setting has been finished.
+ “””
+
+In this “clock_setting” feature, we need to adjust two variables, namely “variable_clock_setting_hour” and "variable_clock_setting_minute”. The naming convention is “variable”, and then “feature name”, and then “variable name“ connected by underscores. 
+
+However, if in another appliance, the user manual is as follows:
+1) Press " CLOCK " once;
+2) Use the number pads to enter time in HH:MM format from 00:00 to 23:59. For example, if the time is 06:00, then press "6", "0", "0". 
+3) Press " CLOCK " to finish clock setting.
+
+As you can see, the clock time can be adjusted in a single step, then only one variable called variable_clock needs to be created.  
+
+If the same variable can be adjusted by different features, but the value range or the step value is different, then create separate variables in each feature to make the modelling easier.  
+
+If the appliance requires a button press or dial turn to start or pause the machine, create a variable called variable_start_running. If it starts automatically, do not create this variable. If the appliance has a child lock feature, model it as variable_child_lock. If the appliance has a power_on_off button on the control panel to turn on or off the machine, instead of using power cords, include a variable_on_off to model it. Please check the user manual carefully to see if there is such a button. If yes, you must quote the relevant user manual raw text in Python comment. Otherwise, do not create this variable. An example is like this:
+
+# User manual: Press the power button on the back of the air purifier to turn it off. 
+variable_power_on_off = DiscreteVariable(value_range=["on", "off"], current_value="off")
+
+Please refer to the list of available actions. Do not include variables that are adjusted by actions outside the list of actions provided. Go through all the steps written in the user manual so that you do not miss out variables. 
+
+Sometimes, a single feature might describe two ways to set a variable value. If the variable setting procedure is very different, you can define two variables, but name them using the differing methods, so that later we can model these two methods seperately. 
+
+A single feature might describe multiple variables. Define all these variables.
+
+$$$############################# 
+### Different variable types ###
+################################
+
+We need to create each variable as a Python object. We now introduce two pre-defined variable class, namely DiscreteVariable() and ContinuousVariable(), provided in the code template above.  Each variable can have its value increased via “next()” or decreased via “prev()”. For the discrete variable, you need to define the value range. For example, variable_start_running can have value ranges to be [“on”, “off”]. 
+
+Please make sure the value order in DiscreteVariable() exactly follows the display or description order as shown in the user manual. This order reflects the manufacturer's intended semantic or functional priority, and must not be automatically sorted or inferred numerically. Do not reorder based on numeric magnitude unless explicitly stated. Note that DiscreteVariable can have value ranges of mixed number and texts. For example, variable_speed = DiscreteVariable(value_range = ["off", "1", "2", "3", "turbo"]). 
+
+Note that discrete variables can only have strings as their values, other data types are not valid. For example, ["0", "1"] is a valid data range, but [0, 1] is not. For the continuous variable, you need to define the value range, such as [0, 59], and step value, such as 1. In the above microwave example, both values can be created as ContinuousVariable() objects. For example, the variable_clock_setting_hour can be created as ContinuousVariable(value_ranges_steps=[[0, 23, 1]]). 
+
+If a variable has piecewise continuous value ranges, you can set conditions. For example, if the value ranges is 0 and 3-15, and the step value for 3-15 is 1, you can set the variable to be ContinuousVariable(value_ranges_steps=[(0, 3, 3), (3, 15, 1)]). The smallest step value is 1. Please only use piecewise continuous value ranges if both DiscreteVariable() and ContinuousVariable() are not appliacable.
+
+Another possible scenario is that a variable can have different modes. An example is a microwave with different menu codes from 1 to 9 meant for cooking different food. In each different mode, the value range and step values are different. For example, menu 1 has weight setting options, but menu 2 has time setting options. Then in this case, we should have a variable A (e.g. variable_menu_index) that stores the chosen mode name, such as "1", "2", and a variable B (e.g. variable_menu_setting) that stores the actual initiation of the variable in a specific mode. Variable B should be created to be None. An additional dictionary called mode_setting_dict should be created. The dictionary keys are strings representing the mode names of variable A, and the dictionary values are variables B1, B2, B3, … created that capture the value ranges and step values of each mode. Then you should add a comment saying that each time an action is made to adjust variable A, variable B will have a different initiation from the dictionary. This comment will be a useful reminder when we are implementing the action effect of each appliance. The naming convention for variable B1, B2, B3, … is a concatenation of“variable”, and then “feature name”, and then “variable name“, and then “mode name” connected by underscores, such as "variable_menu_setting_1", "variable_menu_setting_2", etc.
+
+An example is as follows: 
+
+# variable A 
+variable_menu_index = DiscreteVariable(["A-1", "A-2", "A-3"], "A-1")
+
+# variable B
+variable_menu_setting = None 
+
+# variable B1, B2, B3, ... 
+variable_menu_setting_a1 = DiscreteVariable(["200", "400"], "200")
+variable_menu_setting_a2 = DiscreteVariable(["250", "350", "450"], "250")
+variable_menu_setting_a3 = DiscreteVariable(["200", "300", "400"], "200")
+
+# the mapping dictionary
+menu_setting_dict = {
+    "A-1": variable_menu_setting_a1,
+    "A-2": variable_menu_setting_a2,
+    "A_3": variable_menu_setting_a3
+}
+
+We also have a pre-defined variable called TimeVariable(). Note that similar to the microwave example, if a time variable has its hour and minutes adjusted in different steps, then this time variable should be split into an hour variable and a minute variable. This is so that the step values can be set different for hour and minute. If a time variable has its values adjusted in a single step, then you can use TimeVariable(). For TimeVariable, always set the initial value to '00:00:00' unless the initial value is explicitly specified by the user manual. 
+
+##################################################
+### Number Pads and Alphabet Pads Input String ###
+##################################################
+
+If the control panel lacks number or alphabet pads, skip this section. When number pads (0–9) or alphabet pads (A–Z) are available, users can input sequences to adjust a variable. You should include variable_input_string = SimulatorInputString() that inherits from the given InputString() to process the input. To store these inputs as a string, add_digit() or add_alphabet() must be implemented in the InputString object. These functions ensure the input is stored correctly for further parsing.
+
+Always create the simplest version required to model a variable. For example, if the variable about time is only regarding adjustment of hours, then using ContinuousVariable class to create integers is enough, there is no need to create a TimeVariable class. If there is no number pads, no InputString() objects should be created. If there are variables whereby the above variables does not fit, you can create your custom objects to represent them. Note that the variables must either inherit from Variable() or inherit from InputString() to reduce the uncertainty in code generation. 
+
+#################################
+### Variable Value Generation ###
+#################################
+
+Note that if the starting value of a variable is not specified in the user manual, you should always use the first item in the value range. If a variable is about numbers, such as time, temperature, you should add a value called “0”, “off”, or “uninitialised” on top of existing value options. On the other hand, if a variable is about words, such as menu, mode, it does not have a “0” or “uninitialised” option. If some variables’ current value is dependent on action type, please include them as a Python comment. We will implement it in the Appliance’s actions. For example, if pressing “power off” button will always set the power to “off”, you can create a variable_power = DiscreteVariable(“on”, “off”,) with Python comment # pressing power_off button will always set it to “off”. 
+
+Make sure to include all the parameter values of a variable. For example, if a “0” is included on top of a continuous value range, choose use a set of value range steps in the ContinuousVariable. Do not include parameter values that are not explicitly mentioned (such as creating very small step values). Please instantiate all the variables as much as possible. 
+
+##############################
+### code generation format ###
+##############################
+
+Attached is the code template for DiscreteVariable, ContinuousVariable, TimeVariable, InputString and TimeInputString. These code templates will be imported as a library, so you can directly call them. Just output the code, no need explanation or import statements. 
+
+We also include the list of available actions for this microwave, the list of observed control panel elements (sometimes including the available parameter value options), and the user manual of this machine. 
+
+Note that the list of actions and control panel elements might be redundant, including non-existing control panel elements. Therefore, only include variables that are adjusted by the control panel element and the action type that are explicitly named in the user manual. Do not include variables that are adjusted by actions outside the list of actions provided. Do not create variables that is not being implemented in the appliance. Go through all the steps written in the user manual so that you do not miss out variables. 

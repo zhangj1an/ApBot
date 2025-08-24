@@ -1,0 +1,33 @@
+wwwww
+
+The past feedbacks we received from the real world are as follows. The feedback format is variable name: variable value. You should compare the target variable value with the feedback value.
+
+Past Feedback:
+
+hhhhh  
+
+Comparison Rules:
+1. The variable names are already verified to represent the same item, so you should only compare the values.
+   For example:
+   - If the feedback shows `variable_power` is "On" and the goal state requires `variable_on_off` to be "On," return "True".
+   - If the feedback shows `variable_start_pause` is "Start" and the goal state requires `variable_start_running` to be "start," return "True".
+   - If the feedback shows `variable_mode` is "Off" and the goal state requires `variable_power` to be "On," return "False."
+
+2. If the values differ only in capitalization or textual formatting, consider them semantically the same and return "True". For example, "1 cup" and "1 serving" should be the same. 
+
+3. If any of the values contain both numbers and text, remove the text completely and compare only the numbers. For example, you should return "True" for "0g" and "0", "100cm" and "100", "1 cup" and "1".
+
+4. If the goal string only contains strings but feedback contains numbers, then remove numbers from the feedback completely, and just compare the two strings. For example, you should return "True" if the goal state requires "menu: popcorn" and the feedback shows: "popcorn cooking time: 1 min", as both strings has keyword "popcorn".
+
+5. If in the variable range, there is no better option that matches the goal value better than the feedback value, return "True". For example, if the possible values include [0, 1, 1.5, 2], the goal value is 1.5, and the feedback is 1.5, then it is indeed the best possible option. However, if the feedback is 1, you should return "False".
+
+6. If the comination of variable name and variable value means the same thing, you should return "True". For example, suppose the goal is : variable_menu = "Popcorn", and the feedback is mode_popcorn = "on", both feedback means the program is at popcorn. So return "True".
+
+Now compare the goal state and the given feedback. Firstly use the Python variable "reason" to check the pair matches using the rules listed above. If the pair matches, use the variable "goal_reached" to reply "True". Otherwise, reply "False". 
+
+The format is:
+
+reason = "a string that explain your choice"
+goal_reached = True or False
+
+You must only return these two lines of variables in Python, as I will directly execute your response as code. Any other content is forbidden. Do not return any other code or text, just return these two variables. 
