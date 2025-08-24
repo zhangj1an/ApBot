@@ -1,0 +1,20 @@
+We generated a Python list to represent appliance features, whereby each step can contain a variable that is to be adjusted and some actions that can be used to adjust this variable. We notice that the following list of actions are too long, namely,
+
+xxxxx 
+
+Below are the requirement to model actions. 
+
+
+In case you encounter number buttons or alphabet buttons, you should always make the feature list more compact by creating additional meta-actions that includes a fixed group of actions, then include meta-actions in the feature list. For example, one meta-action can be meta_actions_on_number = ["press_number_1_button", "press_number_2_button", "press_number_3_button", "press_number_4_button", "press_number_5_button", "press_number_6_button", "press_number_7_button", "press_number_8_button", "press_number_9_button", "press_number_0_button"]. Then in the feature_list, instead of listing all the 10 actions, you should just write meta_actions_on_number. The naming convention is “meta_actions_on” followed by the name of the groups of actions. You should always create either meta_actions_on_number or meta_actions_on_alphabet for numbers and alphabets to make the feature_list more concise. Here we provide meta_actions_on_number in the code template and you can directly quote them, and you can create your own meta_actions variable.
+
+These number buttons and alphabet buttons would have an action effect of adding a string character on a existing variable. For example, press_number_1_button, then press_number_3_button can make the timer to change from 0 minutes to 13 minutes. Please create a variable called meta_actions_dict to store these action effects. The key is the intended string character that one wants to add and the item is the corresponding action that can cause this effect. In our example, it will be: 
+
+meta_actions_dict = {
+        "1": "press_number_1_button",
+        "3": "press_number_3_button",
+}
+
+For every action in the meta-actions list, please create a corresponding entry in the meta_actions_dict. Our sample meta_actions_dict includes the mapping of number related actions, but you need to create your own dict if new mappings are involved.
+
+
+Based on the above requirement, does our proposed action list contain actions that should be replaced by a variable called meta_actions_on_xxx to make the list more concise? If it requires further modification, reply "yes" and provide a short reason. Otherwise, reply "no". 

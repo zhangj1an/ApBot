@@ -1,0 +1,62 @@
+The appliance user manual is as follows:
+
+ttttt
+
+Based on the user manual, we modelled the appliance mechanism to be as follows:
+
+xxxxx
+
+The past executed actions and feedbacks are as follows: 
+
+wwwww
+
+We want to achieve the following task:
+
+zzzzz 
+
+Currently, we are using the feature: kkkkk, to adjust the variable named iiiii. You can only use the set of actions listed below to adjust the variable: 
+
+hhhhh 
+
+With reference to the feature list, can you propose the next action to take to achieve this goal, give the target variable value you hope to achieve with this action, and give a short reason? If the action is not directly adjusting a variable value, you can leave the expected feedback empty.
+
+When generating actions, please only generate the ones listed in the available actions. For example, if the listed action has one called “press_power_button”, you can call it once by returning “run_action('press_power_button', execution_times=1)”. You can also call it multiple times. For example, if you want to call “press_power_button” by 3 times, you can return “run_action('press_power_button', execution_times=3)”. You can also decide to execute this action 0 times, by calling “run_action('press_power_button', execution_times=0)”. If an action needs to be called multiple times when adjusting a variable, try to call it in one go as much as possible to reduce inference cost. For example, if you can call “run_action('press_power_button', 1)” and “run_action('press_power_button', 1)”, try to call it as “run_action('press_power_button', 2)” instead. If you decide that the task has been achieved, return “end” (note it should be "end", not "run_action('end')"). 
+
+If the returned digital display looks too wrong, it means the action cannot be executed to the right place, the task is infeasible. Therefore, you can call 'end' to end the execution early. 
+
+In particular, a press_and_hold action must be called with a duration of specific seconds. For example, if an action is called "press_and_hold_program_button_and_water_level_button", and it must be pressed for at least 5 seconds to work, then you can call it by returning "run_action("press_and_hold_program_button_and_water_level_button", execution_times=1, duration=5)". If you are not sure how long it needs to be pressed, you can just set the duration to be 10 to be safe. 
+
+Note that if the appliance's power can be turned on or off, or can be set to start running or pause, remember to set these parameters.
+
+If you have tried multiple times and realise the target variable values cannot be achieved exactly, you can just let go and return "end" as an action, to save inference cost.
+
+Your reply should be three python variable: 1. proposed_action, which is a string representing an executable "run_action" function call for the next step, or the string "end" if no further actions are needed. 2. expected_feedback, which is the target value you expect the variable will be after executing this action. If the action is not adjusting any variables, leave it empty. 3. reason, which is a short string that explains why you chose this action.
+
+Some example replies are: 
+
+proposed_action = "run_action('press_and_hold_start_button', execution_times = 1, duration = 3)"
+expected_feedback = "the variable_start_running becomes 'on'."
+reason = "the previous settings are done, so now we start the machine. "
+
+or 
+
+proposed_action = "run_action('press_number_1_button', execution_times = 1)"
+expected_feedback = "the variable_time becomes '00:01'."
+reason = "we need to press number pads to adjust clock time."
+
+or 
+
+proposed_action = "run_action(press_confirm_button', execution_times = 1)" 
+expected_feedback = ""
+reason = "now we finish setting the hour of the clock time, so need to press confirm button."
+
+or 
+proposed_action = "end",
+expected_feedback = ""
+reason = "it seems we cannot set the variable to the target value."
+
+You can be cautious and execute the actions one by one, there is no need to achieve the goal in one action. 
+
+Please only return the three Python variables, as I am going to directly eval() the responses to apply this action using Python to directly interact with the appliance simulator. The simulator will return the corresponding digital display. The current state of the world model will also update accordingly when the execution process progresses.
+
+

@@ -1,0 +1,28 @@
+We built an internal model to reason about appliance execution. The model code is as follows: 
+
+xxxxx
+
+The user command is as follows: 
+
+yyyyy
+
+In our model, we want to make the machine to achieve the following goal state: 
+
+wwwww
+
+The past feedbacks we received from the real world is as follows. The feedback format is variable name: variable value. So you should compare the goal value.
+
+hhhhh 
+
+Compare the goal state and the given feedback. 
+
+Comparison Rules:
+1. The variable names are already verified to represent the same item, so you should only compare the values.
+   For example:
+   - If the feedback shows `variable_power` is "On" and the goal state requires `variable_on_off` to be "On," return "Yes."
+   - If the feedback shows `variable_start_pause` is "Start" and the goal state requires `variable_start_running` to be "start," return "Yes."
+   - If the feedback shows `variable_mode` is "Off" and the goal state requires `variable_power` to be "On," return "No."
+2. If the values differ only in capitalization or textual formatting, consider them semantically the same and return "Yes."
+3. If the values contain digits, and the digits are numerically equivalent (e.g., "0g" and "0", "100cm" and "100"), consider them numerically the same and return "Yes."
+
+Now compare the goal state and the given feedback. If they fit any of the rule above, reply "Yes." Otherwise, reply "No." Then provide a short reason. Do not return anything else.

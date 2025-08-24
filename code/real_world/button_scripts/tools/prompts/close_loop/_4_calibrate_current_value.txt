@@ -1,0 +1,103 @@
+We built an internal model to reason about appliance execution. The code of the internal model is as follows. 
+
+wwwww
+
+However, during execution, we realise our modelling of the variable with name: xxxxx is wrong. 
+
+Currently, our analysis is as following:
+
+ccccc
+
+Firstly, please decide on the variable you are going to adjust, and return it as a string using adjusting_variable_name = "xxxx". Please only use variable name given in the above code base. If in the code of the internal model, the variable is already defined as one of the objects from Variable, ContinuousVariable, DiscreteVariable, InputString, then you can directly adjust this variable. However, if the problematic variable is only assigned dynamically after execution, please modify the original variable instead. For example, suppose we have a variable_menu that is initailised as None, and can be set to one of the variables from the set: {variable_defrost, variable_grill, variable_bake}. During execution, variable_menu is assigned to variable_bake, but the settings are wrong. Then adjusting_variable_name = "variable_bake", not "variable_menu". 
+
+Then, please direcly copy the given analysis result as Python comments:
+
+# ccccc 
+
+Stricly following the given analysis shown above, please update relevant variable definition to make it correct again. For the variable's current value, please strictly follow the guidance given in the analysis. If there are any other data structure involving variable: xxxxx, please copy them again and return in your response. For example, suppose I modified variable_x to be: variable_x = DiscreteVariable(value_range = ["on", "off"], current_value = "on"),
+
+and I also have a dictionary_y["some_key"] = variable_x, a list_z = [variable_x, ...], a set_h = (variable_x, ...)
+
+Then, my response should be:
+
+variable_x = DiscreteVariable(value_range = ["on", "off"], current_value = "on")
+dictionary_y["some_key"] = variable_x
+list_z = [variable_x, ...]
+set_h = (variable_x, ...)
+
+
+
+However, do not return feature_list in your response, as it is not part of appliance variable modelling. It is considered appliance feature.
+
+
+
+The definition for Variable, ContinuousVariable, DiscreteVariable, InputString, Feature, Appliance should not be returned in your response, as it is included in our code library. The definition for Simulator(), ExtendedSimulator(), goal_state, feature_sequence and changing_variables is also not required, as we are modifying them in the next step. If the definition of meta_actions_dict and meta_actions_on_number involves content more than numbers from 0 - 9, include them in your response too. 
+
+Note that after referring to the feature list, if the problematic variable is being input by input_strings, the mismatch is usually caused by missing some formats, not the variable definition itself. For example, suppose we model a weight variable, variable_weight = ContinuousVariable(value_ranges_steps = [(0, 10, 1)], current_value = 0). However, the feedback shows "0g" instead of "0". If this is the case, you do not need to modify its variable definition. Instead, you can add an comment beside this variable saying 
+
+# the foramt is "{digit}g". modify get_original_input() and process_input_string(). 
+
+and return the original variable definition.
+
+Here we also provide the complete guide to create variables so that the allowed format is clearer.
+zzzzz
+
+There are four potential modifications to the variable definition: modifying the variable's initial value, step value, value range, or value order. We need to go through each condition to see if modification is needed. Examples of each scenario are provided below.
+
+Suppose the variable with the name "variable_x" is initially defined as:
+
+variable_x = ContinuousVariable(value_ranges_steps=(0, 60, 1), current_value=0, round_over=True)
+
+1. Modify Initial Value:  
+   If evidence suggests that the variable starts at a different value than initially defined, modify the `current_value`.  
+   Example: Suppose the variable value is intially at 15 when there is no effective action applied on it. After applying the action `assign_variable_to_next()`, the variable values are updated as `16, 17, 18 ...59, 60, 0, 1, 2, ..., 14, 15, 16, 17`.  
+   Update:  
+   variable_x = ContinuousVariable(value_ranges_steps=[(0, 60, 1)], current_value=15)
+
+3. Modify Value Range and Step Value:  
+
+   Note that only when the feedback contains repeating values, should you modify value range and step value. Otherwise the value range and step value should stay the same, you need to skip this part. 
+
+   If the evidence suggests that the variable operates over multiple distinct or piecewise ranges, adjust the value ranges and steps accordingly. 
+
+   Example A: Suppose the variable value is intially at 0 when there is no effective action applied on it. After applying the action `assign_variable_to_next()`, the variable values are updated as `1, 2, 3, ..., 9, 0, 1, ...`.  
+   We can see that the value range changes from (0, 60) to (0, 9), but the step value remains the same.
+   Update:  
+   variable_x = ContinuousVariable(value_ranges_steps=[(0, 9, 1)], current_value=0)
+   However, only when the past record shows repeated patterns, should you modify the value range like above. This is because the past record may not be long enough to go over the entire range. 
+
+   Example B: Suppose the variable value is intially at 0 when there is no effective action applied on it. After applying the action `assign_variable_to_next()`, the variable values are updated as `2, 4, 6, ..., 58, 0, 2, ...`.  
+   We can see that the value range remains at (0, 60) but the step value changes from 0 to 1. 
+   Update:  
+   variable_x = ContinuousVariable(value_ranges_steps=[(0, 60, 2)], current_value=0)
+
+   Example C: Suppose the variable value is intially at 5 when there is no effective action applied on it. After applying the action assign_variable_to_next(), the variable values are updated as `6, 7, 8, 9, 10, ..., 58, 59, 60, 0, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, ...`
+   We can see that the value range becomes piecewise, as (1, 2, 3, 4) are now missing. So the value range becomes [(0, 0), (5, 60)]. We then add in the step value for each range accordingly to become [(0, 0, 1), (5, 60, 1)].
+   Update:
+   variable_x = ContinuousVariable(value_ranges_steps=[(0, 0, 1), (5, 60, 1)], current_value=5)
+
+   Example D: Suppose the variable value is intially at 0 when there is no effective action applied on it. After applying the action assign_variable_to_next(), the variable values are updated as `1, 2, 3, ..., 7, 8, 9, 10, 15, 20, ..., 55, 60, 0, 1, ....`
+   We can see that the step size is different between (0, 10) and (10, 60). More specifically, [(0, 10, 1), (10, 60, 5)].
+   Update:
+   variable_x = ContinuousVariable(value_ranges_steps=[(0, 10, 1), (10, 60, 5)], current_value=0)  
+
+3. Modify Value Order:  
+   If the order of discrete values differs from the definition, adjust the `value_range` while preserving the original items' spelling and meaning.  
+   
+   Example: 
+   Suppose the variable with the name "variable_x" is initially defined as:
+   variable_x = DiscreteVariable(value_range = ["apple", "bear", "cat"], current_value = "apple")
+   Suppose the variable value is intially at "apple" when there is no effective action applied on it. After applying the action `assign_variable_to_next()`, the variable values are updated as `"cat", "bear", "apple", "cat", ...`.  
+   Update:  
+   variable_x = DiscreteVariable(value_range=["cat", "bear", "apple"], current_value="apple")
+
+Guidelines for Choosing Modifications:
+1. Evaluate Evidence Thoroughly: Always ensure the updated definition explains every observed value, especially transitions between steps or ranges. If any observed values cannot be explained by the current definition, investigate discontinuities or changes in step size. For each piece of evidence, confirm that the updated definition aligns with all observed transitions.
+2. Look for Discontinuous Ranges: When variable values change step size or behavior at specific thresholds, always consider piecewise value ranges as a potential modification. Clearly reflect this in the updated code to match all observed transitions.
+
+Note that if the variable involves number pads and alphabet pads, you may need to adjust the InputString() object's get_xxx() functions, and the Simulator() get_original_input() function. If any action involves directly setting a value to this variable, you need to modify the value in that action too.  
+
+Please make sure the name of the variable is the same. Please try to aligh your modelling of variable units with the observed feedback. For example, if the feedback of length is in unit of centimeters, then do not model it in meters. 
+
+Please only return the Python code and nothing else, as I need to directly execute the python code. Please include your choice and brief explaination as Python comments. You can start by directly quoting the executed action and the observed variable "xxxxx"'s value in every step of debug's record, then think step by step.
+

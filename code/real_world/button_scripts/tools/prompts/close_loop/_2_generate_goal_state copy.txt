@@ -1,0 +1,93 @@
+Suppose you have an appliance with the following user manual, which describes the feature of an appliance. 
+
+xxxxx
+
+These features have been modelled into a python object as follows. 
+
+yyyyy
+
+Suppose now I have a user instruction as follows. 
+
+zzzzz 
+
+$$$###########
+#   format
+##############
+
+Please firstly read the user manual, and read our code to decide on the features needed for this task, and write in Python comment the features needed. 
+
+Please only list the minimum features required to achieve this command. For example, if you choose to include feature A and B, but all the variables in feature B can already be set in feature A, then you should only include feature A. For example, if the previous feature already executed actions that can set the appliance running, you should not include another feature just to set the appliance running. Everytime when you add a new feature, you need to write in comment why the previous feature cannot achive the intention of this new feature. For example, suppose I chose feature A and B. Then a python comment can be:
+
+# the command requires setting variable_b to value_b, but feature A cannot achieve this. So feature B is needed.
+
+Then generate a Python list called "feature_sequence", which contains the ordered list of Python features that corresponds to the user manual features. Note that the order of each step must exactly follow the order described by the user manual. Each item must be a key name in the feature_list of the appliance python object. For example, suppose the appliance feature_list contains keys A, B, C, D. The user manual says the features we need to go through to achieve this goal are D, C. Then feature_sequence = [D, C]. Write Python comment to briefly explain why the feature sequence is in that order and quote raw text from user manual. Please include all the features that contain variables being specified in goal_state. 
+
+Then, in the order of the feature_sequence, please list the variable name that have a target value in the feature_list, and name it changing_variables. For example， suppose feature_sequence = [D, C], and feature D listed variable a, b, feature C listed variable c, d, then changing_variables = [a, b, c, d].
+
+Then following this list of strings in changing_variables, write the Python code that sets the value of this variable. Please read the user command carefully and set reasonable values to each variable. The variable name should be exactly the same as listed in the changing_variables. Do not substitute or indirectly map variable names, even if alternate mappings exist. Do not modify or use derived names for variables. 
+
+For each variable, write in Python comment the target value and the semantic meaning. The variable value must be within the variable range. If the variable value, range, or step differs from the default setting, you should adjust them using the appropriate methods (e.g., set_value_range, set_step_value, or set_current_value). Please set it to a value that can be achived by the actions given. 
+
+Below gives an easy example. 
+
+suppose you have two variables:
+
+variable_microwave_cooking_power = DiscreteVariable(value_range=["P0", "P50", "P100"], current_value="P0")
+variable_microwave_cooking_time = TimeVariable(value_ranges_steps = [("00:00:00", "00:99:99", 30)], current_value = "00:00:00")
+
+suppose the given feature list is as follows:
+
+feature_list["cook"] = [
+    {"step": 1, "action": ["turn_power_dial_clockwise", turn_power_dial_anticlockwise"], "variable": "variable_microwave_cooking_power"},
+    {"step": 2, "action": ["turn_time_dial_clockwise", turn_time_dial_anticlockwise"], "variable": "variable_microwave_cooking_time"}
+]
+
+Then your output can be:
+```
+feature_sequence = ["cook"]
+changing_variables = ["variable_microwave_cooking_power", "variable_microwave_cooking_time"]
+goal_state = ExtendedSimulator()
+# "cook", step 1, variable_microwave_cooking_power adjusts cooking power to P50
+goal_state.variable_microwave_cooking_power.set_current_value("P50")
+# "cook", step 2, variable_microwave_cooking_time adjusts cooking time to 30 seconds
+goal_state.variable_microwave_cooking_time.set_current_value("00:00:30")
+```
+
+##############################
+dynamically assigned variables
+##############################
+
+If in the reset() function, the variable name is initiated with None, this means the variable is assigned dynamically during appliance execution. You need to assign this variable with a existing Variable given in the existing code and set its properties (i.e.  set_value_range, set_step_value, or set_current_value). 
+
+For example, a microwave has a set of menus: potato and popcorn, each menu has its own settings. 
+
+variable_menu_name = DiscreteVariable(value_range=["potato", "popcorn"], current_value="potato") 
+variable_menu_potato = DiscreteVariable(value_range=["1", "2", "3"], current_value="1")
+variable_menu_popcorn = DiscreteVariable(value_range=["100g", "200g", "300g"], current_value="100g")
+variable_menu_dict = {
+    "potato": variable_menu_potato,
+    "popcorn": variable_menu_popcorn
+}
+variable_menu_details = None 
+
+Suppose the given feature list is as follows:
+feature_list["menu"] = [
+    {"step": 1, "action": ["press_menu_button"], "variable": "variable_menu_name"},
+    {"step": 2, "action": ["press_up_arrow_button", "press_down_arrow_button"], "variable": "variable_menu_details"}
+]
+
+Then you can tell that different menu names has differnt menu details. Suppose the user command sets the menu to popcorn, your goal state can be: 
+
+```
+feature_sequence = ["menu"]
+changing_variables = ["variable_menu_name", "variable_menu_details"]
+goal_state = ExtendedSimulator()
+# "menu", step 1, variable_menu_name, adjusts menu name to popcorn. 
+goal_state.variable_menu_name.set_current_value("popcorn")
+# "menu", step 2, variable_menu_details, adjusts menu setting to variable_menu_popcorn. Popcorn setting adjusts cooking weights. (Please directly set it to the user commands' request, instead of loading it from variable_menu_dict)
+goal_state.variable_menu_details = variable_menu_popcorn
+# variable_menu_details adjusts popcorn weight to 100g.
+goal_state.variable_menu_details.set_current_value("100g")
+```
+
+Please only generate python code without any other text that does not comform to python syntax, as I will directly execute these code. All the listed Python code are included in the library and can be directly used, so do not include any import statements of these contents.

@@ -1,0 +1,109 @@
+Here is the user manual of the appliance. 
+
+xxxxx 
+
+We want to model the appliance's features, and here is the instructions to construct such models. Here is the instructions to construct such models. 
+
+yyyyy 
+
+Here is the code library you can directly use.
+
+zzzzz 
+
+Here is our generated code. 
+
+wwwww
+
+We have an user command as follows:
+
+hhhhh 
+
+Using the given code, please firstly list a sequence of features needed to achieve this command, then generate the goal variable values. Here we give an example. 
+
+Suppose following the description of the user manual, a microwave has the following code to model its functions:
+
+variable_time = DiscreteVariable(value_range=["0", "5", "10"], current_value ="0")
+variable_start = DiscreteVariable(value_range=["on", "off"], current_value ="off")
+
+feature_list = {
+	"adjust_cooking_time": {
+		{"step": 1, "actions": ["turn_time_dial_clockwise", "turn_time_dial_anticlockwise"], "variable": "variable_time"}
+	},
+	"start_cooking": {
+		{"step": 1, "actions": ["press_start_button", "press_cancel_button"], "variable": "variable_start"}
+	}
+}
+
+(here we omit the Simulator Class code for brevity, but suppose it is complete)
+
+Then, suppose user command is to set the microwave cooking time to 5 minutes and then start cooking. Then the sequence of features needed is: "adjust_cooking_time" and "start_cooking. The goal variable values is: set variable_time to "5", set variable_start to "on". 
+
+For our user command, please firstly write in Python comment, the set of features and goal variable values to achieve this command. Then, featureor each variable, please list the feature name, feature step index, actions needed to adjust this variable. 
+
+Note that only when the variable name are listed in the "variable" attribute of that feature step, and when the action function correctly modelled the action effects, can this variable be adjusted using code. Using the above example,  
+
+feature_list["adjust_cooking_time"] = [
+		{"step": 1, "actions": ["turn_time_dial_clockwise", "turn_time_dial_anticlockwise"]}
+]
+
+cannot be used to adjust variable_time, because this variable is not being explicitly listed in step 1 as an "variable" attribute, so the action effect cannot simulate the process whereby the appliance adjusts the variable value one by one to acheive the target value. The correct modelling should be below: 
+
+feature_list["adjust_cooking_time"] = [
+		{"step": 1, "actions": ["turn_time_dial_clockwise", "turn_time_dial_anticlockwise"], "variable": "variable_time"}
+]
+
+For action functions, they should model the actual effect of the appliance. For example, the effect of press_plus_button should be add the corresponding adjusing variable by 1, but not directly set the variable_time to the value specified by user command. 
+
+Do you think the given code correctly models the appliance features that can be used to achieve this command? If yes, return the following:
+
+class ExtendedSimulator(Simulator): 
+	pass
+ 
+
+If no, please firstly write as Python comment, whether the code is faulty. The following are the possible errors:
+
+1. missed out any variables needed for this command, even though the variable is explicitly described in the user manual.
+2. missed out any appliance features described in the user manual.
+3. the feature exists, but in some steps, the variables affected by actions is missing,
+4. the action effects mentioned in the feature is modelled wrongly. For example, it should set the variable value to the next option dynamically, but the action effect set it to a fixed value. 
+
+Quote the relavent user manual text that proves there are missing features, wrongly modelled features or wrongly modelled action effects. Note that if the user command mentioned tasks that does not involve operating any control panel of the appliance (i.e. actions involving dial turning and button pressing) explicitly specified by the user manual, then this tasks should not be modelled, as it is not a valid appliance feature. Examples of such task includes flip open lids, place items in container, pull open doors, etc.
+
+Then please generate Python code to create an ExtendedSimulator(Simulator), and create new variables, features or modify some of the action effects so that it now includes the required features. 
+
+You can create new variables if you find that the existing variables do not have the target value as required by the user command. Also, this variable must be explicitly described in the user manual. The user manual must explicitly described the method to adjust this variable in a feature by operating the appliance's control panel, only involving either button pressing or dial turning actions.
+
+Note that you should not create new actions, as the appliance control panel is fixed to only have the currently modelled actions. When you modify existing action effects, please make sure all features in which this action appears has its action effects modelled. Please check all actions that are mentioned in the new feature and modify its action effect if applicable. 
+
+The new feature should have different content against existing features. Please only include features steps that helps achieve the user command. If a feature step is not required, please omit this feature step. If any feature step is modelled wrongly, please modify it.
+
+If meta_actions_on_numbers / alphabets are involved in your newly created features, please modify the relevant section in process_input_string() or press_number_button(). If you added new conditions in press_number_button() or process_input_string() to convert number inputs to variable values, you need to create this condition in get_original_input() to convert variable values back to number inputs. This is because we need to rely on get_original_input() to decide on the sequence of actions to take to achieve this target value. 
+
+For example, suppose in press_number_button(), in feature_a and variable_x, all the input digits w will set variable_x to a value of "w cups". Then you need to in get_original_input(), create a condition of (feature_a, variable_x), and convert the variable value of "w cups" back to "w". 
+
+For each (feature, variable_name) tuple, write in a separate condition.
+
+For example, 
+
+variable_additional = … (a new variable )
+updated_feature_list = feature_list 
+updated_feature_list[“a_new_feature”] = [
+	{“step”: 1, “action”: ["action_a", "action_b", "action_c", ...], “variable”: “variable_additional”}
+]
+
+class ExtendedSimulator(Simulator): 
+	def reset(self):
+		super().reset()
+		self.feature = Feature(feature_list=updated_feature_list, current_value=("empty", 1)) 
+		self.variable_additional = variable_additional 
+
+	def action_a(self):
+		self.feature.update_progress(“action_a”)
+		current_feature = self.feature.current_value[0]
+		if current_feature == “a_new_feature”:
+			self.variable_additional.set_current_value(“a_certain_value”)
+
+Note that when modifying process_input_string() and get_original_input(), you just need to write the new condition. For the rest conditions, you can use super.process_input_string() and super.get_original_input(). 
+
+
+ 

@@ -1,0 +1,40 @@
+Here is the user manual of an appliance. 
+
+xxxxx
+
+We identified some variables of the appliance that can be adjusted, as follows:
+
+zzzzz
+
+We summarised a feature of this appliance in the following. 
+
+yyyyy
+
+A feature firstly has a feature name. Then it has several steps. Each step must have a step index, stored in key "step", a set of actions stored in key "action", and some steps might contain variables that can be adjusted by these actions, stored in key "variable". 
+
+Sometimes in a step, an action is just used to initate the variable setting process, or confirm finish of the variable setting process, so the step itself would not include any variables. 
+
+Sometimes in a step, the actions are used to adjust the mentioned variable. If the variable will have its value assigned dynamically, e.g. set it to the next value in the value range, you can list it as a "variable" attribute. For example, on a microwave, pressing a "start" button can both start the cooking process and add the cooking time by 30 seconds. However, if the action will just set the variable to a fixed value, then there is no need to explictly model it as a varaible. Just write them as a "comment" attribute in that step, include the variable name and the target value. For example, press a "start" button will always start the microwave cooking process, then there is no need to include it as a "variable" attribute. 
+
+Sometimes in a step, one single action (e.g. press a button) will affect more than one variable. For example, on a microwave, pressing a "start" button can both start the cooking process and add the cooking time by 30 seconds. If all these variables will be assigned to their next value in the value range, do not model this feature because it is too complicated. If only one variable will be assigned to its next value in the value range, and the rest of the variables will be set to a fixed value, like our "start" example, then you can model it. For example, if pressing an button A will change variable B to a fixed value b, variable C to a fixed value c and variable D to its next value in the value range, then you should write "comment": "variable A: set to a, variable B: set to b” in the comments, and write variable D in the feature list. 
+
+This feature contain some steps that has actions, but no corresponding variables. That is, this stpe has no key named "variable". Please tell me, do any of these steps can actually affect the value of a variable dynamically, but the affected variable is not included in the same step in the "variable" attribute in the given feature dict? Please pay special attention to features that only has one single step, because usally they would be used to adjust a variable. 
+
+The following answers should be replied in Python code and should be directly executable. 
+
+If the feature has a step containing no "variable" attribute, but should in fact have one, reply in Python format 
+
+has_error = True 
+step_index = a 
+missing_variable = s
+
+whereby s is the string version of the missing variable name, and a is an integer that indicates the step index whereby its actions can adjust the value of the missing_variable. Note that as long as the variable to be adjusted is not stored in the "variable" attribute in that step, it is missing. 
+
+If the feature has no missing affected variables, reply in Python foramt:
+
+has_error = False
+step_index = -1 
+missing_variable = ""
+
+
+

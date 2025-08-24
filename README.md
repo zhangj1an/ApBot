@@ -367,7 +367,7 @@ Use control panel images and align them with textual instructions.
 | ---- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | 2.1  | Detect bounding boxes from panel images     | `_3_detect_bbox_from_photos.py`                                                                                            |
 | 2.2  | Map detected boxes to control element names | `_4_map_control_panel_element_names_to_bbox_indexes.py`                                                                    |
-| 2.3  | Format mappings into structured JSON        | `_5_json_map_control_panel_element_names_to_bbox_indexes.py`, `_7_json_map_control_panel_element_names_to_bbox_indexes.py` |
+| 2.3  | Format mappings into structured JSON        | `_5_json_map_control_panel_element_names_to_bbox_indexes.py`, `_7_json_map_control_panel_element_names_to_bbox.py` |
 | 2.4  | Remove duplicate or conflicting mappings    | `_6_remove_duplicate_bboxes.py`                                                                                            |
 | 2.5  | Visualize grounding results                 | `_8_visualise_grounding_control_element_name_result.py`                                                                    |
 
