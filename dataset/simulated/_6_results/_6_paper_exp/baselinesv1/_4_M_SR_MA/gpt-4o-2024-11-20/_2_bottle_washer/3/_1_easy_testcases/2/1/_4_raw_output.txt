@@ -1,0 +1,132 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _2_bottle_washer 3 var 2
+processing:  _2_bottle_washer 3 2
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/3/_1_easy_testcases/2/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/3/_1_easy_testcases/2/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["power_control", "choose_wash_mode", "start_cycle"]
+feature_choice_reason = "Feature 'power_control' is required to turn on the appliance. Feature 'choose_wash_mode' is needed to set the wash mode to 'Wash, Sterilize, Dry'. Feature 'start_cycle' is required to start the appliance after setting the desired mode."
+changing_variables = ["variable_power_on_off", "variable_wash_mode", "variable_start_running"]
+goal_state = ExtendedSimulator()
+# "power_control", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "choose_wash_mode", step 1, variable_wash_mode
+goal_state.variable_wash_mode.set_current_value("Wash, Sterilize, Dry")
+# "start_cycle", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_power_on_off: off
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash & Dry
+
+current_state_simulator when it is just created: 
+
+ variable_power_on_off: off
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash & Dry
+
+goal state:  variable_power_on_off: on
+variable_start_running: on
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash, Sterilize, Dry
+current feature:  power_control
+step_info:  {'step': 1, 'actions': ['press_and_hold_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_and_hold_power_button', 1)
+goal state string:  We want to have the variable: variable_power_on_off to have a value of on. 
+goal_state_simulator: variable_power_on_off: on
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash & Dry
+current_state_simulator: variable_power_on_off: on
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash & Dry
+variable_name: variable_power_on_off
+actions: ['press_and_hold_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_and_hold_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_power_on_off' is 'on', which matches the goal state requiring 'variable_power_on_off' to be 'on'. The values are identical, so the goal has been reached."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  choose_wash_mode
+step_info:  {'step': 1, 'actions': ['press_wash_mode_button'], 'variable': 'variable_wash_mode'}
+executing action: ('press_wash_mode_button', 1)
+goal state string:  We want to have the variable: variable_wash_mode to have a value of Wash, Sterilize, Dry. 
+goal_state_simulator: variable_power_on_off: on
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash, Sterilize, Dry
+current_state_simulator: variable_power_on_off: on
+variable_start_running: off
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash, Sterilize, Dry
+variable_name: variable_wash_mode
+actions: ['press_wash_mode_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_wash_mode_button', 1), feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash, Sterilize, Dry'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_wash_mode': 'wash, sterilize, dry'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_wash_mode' to have the value 'Wash, Sterilize, Dry'. The feedback shows 'variable_wash_mode' with the value 'wash, sterilize, dry'. The values differ only in capitalization, and according to the rules, differences in capitalization should be considered semantically the same. Therefore, the feedback matches the goal state."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start_cycle
+step_info:  {'step': 1, 'actions': ['press_start_pause_button'], 'variable': 'variable_start_running', 'comment': 'value always set to on'}
+executing action: ('press_start_pause_button', 1)
+goal state string:  We want to have the variable: variable_start_running to have a value of on. 
+goal_state_simulator: variable_power_on_off: on
+variable_start_running: on
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash, Sterilize, Dry
+current_state_simulator: variable_power_on_off: on
+variable_start_running: on
+variable_sterilize_dry_mode: Sterilize & Dry
+variable_wash_mode: Wash, Sterilize, Dry
+variable_name: variable_start_running
+actions: ['press_start_pause_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_start_pause_button', 1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_start_running': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_start_running' is 'on', which matches the goal state requirement of 'variable_start_running' being 'on'. The values are identical, and there is no better matching option in the variable range."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 2, 'command': "Power up the appliance and choose the 'Wash, Sterilize, Dry' cycle, and press start to begin.", 'target_state': {'variable_power_on_off': 'on', 'variable_wash_mode': 'Wash, Sterilize, Dry', 'variable_sterilize_dry_mode': 'Sterilize & Dry', 'variable_start_running': 'on'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_wash_mode': 'Wash, Sterilize, Dry', 'variable_start_running': 'on'}}
+robot's decision {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_sterilize_dry_mode': 'Sterilize & Dry', 'variable_wash_mode': 'Wash, Sterilize, Dry'}

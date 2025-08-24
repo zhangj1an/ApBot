@@ -1,0 +1,51 @@
+{
+    "command_id": 3,
+    "command_string": "Turn on the dehumidifier and set it to DRY Mode.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_operating_mode": "DRY"
+    },
+    "executed_goal_state": {
+        "variable_cool_mode_temperature": 0,
+        "variable_fan_speed": "HIGH",
+        "variable_operating_mode": "DRY",
+        "variable_power_on_off": "on",
+        "variable_timer": 0
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be turned on to proceed with setting it to DRY mode.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_mode_button', execution_times=2)",
+            "grounded_action": "press_mode_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cool_mode_temperature",
+                    1
+                ],
+                "variable_operating_mode": "DRY",
+                "variable_cool_mode_temperature": 0
+            },
+            "expected_feedback": "the variable_mode becomes 'DRY'.",
+            "reason": "The current mode is set to 'COOL', and pressing the 'press_mode_button' twice will cycle the mode to 'DRY', achieving the target operating mode.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 3
+}

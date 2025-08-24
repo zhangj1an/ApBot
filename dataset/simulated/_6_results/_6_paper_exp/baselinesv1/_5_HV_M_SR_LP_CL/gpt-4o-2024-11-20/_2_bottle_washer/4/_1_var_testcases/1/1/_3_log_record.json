@@ -1,0 +1,115 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the bottle warmer and set the quick warm function for a glass bottle with 2 oz of refrigerated milk. Adjust the time to 3 minutes.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_menu_index": "quick",
+        "variable_quick_warm_time": 3
+    },
+    "executed_goal_state": {
+        "variable_defrost_time": 0,
+        "variable_menu_index": "quick",
+        "variable_menu_time": 3,
+        "variable_power_on_off": "on",
+        "variable_preset_time": "1 hr",
+        "variable_quick_warm_time": 3,
+        "variable_slow_warm_setting": "LO",
+        "variable_steam_time": 12,
+        "variable_sterilize_time": 15
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be turned on before settings can be adjusted.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times = 1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "slow",
+                "variable_menu_time": "LO"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Slow'.",
+            "reason": "We need to cycle through the menu options to set the quick warm function. The first press will move the menu index from 'Quick' to 'Slow'.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "defrost",
+                "variable_menu_time": 0
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Quick'.",
+            "reason": "We need to cycle the menu to select the 'Quick Warm' function, as it is required for warming 2 oz of refrigerated milk in 3 minutes.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'sterilize', 'variable_menu_time': 15}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'steam', 'variable_menu_time': 12}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'preset', 'variable_menu_time': '1 hr'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'quick', 'variable_menu_time': 3}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'defrost', 'variable_menu_time': 0}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'sterilize', 'variable_menu_time': 15}",
+                "executed action: run_action('press_menu_button', execution_times=3), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'quick', 'variable_menu_time': 3}",
+                "executed action: run_action('press_plus_button', execution_times=0), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'quick', 'variable_menu_time': 3}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_menu_button', execution_times=3)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "quick",
+                "variable_menu_time": 3
+            },
+            "expected_feedback": "the variable_menu_index becomes 'quick'.",
+            "reason": "The current menu index is 'sterilize', and the target is 'quick'. Pressing the menu button three times will cycle from 'sterilize' to 'steam', then 'preset', and finally to 'quick'.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_plus_button', execution_times=0)",
+            "grounded_action": "press_plus_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "quick",
+                "variable_menu_time": 3
+            },
+            "expected_feedback": "",
+            "reason": "The target variable for quick warm function is already set to 3 minutes, no further actions are needed.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 15
+}

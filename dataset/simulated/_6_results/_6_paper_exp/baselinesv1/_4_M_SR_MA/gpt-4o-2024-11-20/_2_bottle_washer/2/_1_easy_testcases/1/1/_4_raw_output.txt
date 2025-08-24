@@ -1,0 +1,212 @@
+extracting control panel labels...
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_0_reasoning' created successfully.
+Control panel details saved to: /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_0_reasoning/_1_control_panel_label_details.txt
+defining variables...
+attempt:  0
+Attempt 1 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+syntax error 4: Error: Features 'turn_power_on_off' and 'start_warming' have the same step 1 action: press_power_button. The first possibility is the features you created are parts of features with longer steps. Then you should merge existing features into bigger ones. The second possibility is the first step itself is a seperate feature. Then single out the first step as a feature, the rest steps as another feature. 
+Attempt 2 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+syntax error 3: Feature 'power_and_start_warming' has duplicate actions between steps 1 and 2, usually these actions are adjusting the same variable. You can remove either step 1 or step 2 to avoid ambiguity. You only need to include the variable whose value will be assigned dynamically by executing the action. If the action will set the variable to a fixed value, only need to include it in the comment.
+Attempt 3 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+passed syntax check 4
+passed syntax check 5
+passed syntax check 6
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_0_reasoning/_3_proposed_feature_list.py
+
+Attempt to generate world model: 0
+The appliance does not have any number pads, so the simulator should not have methods like 'press_number_button', 'get_original_input', 'process_input_string', or variables like 'meta_actions_dict' and 'variable_input_string'. Please remove these methods and variables from the generated code.
+Error message:  The appliance does not have any number pads, so the simulator should not have methods like 'press_number_button', 'get_original_input', 'process_input_string', or variables like 'meta_actions_dict' and 'variable_input_string'. Please remove these methods and variables from the generated code.
+Attempt to generate world model: 1
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_0_reasoning/_4_proposed_world_model.py
+processing:  _2_bottle_washer 2 var 1
+processing:  _2_bottle_washer 2 1
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_1_easy_testcases/1/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/2/_1_easy_testcases/1/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["power_and_start_warming", "select_bottle_type", "select_initial_temperature", "select_volume"]
+feature_choice_reason = "Feature 'power_and_start_warming' is required to turn on the appliance. Feature 'select_bottle_type' is needed to set the bottle type to 'Milk bag'. Feature 'select_initial_temperature' is required to set the initial temperature to 'Room'. Feature 'select_volume' is needed to set the volume to '1-3 fl-oz'."
+changing_variables = ["variable_power_on_off", "variable_start_running", "variable_bottle_type", "variable_initial_temp", "variable_volume"]
+goal_state = ExtendedSimulator()
+# "power_and_start_warming", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+goal_state.variable_start_running.set_current_value("on")
+# "select_bottle_type", step 1, variable_bottle_type
+goal_state.variable_bottle_type.set_current_value("Milk bag")
+# "select_initial_temperature", step 1, variable_initial_temp
+goal_state.variable_initial_temp.set_current_value("Room")
+# "select_volume", step 1, variable_volume
+goal_state.variable_volume.set_current_value("1-3 fl-oz")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_bottle_type: Milk bag
+variable_initial_temp: Room- 25℃ (77℉)
+variable_night_light: off
+variable_power_on_off: off
+variable_volume: 1-3 fl-oz
+
+current_state_simulator when it is just created: 
+
+ variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: off
+variable_start_running: off
+variable_volume: 1-3 fl-oz
+
+goal state:  variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+current feature:  power_and_start_warming
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off', 'comment': 'variable_start_running: set to on'}
+executing action: ('press_power_button', 1)
+goal state string:  We want to have the variable: variable_power_on_off to have a value of on. 
+goal_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: off
+variable_volume: 1-3 fl-oz
+current_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The feedback shows that the variable 'variable_power_on_off' has the value 'on', which matches the goal state value of 'on'. According to Rule 1, the values are the same, so the goal state for this variable has been achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  select_bottle_type
+step_info:  {'step': 1, 'actions': ['press_bottle_button'], 'variable': 'variable_bottle_type'}
+executing action: ('press_bottle_button', 1)
+goal state string:  We want to have the variable: variable_bottle_type to have a value of Milk bag. 
+goal_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+current_state_simulator: variable_bottle_type: Plastic
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+variable_name: variable_bottle_type
+actions: ['press_bottle_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_bottle_button', 2)]
+feedbacks:  ["applied action: ('press_bottle_button', 1), feedback: {'feature': ('select_bottle_type', 1), 'variable_bottle_type': 'Plastic'}", "applied action: ('press_bottle_button', 2), feedback: {'feature': ('select_bottle_type', 1), 'variable_bottle_type': 'Milk bag'}"]
+check state....
+Feedback Variable: 
+
+ variable_bottle_type: milk bag 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_bottle_type' to have the value 'Milk bag'. The feedback shows 'milk bag'. According to Rule 2, differences in capitalization do not matter when comparing values. Therefore, 'Milk bag' and 'milk bag' are semantically the same."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  select_initial_temperature
+step_info:  {'step': 1, 'actions': ['press_initial_temp_button'], 'variable': 'variable_initial_temp'}
+executing action: ('press_initial_temp_button', 1)
+goal state string:  We want to have the variable: variable_initial_temp to have a value of Room. 
+goal_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+current_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Refrig
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+variable_name: variable_initial_temp
+actions: ['press_initial_temp_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_initial_temp_button', 2)]
+feedbacks:  ["applied action: ('press_initial_temp_button', 1), feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Refrig- 4℃ (39.2℉)'}", "applied action: ('press_initial_temp_button', 2), feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Room- 25℃ (77℉)'}"]
+check state....
+Feedback Variable: 
+
+ variable_initial_temp: room- 25℃ (77℉) 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_initial_temp to have a value of 'Room'. The feedback shows 'room- 25℃ (77℉)'. According to rule 4, if the goal string only contains strings but the feedback contains numbers, we remove the numbers from the feedback and compare the strings. After removing numbers, the feedback becomes 'room', which matches 'Room' in the goal state, differing only in capitalization. Therefore, the values are semantically the same."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  select_volume
+step_info:  {'step': 1, 'actions': ['press_volume_button'], 'variable': 'variable_volume'}
+executing action: ('press_volume_button', 1)
+goal state string:  We want to have the variable: variable_volume to have a value of 1-3 fl-oz. 
+goal_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 1-3 fl-oz
+current_state_simulator: variable_bottle_type: Milk bag
+variable_initial_temp: Room
+variable_night_light: off
+variable_power_on_off: on
+variable_start_running: on
+variable_volume: 4-6 fl-oz
+variable_name: variable_volume
+actions: ['press_volume_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_volume_button', 2)]
+feedbacks:  ["applied action: ('press_volume_button', 1), feedback: {'feature': ('select_volume', 1), 'variable_volume': '4-6 fl-oz'}", "applied action: ('press_volume_button', 2), feedback: {'feature': ('select_volume', 1), 'variable_volume': '1-3 fl-oz'}"]
+check state....
+Feedback Variable: 
+
+ variable_volume: 1-3 fl-oz 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_volume' to have a value of '1-3 fl-oz', and the feedback shows the variable 'variable_volume' also has the value '1-3 fl-oz'. The values are identical, so the goal has been reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 1, 'command': 'Turn on the washer and heat a milk bag at room temperature (25℃) with a volume of 1-3 fl-oz.', 'target_state': {'variable_bottle_type': 'Milk bag', 'variable_initial_temp': 'Room- 25℃ (77℉)', 'variable_night_light': 'off', 'variable_power_on_off': 'on', 'variable_volume': '1-3 fl-oz'}, 'important_target_states': {'variable_bottle_type': 'Milk bag', 'variable_initial_temp': 'Room- 25℃ (77℉)', 'variable_power_on_off': 'on', 'variable_volume': '1-3 fl-oz'}}
+robot's decision {'variable_bottle_type': 'Milk bag', 'variable_initial_temp': 'Room- 25℃ (77℉)', 'variable_night_light': 'off', 'variable_power_on_off': 'on', 'variable_volume': '1-3 fl-oz'}

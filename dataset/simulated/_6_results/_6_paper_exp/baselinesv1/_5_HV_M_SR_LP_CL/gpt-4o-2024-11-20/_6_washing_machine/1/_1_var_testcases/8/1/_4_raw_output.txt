@@ -1,0 +1,363 @@
+attempt:  0
+generated goal state code:  feature_sequence = ["power_adjust", "adjust_cycle_selector", "adjust_temperature", "adjust_spin_speed", "adjust_options", "adjust_delay_end", "start_pause_cycle"]
+feature_choice_reason = "Feature power_adjust is needed to turn on the appliance. Feature adjust_cycle_selector is required to set the cycle to Outdoor Care. Feature adjust_temperature is needed to set the temperature to 40°C. Feature adjust_spin_speed is required to set the spin speed to 1200 rpm. Feature adjust_options is needed to set the option to Soak + Rinse+. Feature adjust_delay_end is required to set the delay to 5 hours. Finally, feature start_pause_cycle is needed to start the machine."
+changing_variables = ["variable_power_on_off", "variable_cycle_selector", "variable_temperature", "variable_spin_speed", "variable_option", "variable_delay_end", "variable_start_running"]
+goal_state = ExtendedSimulator()
+# "power_adjust", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "adjust_cycle_selector", step 1, variable_cycle_selector
+goal_state.variable_cycle_selector.set_current_value("Outdoor Care")
+# "adjust_temperature", step 1, variable_temperature
+goal_state.variable_temperature.set_current_value("40°C")
+# "adjust_spin_speed", step 1, variable_spin_speed
+goal_state.variable_spin_speed.set_current_value("1200")
+# "adjust_options", step 1, variable_option
+goal_state.variable_option.set_current_value("Soak + Rinse+")
+# "adjust_delay_end", step 1, variable_delay_end
+goal_state.variable_delay_end.set_current_value(5) # The number represents hours.
+# "start_pause_cycle", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+current feature:  power_adjust
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+Response: 
+ proposed_action = "run_action('press_power_button', execution_times=1)"
+expected_feedback = "the variable_power_on_off becomes 'on'."
+reason = "The appliance needs to be powered on to begin setting other variables and achieving the goal."
+Proposed action in function propose_action:  run_action('press_power_button', execution_times=1)
+proposed action:  run_action('press_power_button', execution_times=1)
+expected feedback:  the variable_power_on_off becomes 'on'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_name': 'variable_power_on_off', 'value': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_power_on_off' is 'on', which matches the goal state requirement for 'variable_power_on_off' to be 'on'. Both values are semantically the same, and there is no better option in the variable range that matches the goal value better than the feedback value."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_power_on_off': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_power_on_off' is 'on', which directly matches the goal state where 'variable_power_on_off' is also 'on'. The values are identical, and no further comparison or rules are required."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  adjust_cycle_selector
+step_info:  {'step': 1, 'actions': ['turn_cycle_selector_dial_clockwise', 'turn_cycle_selector_dial_anticlockwise'], 'variable': 'variable_cycle_selector'}
+Response: 
+ proposed_action = "run_action('turn_cycle_selector_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_cycle_selector becomes 'Outdoor Care'."
+reason = "we need to turn the cycle selector dial clockwise three times to set it to the desired 'Outdoor Care' cycle, starting from the current 'Cotton' setting."
+Proposed action in function propose_action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=3)
+proposed action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=3)
+expected feedback:  the variable_cycle_selector becomes 'Outdoor Care'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_cycle_selector': 'baby care'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cycle_selector' to be set to 'Outdoor Care', but the feedback shows 'variable_cycle_selector' as 'baby care'. Since 'Outdoor Care' is a better match for the goal and is explicitly required, the feedback value does not align with the goal state."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_cycle_selector': 'baby care'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cycle_selector to be 'Outdoor Care', but the feedback shows 'baby care'. According to Rule 5, if there is an option that matches the goal value better than the feedback value, the goal has not been reached. 'Outdoor Care' matches the goal better than 'baby care', so the goal is not achieved."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_child_lock: off
+variable_cycle_selector: Daily Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+debug record string: step: 0, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Daily Wash'}
+step: 1, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Stain Away'}
+step: 2, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Super Eco Wash'}
+step: 3, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Outdoor Care'}
+step: 4, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Wool'}
+step: 5, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Hand Wash'}
+step: 6, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Spin'}
+step: 7, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Rinse+Spin'}
+step: 8, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Cotton'}
+step: 9, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Synthetics'}
+step: 10, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': "15' Quick Wash"}
+step: 11, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Baby Care'}
+step: 12, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Daily Wash'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_cycle_selector_dial_clockwise. The first observed action is turn_cycle_selector_dial_clockwise.
+Analysis results: The variable variable_cycle_selector is DiscreteVariable with value ranges to be ['Daily Wash', 'Stain Away', 'Super Eco Wash', 'Outdoor Care', 'Wool', 'Hand Wash', 'Spin', 'Rinse+Spin', 'Cotton', 'Synthetics', "15' Quick Wash", 'Baby Care']. The current value is Daily Wash. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_cycle_selector is DiscreteVariable with value ranges to be ['Daily Wash', 'Stain Away', 'Super Eco Wash', 'Outdoor Care', 'Wool', 'Hand Wash', 'Spin', 'Rinse+Spin', 'Cotton', 'Synthetics', "15' Quick Wash", 'Baby Care']. The current value is Daily Wash.
+
+# Correcting the order of values in value_range to match the observations in feedback.
+variable_cycle_selector = DiscreteVariable(
+    value_range=["Daily Wash", "Stain Away", "Super Eco Wash", "Outdoor Care", "Wool", "Hand Wash", "Spin", "Rinse+Spin", "Cotton", "Synthetics", "15' Quick Wash", "Baby Care"], 
+    current_value="Daily Wash"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('press_power_button', execution_times=1)", "run_action('turn_cycle_selector_dial_clockwise', execution_times=3)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_child_lock: off
+variable_cycle_selector: Daily Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0 
+
+Response: 
+ proposed_action = "run_action('turn_cycle_selector_dial_clockwise', execution_times=4)"
+expected_feedback = "the variable_cycle_selector becomes 'Outdoor Care'."
+reason = "The variable 'variable_cycle_selector' is currently set to 'Daily Wash'. To set it to 'Outdoor Care', we need to rotate the cycle selector dial clockwise four steps based on the order in the feedback."
+Proposed action in function propose_action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=4)
+proposed action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=4)
+expected feedback:  the variable_cycle_selector becomes 'Outdoor Care'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ 'variable_cycle_selector': 'wool' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cycle_selector' to be set to 'Outdoor Care', but the feedback shows 'variable_cycle_selector' is 'wool'. These two values are different, and there is a better matching option ('Outdoor Care') in the variable range that aligns with the goal value. Therefore, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ 'variable_cycle_selector': 'wool' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cycle_selector' to be 'Outdoor Care', while the feedback shows it as 'wool'. Since the feedback value 'wool' does not match the goal value 'Outdoor Care' and there is no indication that 'wool' is a better match or equivalent to 'Outdoor Care', the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+debug record string: step: 0, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Hand Wash'}
+step: 1, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Spin'}
+step: 2, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Rinse+Spin'}
+step: 3, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Cotton'}
+step: 4, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Synthetics'}
+step: 5, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': "15' Quick Wash"}
+step: 6, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Baby Care'}
+step: 7, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Daily Wash'}
+step: 8, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Stain Away'}
+step: 9, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Super Eco Wash'}
+step: 10, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Outdoor Care'}
+step: 11, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Wool'}
+step: 12, applied action: turn_cycle_selector_dial_clockwise, feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Hand Wash'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_cycle_selector_dial_clockwise. The first observed action is turn_cycle_selector_dial_clockwise.
+Analysis results: The variable variable_cycle_selector is DiscreteVariable with value ranges to be ['Hand Wash', 'Spin', 'Rinse+Spin', 'Cotton', 'Synthetics', "15' Quick Wash", 'Baby Care', 'Daily Wash', 'Stain Away', 'Super Eco Wash', 'Outdoor Care', 'Wool']. The current value is Hand Wash. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_cycle_selector is DiscreteVariable with value ranges to be ['Hand Wash', 'Spin', 'Rinse+Spin', 'Cotton', 'Synthetics', "15' Quick Wash", 'Baby Care', 'Daily Wash', 'Stain Away', 'Super Eco Wash', 'Outdoor Care', 'Wool']. The current value is Hand Wash.
+
+# Adjusting the variable name:
+adjusting_variable_name = "variable_cycle_selector"
+
+# Correcting the value range and updating the current value to match the observation. The value order has been modified to reflect the sequence in the observed transitions.
+variable_cycle_selector = DiscreteVariable(
+    value_range=[
+        'Hand Wash', 'Spin', 'Rinse+Spin', 'Cotton', 'Synthetics', "15' Quick Wash", 'Baby Care', 
+        'Daily Wash', 'Stain Away', 'Super Eco Wash', 'Outdoor Care', 'Wool'
+    ],
+    current_value='Hand Wash'
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('press_power_button', execution_times=1)", "run_action('turn_cycle_selector_dial_clockwise', execution_times=3)", "run_action('turn_cycle_selector_dial_clockwise', execution_times=4)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0 
+
+Response: 
+ proposed_action = "run_action('turn_cycle_selector_dial_clockwise', execution_times=1)"
+expected_feedback = "the variable_cycle_selector becomes 'Spin'."
+reason = "We are currently at 'Hand Wash'. Turning the dial clockwise will move us closer to the target value 'Outdoor Care' in the cycle selector."
+Proposed action in function propose_action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=1)
+proposed action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=1)
+expected feedback:  the variable_cycle_selector becomes 'Spin'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_cycle_selector': 'spin'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cycle_selector' to be 'Outdoor Care,' but the feedback shows 'variable_cycle_selector' is 'spin.' The two values are not the same, and there is a better option in the variable range ('Outdoor Care') that matches the goal value better than the feedback value. Thus, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_cycle_selector': 'spin'} 
+
+
+Comparison result: 
+
+ reason = "The feedback value 'spin' matches the goal state value 'Spin' when considering case insensitivity. Both represent the same cycle selector option."
+goal_reached = True 
+
+
+reached expectation:  True
+Response: 
+ proposed_action = "run_action('turn_cycle_selector_dial_clockwise', execution_times=1)"
+expected_feedback = "the variable_cycle_selector becomes 'Outdoor Care'."
+reason = "we need to adjust the cycle selector to 'Outdoor Care' for washing outdoor sportswear."
+Proposed action in function propose_action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=1)
+proposed action:  run_action('turn_cycle_selector_dial_clockwise', execution_times=1)
+expected feedback:  the variable_cycle_selector becomes 'Outdoor Care'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ 'variable_cycle_selector': 'rinse+spin' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cycle_selector to be set to 'Outdoor Care'. The feedback indicates the value is 'rinse+spin'. Since 'rinse+spin' does not match 'Outdoor Care' and there is a better matching option in the variable range, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ 'variable_cycle_selector': 'rinse+spin' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cycle_selector' to be 'Outdoor Care', but the feedback shows 'rinse+spin'. These two values are not semantically the same, and 'Outdoor Care' is a better match for the required goal state than 'rinse+spin'. Thus, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached expectation:  False
+fail to set target value forvariable_cycle_selector within 1 model calibration trials and 5 value setting trials.
+ground truth info {'id': 8, 'command': 'Power on and wash outdoor sportswear, using Outdoor Care cycle, 40 °C temperature, 1200 rpm spin speed, Soak + Rinse+ option, set delay to 5 hours, and start the machine.', 'target_state': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Outdoor Care', 'variable_temperature': '40 °C', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5', 'variable_child_lock': 'off'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Outdoor Care', 'variable_temperature': '40 °C', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5'}}
+robot's decision {'variable_child_lock': 'off', 'variable_cycle_selector': 'Rinse+Spin', 'variable_delay_end': 0, 'variable_option': 'off', 'variable_power_on_off': 'on', 'variable_spin_speed': '0', 'variable_start_running': 'off', 'variable_temperature': '0'}
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/8/1/_3_log_record.json' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/8/1/_3_log_record_backup.json'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/8/1/_3_log_record.json' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/8/1/_3_log_record.json' created.
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_6_washing_machine/5/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/1/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/1/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_3_rice_cooker/5/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/1/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/1/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_4_proposed_world_model.py. Skipping...

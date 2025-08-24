@@ -1,0 +1,99 @@
+{
+    "command_id": 1,
+    "command_string": "Bake a large, medium-crust French loaf using french menu, with a 2-hour timer delay, then start the bread maker.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "2 French",
+        "variable_loaf_size": "large",
+        "variable_crust_color": "medium",
+        "variable_timer_delay": 2,
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_color": "medium",
+        "variable_loaf_size": "large",
+        "variable_menu_index": "2 French",
+        "variable_start_running": "off",
+        "variable_timer_delay": 12
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_menu_button",
+                1
+            ],
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "2 French"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_loaf_size_button",
+                1
+            ],
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "large"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_crust_button",
+                1
+            ],
+            "grounded_action": "press_crust_button",
+            "current_observation": {
+                "feature": [
+                    "crust_color_selection",
+                    1
+                ],
+                "variable_crust_color": "medium"
+            }
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_time_up_button",
+                1
+            ],
+            "grounded_action": "press_time_up_button",
+            "current_observation": {
+                "feature": [
+                    "timer_delay",
+                    1
+                ],
+                "variable_timer_delay": 1
+            }
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_time_up_button",
+                11
+            ],
+            "grounded_action": "press_time_up_button",
+            "current_observation": {
+                "feature": [
+                    "timer_delay",
+                    1
+                ],
+                "variable_timer_delay": 12
+            },
+            "mismatch": "The goal state requires 'variable_timer_delay' to have a value of '02:00:00', which represents 2 hours. The feedback shows 'variable_timer_delay' as '12', which is ambiguous and does not represent the same time duration as the goal state. Additionally, there is no indication that '12' could be interpreted as '02:00:00' in this context. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_timer_delay, the value decided by the robot is 12 (type: <class 'int'>), but the ground truth is 2 (type: <class 'int'>)",
+    "step_size": 15
+}

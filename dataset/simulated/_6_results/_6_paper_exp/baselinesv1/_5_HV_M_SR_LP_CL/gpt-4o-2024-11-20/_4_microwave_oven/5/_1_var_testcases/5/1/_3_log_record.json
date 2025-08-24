@@ -1,0 +1,81 @@
+{
+    "command_id": 5,
+    "command_string": "Turn on the microwave oven to toast bread for brunch. Set the temperature to 200\u00b0C, function dial to 'Convection', selector dial to 'Top Heating', and timer to '10'.",
+    "ground_truth_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_temperature_dial": "200\u00b0C",
+        "variable_selector_dial": "Top Heating",
+        "variable_timer_dial": "10"
+    },
+    "executed_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_selector_dial": "Top Heating",
+        "variable_temperature_dial": "200\u00b0C",
+        "variable_timer_dial": "10"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_temperature_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "temp",
+                    1
+                ],
+                "variable_temperature_dial": "200\u00b0C"
+            },
+            "expected_feedback": "variable_temperature_dial becomes '200\u00b0C'.",
+            "reason": "The target variable value is 200\u00b0C, and with each clockwise turn of the temperature dial, the temperature increases incrementally. Currently, the default state is 'Off', so 3 turns are required to reach 200\u00b0C.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "function",
+                    1
+                ],
+                "variable_function_dial": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Convection'.",
+            "reason": "the target value for the variable_function_dial is 'Convection', and turning the dial clockwise once should achieve this.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top Heating"
+            },
+            "expected_feedback": "variable_selector_dial becomes 'Top Heating'.",
+            "reason": "We need to select 'Top Heating' on the selector dial as per the task goal to toast bread for brunch.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_timer_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_timer_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "timer",
+                    1
+                ],
+                "variable_timer_dial": "10"
+            },
+            "expected_feedback": "the variable_timer_dial becomes '10 minutes'.",
+            "reason": "We need to set the timer to the target value of '10 minutes' to complete the general cooking settings.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 6
+}

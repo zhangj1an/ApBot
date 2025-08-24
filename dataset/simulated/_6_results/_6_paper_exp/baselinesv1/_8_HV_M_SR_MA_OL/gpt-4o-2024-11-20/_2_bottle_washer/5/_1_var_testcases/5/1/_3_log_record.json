@@ -1,0 +1,52 @@
+{
+    "command_id": 5,
+    "command_string": "Switch on the washer and execute a 60-minute auto cycle with storage mode.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_auto_mode_time": 60,
+        "variable_storage_mode": "on"
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "35",
+        "variable_drying_only_time": "0",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "off"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_on_off_button",
+                1
+            ],
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_auto_mode_button",
+                1
+            ],
+            "grounded_action": "press_auto_mode_button",
+            "current_observation": {
+                "feature": [
+                    "auto_mode",
+                    1
+                ],
+                "variable_auto_mode_time": "35"
+            },
+            "mismatch": "The goal state requires 'variable_auto_mode_duration' to have a value of '60 minutes'. The feedback provided is for 'variable_auto_mode_time' with a value of '35'. While the variable names are verified to represent the same item, the values differ. Additionally, '35' and '60' are numbers, and when compared directly, they are not the same. Hence, the goal has not been reached yet. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_auto_mode_time, the value decided by the robot is 35 (type: <class 'str'>), but the ground truth is 60 (type: <class 'int'>)",
+    "step_size": 2
+}

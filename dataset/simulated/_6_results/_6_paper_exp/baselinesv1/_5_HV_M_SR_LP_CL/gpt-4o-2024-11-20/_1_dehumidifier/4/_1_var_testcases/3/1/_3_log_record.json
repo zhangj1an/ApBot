@@ -1,0 +1,49 @@
+{
+    "command_id": 3,
+    "command_string": "Start the dehumidifier and select the 'medium' fan speed to balance noise and dehumidification.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_fan_speed": "medium"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed": "medium",
+        "variable_microbe_shield_night_mode": "off",
+        "variable_power_on_off": "on",
+        "variable_timer": "0"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "power_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to turn on the appliance as the first step to achieve the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_fan_speed_button', execution_times = 1)",
+            "grounded_action": "press_fan_speed_button",
+            "current_observation": {
+                "feature": [
+                    "fan_speed",
+                    1
+                ],
+                "variable_fan_speed": "medium"
+            },
+            "expected_feedback": "the variable_fan_speed becomes 'medium'.",
+            "reason": "the appliance is currently set to 'low' fan speed, so pressing the fan speed button once will change it to 'medium', the target setting.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

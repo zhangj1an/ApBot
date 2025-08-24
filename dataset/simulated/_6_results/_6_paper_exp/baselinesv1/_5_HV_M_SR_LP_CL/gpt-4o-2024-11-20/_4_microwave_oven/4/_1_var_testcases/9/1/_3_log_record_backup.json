@@ -1,0 +1,53 @@
+{
+    "command_id": 9,
+    "command_string": "Turn on the microwave to warm tortillas. Set the upper heater temperature to 110 \u00b0C, the lower heater temperature to 110 \u00b0C, the timer to 60 minutes, and use the lower heater function.",
+    "ground_truth_goal_state": {
+        "variable_function": "Lower heater",
+        "variable_lower_heater_temperature": 110,
+        "variable_timer": 60,
+        "variable_upper_heater_temperature": 110
+    },
+    "executed_goal_state": {
+        "variable_function": "Lower heater",
+        "variable_lower_heater_temperature": 0,
+        "variable_timer": "0",
+        "variable_upper_heater_temperature": 0
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "set_function",
+                    1
+                ],
+                "variable_function": "Fermentation"
+            },
+            "expected_feedback": "the variable_function_knob becomes 'Lower Heater'.",
+            "reason": "we need to set the function knob to use the 'Lower Heater' function as per the goal.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Lower heater'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Upper heater'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Lower & upper heater'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Convection'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Rotary'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Off'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Fermentation'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('set_function', 1), 'variable_function': 'Lower heater'}"
+            ]
+        },
+        {
+            "step_index": 1,
+            "error_message": "detect mismatch, but calibration failed, goal state can not be updated."
+        },
+        {
+            "step_index": 1,
+            "error_message": "we fail to adjust variable_function_knob to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_lower_heater_temperature, the value decided by the robot is 0 (type: <class 'int'>), but the ground truth is 110 (type: <class 'int'>)"
+}

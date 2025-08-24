@@ -1,0 +1,105 @@
+{
+    "command_id": 6,
+    "command_string": "Power the washer on and heat a silicone bottle, refrigerated (4\u2103) with a 4-6 fl-oz volume setting.",
+    "ground_truth_goal_state": {
+        "variable_bottle_type": "Silicone",
+        "variable_initial_temp": "Refrig- 4\u2103 (39.2\u2109)",
+        "variable_power_on_off": "on",
+        "variable_volume": "4-6 fl-oz"
+    },
+    "executed_goal_state": {
+        "variable_bottle_type": "Silicone",
+        "variable_initial_temp": "Refrig- 4\u2103 (39.2\u2109)",
+        "variable_night_light": "off",
+        "variable_power_on_off": "on",
+        "variable_volume": "4-6 fl-oz"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be powered on to begin setting the bottle type, temperature, and volume.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_bottle_button', execution_times=2)",
+            "grounded_action": "press_bottle_button",
+            "current_observation": {
+                "feature": [
+                    "select_bottle_type",
+                    1
+                ],
+                "variable_bottle_type": "Silicone"
+            },
+            "expected_feedback": "the variable_bottle_type becomes 'Silicone'.",
+            "reason": "The current bottle type is 'Milk bag' and we need it set to 'Silicone'. Pressing the button twice will cycle through the options to reach 'Silicone'.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_initial_temp_button', execution_times = 2)",
+            "grounded_action": "press_initial_temp_button",
+            "current_observation": {
+                "feature": [
+                    "select_initial_temp",
+                    1
+                ],
+                "variable_initial_temp": "Frozen- 0\u2103 (32\u2109)"
+            },
+            "expected_feedback": "the variable_initial_temp becomes 'Refrig'.",
+            "reason": "the target initial temperature is 'Refrig' (4\u2103), and pressing the button twice cycles through the options to achieve this setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_initial_temp_button, feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Room- 25\u2103 (77\u2109)'}",
+                "applied action: press_initial_temp_button, feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Refrig- 4\u2103 (39.2\u2109)'}",
+                "applied action: press_initial_temp_button, feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Frozen- 0\u2103 (32\u2109)'}",
+                "applied action: press_initial_temp_button, feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Room- 25\u2103 (77\u2109)'}",
+                "executed action: run_action('press_initial_temp_button', execution_times=1), feedback: {'feature': ('select_initial_temp', 1), 'variable_initial_temp': 'Refrig- 4\u2103 (39.2\u2109)'}",
+                "executed action: run_action('press_volume_button', execution_times=1), feedback: {'feature': ('select_volume', 1), 'variable_volume': '4-6 fl-oz'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_initial_temp_button', execution_times=1)",
+            "grounded_action": "press_initial_temp_button",
+            "current_observation": {
+                "feature": [
+                    "select_initial_temp",
+                    1
+                ],
+                "variable_initial_temp": "Refrig- 4\u2103 (39.2\u2109)"
+            },
+            "expected_feedback": "the variable_initial_temp becomes 'Refrig- 4\u2103 (39.2\u2109)'.",
+            "reason": "The current setting is 'Room- 25\u2103 (77\u2109)', and we need to adjust it to 'Refrig- 4\u2103 (39.2\u2109)', so we press the initial temp button once.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_volume_button', execution_times=1)",
+            "grounded_action": "press_volume_button",
+            "current_observation": {
+                "feature": [
+                    "select_volume",
+                    1
+                ],
+                "variable_volume": "4-6 fl-oz"
+            },
+            "expected_feedback": "the variable_volume becomes '4-6 fl-oz'.",
+            "reason": "the goal is to set the volume to '4-6 fl-oz', so we press the volume button to adjust it.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 13
+}

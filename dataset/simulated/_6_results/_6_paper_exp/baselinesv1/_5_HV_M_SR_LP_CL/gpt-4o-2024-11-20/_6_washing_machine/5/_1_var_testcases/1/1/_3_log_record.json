@@ -1,0 +1,144 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the washing machine, set it to 'Regular' program, choose 'High' water level, allocate 45 minutes for time management, rinse '2 Times', and spin 'Regular'.",
+    "ground_truth_goal_state": {
+        "variable_on_off": "on",
+        "variable_program": "Regular",
+        "variable_water_level": "High",
+        "variable_time_manager": "45",
+        "variable_rinse": "2 Times",
+        "variable_spin": "Regular"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "unlocked",
+        "variable_clean_tub": "on",
+        "variable_on_off": "on",
+        "variable_program": "Fuzzy weighting",
+        "variable_rinse": "1 Time",
+        "variable_spin": "Short",
+        "variable_start_running": "pause",
+        "variable_time_manager": 0,
+        "variable_water_level": "Low"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_on_off becomes 'on'.",
+            "reason": "the washing machine needs to be turned on before proceeding with further settings.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_buttons', execution_times=1)",
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Delicates"
+            },
+            "expected_feedback": "the variable_program becomes 'Regular'.",
+            "reason": "We need to set the washing machine program to 'Regular', which matches the target variable value.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Mixed'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Wool'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Heavy Duty'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Bedding'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Quick Wash'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Fuzzy weighting'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Free-cleaning function'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Regular'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Delicates'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Mixed'}",
+                "executed action: run_action('press_program_buttons', execution_times=1), feedback: {'feature': ('set_program', 1), 'variable_program': 'Wool'}",
+                "executed action: run_action('press_program_buttons', execution_times=1), feedback: {'feature': ('set_program', 1), 'variable_program': 'Heavy Duty'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Bedding'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Quick Wash'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Fuzzy weighting'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Free-cleaning function'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Regular'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Delicates'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Mixed'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Wool'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Heavy Duty'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Bedding'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_program_buttons', execution_times=1)",
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Wool"
+            },
+            "expected_feedback": "the variable_program becomes 'Wool'.",
+            "reason": "we need to cycle through the available programs to eventually reach the target 'Regular' program.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_program_buttons', execution_times=1)",
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Heavy Duty"
+            },
+            "expected_feedback": "the variable_program becomes 'Wool'.",
+            "reason": "The current program is 'Mixed', and we need to cycle through to reach 'Regular'. Pressing the program button once will set it to 'Wool', bringing us one step closer to the target.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Bedding'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Quick Wash'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Fuzzy weighting'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Free-cleaning function'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Regular'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Delicates'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Mixed'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Wool'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Heavy Duty'}",
+                "applied action: press_program_buttons, feedback: {'feature': ('set_program', 1), 'variable_program': 'Bedding'}",
+                "executed action: run_action('press_program_buttons', execution_times=2), feedback: {'feature': ('set_program', 1), 'variable_program': 'Fuzzy weighting'}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_program_buttons', execution_times=2)",
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Fuzzy weighting"
+            },
+            "expected_feedback": "the variable_program becomes 'Regular'.",
+            "reason": "Currently, the variable_program is set to 'Bedding'. To reach 'Regular', we need to press the program button 2 times.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 5,
+            "error_message": "we fail to adjust variable_program to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_program, the value decided by the robot is Fuzzy weighting (type: <class 'str'>), but the ground truth is Regular (type: <class 'str'>)",
+    "step_size": 40
+}

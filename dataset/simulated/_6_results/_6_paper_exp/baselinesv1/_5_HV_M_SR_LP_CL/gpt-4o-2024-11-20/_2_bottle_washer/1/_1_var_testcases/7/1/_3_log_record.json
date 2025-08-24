@@ -1,0 +1,49 @@
+{
+    "command_id": 7,
+    "command_string": "Turn on the unit and operate the dry-only feature for 60 minutes.",
+    "ground_truth_goal_state": {
+        "variable_drying_cycle": 60,
+        "variable_on_off": "on"
+    },
+    "executed_goal_state": {
+        "variable_drying_cycle": "60",
+        "variable_drying_time": "0",
+        "variable_on_off": "on",
+        "variable_sterilization_cycle": "0"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "variable_power_on_off becomes 'on'.",
+            "reason": "Pressing the power button will turn on the appliance, which is the first step towards achieving the goal.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_dry_only_button', execution_times=3)",
+            "grounded_action": "press_dry_only_button",
+            "current_observation": {
+                "feature": [
+                    "dry_only",
+                    1
+                ],
+                "variable_drying_cycle": "60"
+            },
+            "expected_feedback": "the variable_dryer_only_time becomes '60'.",
+            "reason": "we need to press the dry-only button three times to set the drying time to 60 minutes as per the user manual.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

@@ -1,0 +1,654 @@
+processing:  _6_washing_machine 1 var 9
+processing:  _6_washing_machine 1 9
+trial:  1
+attempt:  0
+generated goal state code:  feature_sequence = ["turn_on_off", "set_cycle", "set_temperature", "set_spin_speed", "set_option", "set_delay_end", "start_pause"]
+feature_choice_reason = "Feature 'turn_on_off' is required to power on the machine. Feature 'set_cycle' is needed to select the Wool cycle. Feature 'set_temperature' is required to set the Cold water temperature. Feature 'set_spin_speed' is needed to set the spin speed to 1200 rpm. Feature 'set_option' is required to set the Soak + Rinse+ option. Feature 'set_delay_end' is required to set the delay to 5 hours. Finally, feature 'start_pause' is required to start the machine."
+changing_variables = ["variable_power_on_off", "variable_cycle_selector", "variable_temperature", "variable_spin_speed", "variable_option", "variable_delay_end", "variable_start_running"]
+goal_state = Simulator()
+# "turn_on_off", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "set_cycle", step 1, variable_cycle_selector
+goal_state.variable_cycle_selector.set_current_value("Wool")
+# "set_temperature", step 1, variable_temperature
+goal_state.variable_temperature.set_current_value("Cold water 🌡️")
+# "set_spin_speed", step 1, variable_spin_speed
+goal_state.variable_spin_speed.set_current_value("1200")
+# "set_option", step 1, variable_option
+goal_state.variable_option.set_current_value("Soak + Rinse+")
+# "set_delay_end", step 1, variable_delay_end
+goal_state.variable_delay_end.set_current_value(5) # The number represents hours.
+# "start_pause", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_9_oracle_V_oracle_M/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/9/1' created successfully.
+setting specific
+entered this loop
+initial appliance state:  variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: off
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+
+current_state_simulator when it is just created: 
+
+ variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: off
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+
+goal state:  variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: Cold water 🌡️
+current feature:  turn_on_off
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal state string:  We want to have the variable: variable_power_on_off to have a value of on. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable variable_power_on_off to have a value of 'on'. The feedback also shows variable_power_on_off has the value 'on'. Since the values match exactly, the goal has been reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_cycle
+step_info:  {'step': 1, 'actions': ['turn_cycle_selector_dial_clockwise', 'turn_cycle_selector_dial_anticlockwise'], 'variable': 'variable_cycle_selector'}
+executing action: ('turn_cycle_selector_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_cycle_selector to have a value of Wool. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Synthetics
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+variable_name: variable_cycle_selector
+actions: ['turn_cycle_selector_dial_clockwise', 'turn_cycle_selector_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_cycle_selector_dial_anticlockwise', 5)]
+feedbacks:  ["applied action: ('turn_cycle_selector_dial_clockwise', 1), feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Synthetics'}", "applied action: ('turn_cycle_selector_dial_anticlockwise', 5), feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Wool'}"]
+check state....
+Feedback Variable: 
+
+ variable_cycle_selector: wool 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cycle_selector to have the value 'Wool'. The feedback also shows 'variable_cycle_selector: wool'. Both values represent the same string, differing only in capitalization, which is not significant. Therefore, the goal has been achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_temperature
+step_info:  {'step': 1, 'actions': ['press_temp_button'], 'variable': 'variable_temperature'}
+executing action: ('press_temp_button', 1)
+goal state string:  We want to have the variable: variable_temperature to have a value of Cold water 🌡️. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+variable_name: variable_temperature
+actions: ['press_temp_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_temp_button', 1), feedback: {'feature': ('set_temperature', 1), 'variable_temperature': 'Cold water 🌡️'}"]
+check state....
+Feedback Variable: 
+
+ variable_temperature: cold water 🌡️ 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_temperature to have a value of 'Cold water 🌡️'. The feedback also shows the value as 'cold water 🌡️'. The only difference is capitalization, which is not significant for semantic comparison. Therefore, the values match."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_spin_speed
+step_info:  {'step': 1, 'actions': ['press_spin_button'], 'variable': 'variable_spin_speed'}
+executing action: ('press_spin_button', 1)
+goal state string:  We want to have the variable: variable_spin_speed to have a value of 1200. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: Rinse Hold
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+variable_name: variable_spin_speed
+actions: ['press_spin_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_spin_button', 4)]
+feedbacks:  ["applied action: ('press_spin_button', 1), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}", "applied action: ('press_spin_button', 4), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}"]
+check state....
+Feedback Variable: 
+
+ variable_spin_speed: 1200 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_spin_speed to have a value of 1200, and the feedback also shows variable_spin_speed as 1200. Since the values are identical and there are no other options in the variable range that match the goal value better, the goal has been achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_option
+step_info:  {'step': 1, 'actions': ['press_option_button'], 'variable': 'variable_option'}
+executing action: ('press_option_button', 1)
+goal state string:  We want to have the variable: variable_option to have a value of Soak + Rinse+. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 0
+variable_option: Soak
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+variable_name: variable_option
+actions: ['press_option_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_option_button', 4)]
+feedbacks:  ["applied action: ('press_option_button', 1), feedback: {'feature': ('set_option', 1), 'variable_option': 'Soak'}", "applied action: ('press_option_button', 4), feedback: {'feature': ('set_option', 1), 'variable_option': 'Soak + Rinse+'}"]
+check state....
+Feedback Variable: 
+
+ variable_option: soak + rinse+ 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_option to have a value of 'Soak + Rinse+'. The feedback shows the value as 'soak + rinse+'. While the capitalization differs, the textual content is identical. According to Rule 2, differences in capitalization or textual formatting are considered semantically the same. Therefore, the feedback matches the goal state."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_delay_end
+step_info:  {'step': 1, 'actions': ['press_delay_end_button'], 'variable': 'variable_delay_end'}
+executing action: ('press_delay_end_button', 1)
+goal state string:  We want to have the variable: variable_delay_end to have a value of 5. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 3
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+variable_name: variable_delay_end
+actions: ['press_delay_end_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_delay_end_button', 2)]
+feedbacks:  ["applied action: ('press_delay_end_button', 1), feedback: {'feature': ('set_delay_end', 1), 'variable_delay_end': 3}", "applied action: ('press_delay_end_button', 2), feedback: {'feature': ('set_delay_end', 1), 'variable_delay_end': 5}"]
+check state....
+Feedback Variable: 
+
+ {'variable_delay_end': 5} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_delay_end' to have a value of 5. The feedback shows 'variable_delay_end' is 5. Since the values are exactly the same and there is no better matching option in the variable range, the goal has been reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start_pause
+step_info:  {'step': 1, 'actions': ['press_start_pause_button'], 'variable': 'variable_start_running'}
+executing action: ('press_start_pause_button', 1)
+goal state string:  We want to have the variable: variable_start_running to have a value of on. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: Cold water 🌡️
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Wool
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: Cold water 🌡️
+variable_name: variable_start_running
+actions: ['press_start_pause_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_start_pause_button', 1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_start_running': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_start_running' to have a value of 'on', and the feedback shows the same value of 'on'. The values match exactly, and there is no better option in the variable range that matches the goal value better than the feedback value. Therefore, the goal has been achieved."
+
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 9, 'command': 'Power on and gently wash woolen garments, using Wool cycle, Cold water temperature, 1200 rpm spin speed, Soak + Rinse+ option, set delay to 5 hours, and start the machine.', 'target_state': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Wool', 'variable_temperature': 'Cold water 🌡️', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5', 'variable_child_lock': 'off'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Wool', 'variable_temperature': 'Cold water 🌡️', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5'}}
+robot's decision {'variable_child_lock': 'off', 'variable_cycle_selector': 'Wool', 'variable_delay_end': 5, 'variable_option': 'Soak + Rinse+', 'variable_power_on_off': 'on', 'variable_spin_speed': '1200', 'variable_start_running': 'on', 'variable_temperature': 'Cold water 🌡️'}
+processing:  _6_washing_machine 1 var 10
+processing:  _6_washing_machine 1 10
+trial:  1
+attempt:  0
+generated goal state code:  feature_sequence = ["turn_on_off", "set_cycle", "set_temperature", "set_spin_speed", "set_option", "set_delay_end", "start_pause"]
+feature_choice_reason = "Feature 'turn_on_off' is required to power on the machine. Feature 'set_cycle' is needed to select the hand wash cycle. Feature 'set_temperature' is required to set the temperature to 20 °C. Feature 'set_spin_speed' is needed to set the spin speed to 1200 rpm. Feature 'set_option' is required to set the option to Soak + Rinse+. Feature 'set_delay_end' is needed to set the delay to 5 hours. Finally, feature 'start_pause' is required to start the machine."
+changing_variables = ["variable_power_on_off", "variable_cycle_selector", "variable_temperature", "variable_spin_speed", "variable_option", "variable_delay_end", "variable_start_running"]
+goal_state = Simulator()
+# "turn_on_off", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "set_cycle", step 1, variable_cycle_selector
+goal_state.variable_cycle_selector.set_current_value("Hand Wash")
+# "set_temperature", step 1, variable_temperature
+goal_state.variable_temperature.set_current_value("20 °C")
+# "set_spin_speed", step 1, variable_spin_speed
+goal_state.variable_spin_speed.set_current_value("1200")
+# "set_option", step 1, variable_option
+goal_state.variable_option.set_current_value("Soak + Rinse+")
+# "set_delay_end", step 1, variable_delay_end
+goal_state.variable_delay_end.set_current_value(5) # The number represents hours.
+# "start_pause", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_9_oracle_V_oracle_M/gpt-4o-2024-11-20/_6_washing_machine/1/_1_var_testcases/10/1' created successfully.
+setting specific
+entered this loop
+initial appliance state:  variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: off
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+
+current_state_simulator when it is just created: 
+
+ variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: off
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+
+goal state:  variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: 20 °C
+current feature:  turn_on_off
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal state string:  We want to have the variable: variable_power_on_off to have a value of on. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Cotton
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The goal state requires variable_power_on_off to have a value of 'on'. The feedback also shows variable_power_on_off with a value of 'on'. Since the values match exactly, the goal has been achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_cycle
+step_info:  {'step': 1, 'actions': ['turn_cycle_selector_dial_clockwise', 'turn_cycle_selector_dial_anticlockwise'], 'variable': 'variable_cycle_selector'}
+executing action: ('turn_cycle_selector_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_cycle_selector to have a value of Hand Wash. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Synthetics
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 0
+variable_name: variable_cycle_selector
+actions: ['turn_cycle_selector_dial_clockwise', 'turn_cycle_selector_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_cycle_selector_dial_anticlockwise', 4)]
+feedbacks:  ["applied action: ('turn_cycle_selector_dial_clockwise', 1), feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Synthetics'}", "applied action: ('turn_cycle_selector_dial_anticlockwise', 4), feedback: {'feature': ('set_cycle', 1), 'variable_cycle_selector': 'Hand Wash'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_cycle_selector': 'hand wash'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cycle_selector to have a value of 'Hand Wash'. The feedback shows 'hand wash', which is semantically the same as 'Hand Wash' since the difference is only in capitalization. Therefore, the feedback matches the goal state."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_temperature
+step_info:  {'step': 1, 'actions': ['press_temp_button'], 'variable': 'variable_temperature'}
+executing action: ('press_temp_button', 1)
+goal state string:  We want to have the variable: variable_temperature to have a value of 20 °C. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: 20 °C
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 0
+variable_start_running: off
+variable_temperature: Cold water 🌡️
+variable_name: variable_temperature
+actions: ['press_temp_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_temp_button', 1)]
+feedbacks:  ["applied action: ('press_temp_button', 1), feedback: {'feature': ('set_temperature', 1), 'variable_temperature': 'Cold water 🌡️'}", "applied action: ('press_temp_button', 1), feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '20 °C'}"]
+check state....
+Feedback Variable: 
+
+ variable_temperature: 20 °c 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_temperature to have a value of 20 °C. The feedback shows variable_temperature: 20 °c. The values differ only in capitalization of the unit (°C vs °c), which is semantically the same as per Rule 2. Therefore, the feedback matches the goal state."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_spin_speed
+step_info:  {'step': 1, 'actions': ['press_spin_button'], 'variable': 'variable_spin_speed'}
+executing action: ('press_spin_button', 1)
+goal state string:  We want to have the variable: variable_spin_speed to have a value of 1200. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: 20 °C
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: off
+variable_power_on_off: on
+variable_spin_speed: Rinse Hold
+variable_start_running: off
+variable_temperature: 20 °C
+variable_name: variable_spin_speed
+actions: ['press_spin_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_spin_button', 4)]
+feedbacks:  ["applied action: ('press_spin_button', 1), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}", "applied action: ('press_spin_button', 4), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}"]
+check state....
+Feedback Variable: 
+
+ variable_spin_speed: 1200 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_spin_speed to have a value of 1200, and the feedback also shows variable_spin_speed as 1200. Since the values are identical and meet the comparison rules, the goal has been reached."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_option
+step_info:  {'step': 1, 'actions': ['press_option_button'], 'variable': 'variable_option'}
+executing action: ('press_option_button', 1)
+goal state string:  We want to have the variable: variable_option to have a value of Soak + Rinse+. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: 20 °C
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 0
+variable_option: Soak
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: 20 °C
+variable_name: variable_option
+actions: ['press_option_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_option_button', 4)]
+feedbacks:  ["applied action: ('press_option_button', 1), feedback: {'feature': ('set_option', 1), 'variable_option': 'Soak'}", "applied action: ('press_option_button', 4), feedback: {'feature': ('set_option', 1), 'variable_option': 'Soak + Rinse+'}"]
+check state....
+Feedback Variable: 
+
+ variable_option: soak + rinse+ 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_option to have a value of 'Soak + Rinse+', while the feedback value is 'soak + rinse+'. The difference is only in capitalization, and based on Rule 2, values that differ only in capitalization are considered semantically the same."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_delay_end
+step_info:  {'step': 1, 'actions': ['press_delay_end_button'], 'variable': 'variable_delay_end'}
+executing action: ('press_delay_end_button', 1)
+goal state string:  We want to have the variable: variable_delay_end to have a value of 5. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: 20 °C
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 3
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: off
+variable_temperature: 20 °C
+variable_name: variable_delay_end
+actions: ['press_delay_end_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_delay_end_button', 2)]
+feedbacks:  ["applied action: ('press_delay_end_button', 1), feedback: {'feature': ('set_delay_end', 1), 'variable_delay_end': 3}", "applied action: ('press_delay_end_button', 2), feedback: {'feature': ('set_delay_end', 1), 'variable_delay_end': 5}"]
+check state....
+Feedback Variable: 
+
+ variable_delay_end: 5 
+
+
+Comparison result: 
+
+ reason = "The goal state requires variable_delay_end to have a value of 5. The feedback shows variable_delay_end has a value of 5. Since both values are numerically identical, the goal has been reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start_pause
+step_info:  {'step': 1, 'actions': ['press_start_pause_button'], 'variable': 'variable_start_running'}
+executing action: ('press_start_pause_button', 1)
+goal state string:  We want to have the variable: variable_start_running to have a value of on. 
+goal_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: 20 °C
+current_state_simulator: variable_child_lock: off
+variable_cycle_selector: Hand Wash
+variable_delay_end: 5
+variable_option: Soak + Rinse+
+variable_power_on_off: on
+variable_spin_speed: 1200
+variable_start_running: on
+variable_temperature: 20 °C
+variable_name: variable_start_running
+actions: ['press_start_pause_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_start_pause_button', 1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_start_running': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_start_running' to have a value of 'on'. The past feedback shows 'variable_start_running' has a value of 'on', which matches the goal state exactly. Therefore, the goal state has been reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 10, 'command': 'Power on and hand wash delicate clothes, using hand wash cycle, 20 °C temperature, 1200 rpm spin speed, Soak + Rinse+ option, set delay to 5 hours, and start the machine.', 'target_state': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Hand Wash', 'variable_temperature': '20 °C', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5', 'variable_child_lock': 'off'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_start_running': 'on', 'variable_cycle_selector': 'Hand Wash', 'variable_temperature': '20 °C', 'variable_spin_speed': '1200', 'variable_option': 'Soak + Rinse+', 'variable_delay_end': '5'}}
+robot's decision {'variable_child_lock': 'off', 'variable_cycle_selector': 'Hand Wash', 'variable_delay_end': 5, 'variable_option': 'Soak + Rinse+', 'variable_power_on_off': 'on', 'variable_spin_speed': '1200', 'variable_start_running': 'on', 'variable_temperature': '20 °C'}

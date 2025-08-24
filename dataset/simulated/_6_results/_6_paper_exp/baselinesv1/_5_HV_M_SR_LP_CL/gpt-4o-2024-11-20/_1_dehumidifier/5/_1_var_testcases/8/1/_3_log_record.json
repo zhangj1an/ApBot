@@ -1,0 +1,50 @@
+{
+    "command_id": 8,
+    "command_string": "Turn on the dehumidifier and set a 4-hour shut-off timer.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_timer": "4H"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed": "low",
+        "variable_ion_generator": "off",
+        "variable_power_on_off": "on",
+        "variable_sleep_mode": "off",
+        "variable_timer": "4H"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to turn on the appliance to proceed with the task of setting the timer.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_timer_button', execution_times=3)",
+            "grounded_action": "press_timer_button",
+            "current_observation": {
+                "feature": [
+                    "set_timer",
+                    1
+                ],
+                "variable_timer": "4H"
+            },
+            "expected_feedback": "the variable_timer becomes '4'.",
+            "reason": "The goal is to set the timer to 4 hours, and the timer cycles through its values with each button press. Starting from '0', three presses will set it to '4'.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

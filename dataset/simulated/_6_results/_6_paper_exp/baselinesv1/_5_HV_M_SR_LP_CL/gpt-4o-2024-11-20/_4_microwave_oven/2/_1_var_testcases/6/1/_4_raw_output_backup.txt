@@ -1,0 +1,434 @@
+setting agnostic
+current feature:  set_upper_element_temperature
+step_info:  {'step': 1, 'actions': ['turn_upper_element_temperature_dial_clockwise', 'turn_upper_element_temperature_dial_anticlockwise'], 'variable': 'variable_upper_element_temperature'}
+Response: 
+ proposed_action = "run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_upper_element_temperature becomes '350'."
+reason = "we need to set the upper element temperature to 350°F, and turning the dial clockwise 3 times is the required action to achieve this."
+response:  proposed_action = "run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_upper_element_temperature becomes '350'."
+reason = "we need to set the upper element temperature to 350°F, and turning the dial clockwise 3 times is the required action to achieve this."
+Proposed action in function propose_action:  run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)
+proposed action:  run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)
+expected feedback:  the variable_upper_element_temperature becomes '350'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_upper_element_temperature': '350°f'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_upper_element_temperature' to be set to '350'. In the feedback, 'variable_upper_element_temperature' is '350°f'. According to Rule 3, we remove the text and compare only the numbers. Both values are numerically the same, so they match."
+
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ 'variable_upper_element_temperature': '350°f' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_upper_element_temperature to be '350'. The feedback provides '350°f'. Based on the rules, if the values contain numbers and differ only in textual formatting, they are considered semantically the same. Here, the '°f' is just textual formatting and does not change the numerical value of '350'. Therefore, the feedback matches the goal state."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  set_function_dial
+step_info:  {'step': 1, 'actions': ['turn_function_dial_clockwise', 'turn_function_dial_anticlockwise'], 'variable': 'variable_function_dial'}
+Response: 
+ proposed_action = "run_action('turn_function_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_function_dial becomes 'Convection'."
+reason = "We need to set the function to Convection, which requires turning the function dial clockwise 3 times from its current position."
+response:  proposed_action = "run_action('turn_function_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_function_dial becomes 'Convection'."
+reason = "We need to set the function to Convection, which requires turning the function dial clockwise 3 times from its current position."
+Proposed action in function propose_action:  run_action('turn_function_dial_clockwise', execution_times=3)
+proposed action:  run_action('turn_function_dial_clockwise', execution_times=3)
+expected feedback:  the variable_function_dial becomes 'Convection'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_function': 'convection rotisserie'} 
+
+
+Comparison result: 
+
+ reason = "The feedback value 'convection rotisserie' does not match the goal value 'Convection'. Additionally, in the variable range, 'Convection' is a better match for the goal than 'convection rotisserie', so the goal has not been reached yet."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ 'variable_function': 'convection rotisserie' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_function_dial to be set to 'Convection', but the feedback shows 'convection rotisserie'. In this case, rule 5 applies because 'Convection' is a better match in the variable range compared to 'convection rotisserie'. Hence, the goal has not been reached yet."
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_function: Toast/Broil
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: 350°F
+debug record string: step: 0, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}
+step: 1, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}
+step: 2, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}
+step: 3, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}
+step: 4, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}
+step: 5, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}
+step: 6, applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_function_dial_clockwise. The first observed action is turn_function_dial_clockwise.
+Analysis results: The variable variable_function_dial is DiscreteVariable with value ranges to be ['Toast/Broil', 'Bake', 'Off', 'Convection', 'Rotisserie', 'Convection Rotisserie']. The current value is Toast/Broil. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_function_dial is DiscreteVariable with value ranges to be ['Toast/Broil', 'Bake', 'Off', 'Convection', 'Rotisserie', 'Convection Rotisserie']. The current value is Toast/Broil.
+variable_function_dial = DiscreteVariable(
+    value_range=['Toast/Broil', 'Bake', 'Off', 'Convection', 'Rotisserie', 'Convection Rotisserie'], 
+    current_value='Toast/Broil'
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)", "run_action('turn_function_dial_clockwise', execution_times=3)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Toast/Broil
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: 350°F 
+
+Response: 
+ proposed_action = "run_action('turn_function_dial_anticlockwise', execution_times=1)"
+expected_feedback = "the variable_function_dial becomes 'Rotisserie'."
+reason = "Currently the function dial is on 'Convection Rotisserie'. Going anticlockwise brings it closer to 'Convection', which is the target setting."
+response:  proposed_action = "run_action('turn_function_dial_anticlockwise', execution_times=1)"
+expected_feedback = "the variable_function_dial becomes 'Rotisserie'."
+reason = "Currently the function dial is on 'Convection Rotisserie'. Going anticlockwise brings it closer to 'Convection', which is the target setting."
+Proposed action in function propose_action:  run_action('turn_function_dial_anticlockwise', execution_times=1)
+proposed action:  run_action('turn_function_dial_anticlockwise', execution_times=1)
+expected feedback:  the variable_function_dial becomes 'Rotisserie'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_function': 'convection rotisserie'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_function_dial' to be set to 'Convection'. The feedback shows 'variable_function' as 'convection rotisserie'. In this case, the feedback value contains an additional word 'rotisserie', which is not part of the goal value 'Convection'. Since there is no better option in the variable range that matches the goal value exactly, the feedback does not align with the goal state."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ variable_function: convection rotisserie 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_function_dial' to be 'Rotisserie'. The feedback shows 'variable_function' as 'convection rotisserie'. According to Rule 4, if the goal string only contains strings but feedback contains numbers, remove numbers from the feedback completely, and just compare the strings. However, the feedback contains two functions, 'convection' and 'rotisserie', and the goal state specifically requires 'Rotisserie'. Since 'Rotisserie' alone is not explicitly confirmed in the feedback, and there is a better match possible, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_function: Rotisserie
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: 350°F
+debug record string: step: 0, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}
+step: 1, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}
+step: 2, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}
+step: 3, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}
+step: 4, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}
+step: 5, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}
+step: 6, applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_function_dial_anticlockwise. The first observed action is turn_function_dial_anticlockwise.
+Analysis results: The variable variable_function_dial is DiscreteVariable with value ranges to be ['Rotisserie', 'Convection', 'Off', 'Bake', 'Toast/Broil', 'Convection Rotisserie']. The current value is Rotisserie. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_function_dial is DiscreteVariable with value ranges to be ['Rotisserie', 'Convection', 'Off', 'Bake', 'Toast/Broil', 'Convection Rotisserie']. The current value is Rotisserie.  
+variable_function_dial = DiscreteVariable(
+    value_range=['Rotisserie', 'Convection', 'Off', 'Bake', 'Toast/Broil', 'Convection Rotisserie'],
+    current_value='Rotisserie'
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)", "run_action('turn_function_dial_clockwise', execution_times=3)", "run_action('turn_function_dial_anticlockwise', execution_times=1)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Rotisserie
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: 350°F 
+
+Response: 
+ proposed_action = "run_action('turn_function_dial_anticlockwise', execution_times = 1)"
+expected_feedback = "the variable_function_dial becomes 'Convection'."
+reason = "The current state of the variable_function_dial is 'Rotisserie', so turning it anticlockwise once should set it to 'Convection', as needed to achieve the goal."
+response:  proposed_action = "run_action('turn_function_dial_anticlockwise', execution_times = 1)"
+expected_feedback = "the variable_function_dial becomes 'Convection'."
+reason = "The current state of the variable_function_dial is 'Rotisserie', so turning it anticlockwise once should set it to 'Convection', as needed to achieve the goal."
+Proposed action in function propose_action:  run_action('turn_function_dial_anticlockwise', execution_times = 1)
+proposed action:  run_action('turn_function_dial_anticlockwise', execution_times = 1)
+expected feedback:  the variable_function_dial becomes 'Convection'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_function': 'convection'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_function_dial to be set to 'Convection'. The feedback shows 'variable_function' as 'convection'. Both values represent the same thing, differing only in capitalization, which is semantically identical. Therefore, the goal is achieved."
+
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_function': 'convection'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_function_dial to be set to 'Convection'. The feedback value is 'convection'. Both values are semantically the same as they differ only in capitalization, which is not significant in this context. According to Rule 2, this is considered a match."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  set_lower_element_temperature
+step_info:  {'step': 1, 'actions': ['turn_lower_element_temperature_dial_clockwise', 'turn_lower_element_temperature_dial_anticlockwise'], 'variable': 'variable_lower_element_temperature'}
+Response: 
+ proposed_action = "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_lower_element_temperature becomes '450'."
+reason = "The target variable value for the lower element is 450°F, and turning the dial clockwise three steps should achieve this."
+response:  proposed_action = "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_lower_element_temperature becomes '450'."
+reason = "The target variable value for the lower element is 450°F, and turning the dial clockwise three steps should achieve this."
+Proposed action in function propose_action:  run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)
+proposed action:  run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)
+expected feedback:  the variable_lower_element_temperature becomes '450'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ variable_lower_element_temperature: 350°f 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_lower_element_temperature' to be set to 450°F. The feedback shows 'variable_lower_element_temperature' as 350°F. Since the numbers differ and the goal value of 450°F is not matched by the feedback value of 350°F, the goal has not been reached."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_lower_element_temperature': '350°f'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_lower_element_temperature to be '450'. The feedback value is '350°f'. Removing the text and comparing only the numbers, the feedback value is 350, which does not match the goal value of 450. Hence, the goal has not been reached."
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_function: Convection
+variable_lower_element_temperature: 450°F
+variable_timer: off
+variable_upper_element_temperature: 350°F
+debug record string: step: 0, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '450°F'}
+step: 1, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'off'}
+step: 2, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}
+step: 3, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '250°F'}
+step: 4, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '350°F'}
+step: 5, applied action: turn_lower_element_temperature_dial_clockwise, feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '450°F'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_lower_element_temperature_dial_clockwise. The first observed action is turn_lower_element_temperature_dial_clockwise.
+Analysis results: The variable variable_lower_element_temperature is DiscreteVariable with value ranges to be ['450°F', 'off', 'Keep Warm', '250°F', '350°F']. The current value is 450°F. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_lower_element_temperature is DiscreteVariable with value ranges to be ['450°F', 'off', 'Keep Warm', '250°F', '350°F']. The current value is 450°F.  
+variable_lower_element_temperature = DiscreteVariable(
+    value_range=['450°F', 'off', 'Keep Warm', '250°F', '350°F'],
+    current_value='450°F'
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)", "run_action('turn_function_dial_clockwise', execution_times=3)", "run_action('turn_function_dial_anticlockwise', execution_times=1)", "run_action('turn_function_dial_anticlockwise', execution_times = 1)", "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Convection
+variable_lower_element_temperature: 450°F
+variable_timer: off
+variable_upper_element_temperature: 350°F 
+
+Response: 
+ proposed_action = "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1)"
+expected_feedback = "the variable_lower_element_temperature becomes 'off'."
+reason = "The current value is already at '450°F', which is the target value, but this confirms we have reached the upper bound for verification."
+response:  proposed_action = "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1)"
+expected_feedback = "the variable_lower_element_temperature becomes 'off'."
+reason = "The current value is already at '450°F', which is the target value, but this confirms we have reached the upper bound for verification."
+Proposed action in function propose_action:  run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1)
+proposed action:  run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1)
+expected feedback:  the variable_lower_element_temperature becomes 'off'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_lower_element_temperature': 'off'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_lower_element_temperature' is 'off', while the goal state requires it to be set to '450°F'. As per rule 5, since '450°F' is a better match than 'off' and is within the variable range, the goal has not been reached yet."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_lower_element_temperature': 'off'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_lower_element_temperature' is 'off', which matches the goal state exactly. Both the variable name and value are the same, and there is no better matching option in the range."
+goal_reached = True 
+
+
+reached expectation:  True
+Response: 
+ proposed_action = "run_action('turn_lower_element_temperature_dial_anticlockwise', execution_times=1)"
+expected_feedback = "the variable_lower_element_temperature becomes '350°F'."
+reason = "The current value of the lower element temperature is '450°F', so turning the dial anticlockwise once should set it to '350°F', which is the target value."
+response:  proposed_action = "run_action('turn_lower_element_temperature_dial_anticlockwise', execution_times=1)"
+expected_feedback = "the variable_lower_element_temperature becomes '350°F'."
+reason = "The current value of the lower element temperature is '450°F', so turning the dial anticlockwise once should set it to '350°F', which is the target value."
+Proposed action in function propose_action:  run_action('turn_lower_element_temperature_dial_anticlockwise', execution_times=1)
+proposed action:  run_action('turn_lower_element_temperature_dial_anticlockwise', execution_times=1)
+expected feedback:  the variable_lower_element_temperature becomes '350°F'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_lower_element_temperature': '450°f'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_lower_element_temperature' to be set to '450°F'. The feedback provided is '450°f'. The difference is only in capitalization, which is considered semantically the same according to Rule 2."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ 'variable_lower_element_temperature': '450°f' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_lower_element_temperature to be '350°F', but the feedback shows '450°f'. Even though the textual formatting is slightly different, the numerical values are different (350 vs. 450). Thus, the goal has not been reached."
+goal_reached = False 
+
+
+reached expectation:  False
+reached goal
+current feature:  set_timer
+step_info:  {'step': 1, 'actions': ['turn_timer_dial_clockwise', 'turn_timer_dial_anticlockwise'], 'variable': 'variable_timer'}
+Response: 
+ proposed_action = "run_action('turn_timer_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_timer becomes '30'."
+reason = "We need to set the timer to 30 minutes, so turning the timer dial clockwise three times is expected to reach this value."
+response:  proposed_action = "run_action('turn_timer_dial_clockwise', execution_times=3)"
+expected_feedback = "the variable_timer becomes '30'."
+reason = "We need to set the timer to 30 minutes, so turning the timer dial clockwise three times is expected to reach this value."
+Proposed action in function propose_action:  run_action('turn_timer_dial_clockwise', execution_times=3)
+proposed action:  run_action('turn_timer_dial_clockwise', execution_times=3)
+expected feedback:  the variable_timer becomes '30'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_timer': '30'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the timer to be set to 30 minutes. The feedback shows 'variable_timer' is '30'. Both values represent the same number of minutes, and no better match exists in the variable range. Thus, the feedback aligns with the goal state."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_timer': '30'} 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_timer' is '30', which matches the goal state's requirement for 'variable_timer' to be '30'. Both values are numbers and directly match without any discrepancies."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+ground truth info {'id': 6, 'command': 'Set the microwave to the Convection setting for roasting vegetables with the upper element at 350°F, function set to Convection, lower element 450°F, and the timer set to 30 minutes.', 'target_state': {'variable_upper_element_temperature': '350°F', 'variable_function': 'Convection', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30'}, 'important_target_states': {'variable_upper_element_temperature': '350°F', 'variable_function': 'Convection', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30'}}
+robot's decision {'variable_function': 'Convection', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30', 'variable_upper_element_temperature': '350°F'}
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/6/1/_3_log_record.json' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/6/1/_3_log_record_backup.json'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/6/1/_3_log_record.json' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/6/1/_3_log_record.json' created.
+processing:  _4_microwave_oven 2 var 7
+processing:  _4_microwave_oven 2 7
+trial:  1
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/7/1/_4_raw_output.txt' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/7/1/_4_raw_output_backup.txt'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/7/1/_4_raw_output.txt' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_4_microwave_oven/2/_1_var_testcases/7/1/_4_raw_output.txt' created.

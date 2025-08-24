@@ -1,0 +1,61 @@
+{
+    "command_id": 2,
+    "command_string": "Turn on the washer and perform a 35-minute auto cycle.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_auto_mode_time": 35
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "35",
+        "variable_drying_only_time": "0",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_on_off_button', execution_times=1)",
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "the washer needs to be turned on before making other adjustments.",
+            "reached_goal": false
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_auto_mode_button', execution_times=1)",
+            "grounded_action": "press_auto_mode_button",
+            "current_observation": {
+                "feature": [
+                    "auto_mode",
+                    1
+                ],
+                "variable_auto_mode_time": "35"
+            },
+            "expected_feedback": "the variable_auto_mode_duration becomes '35 minutes'.",
+            "reason": "the appliance is already powered on, so now we select the 35-minute auto cycle by pressing the auto mode button once.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "end",
+            "current_observation": "",
+            "expected_feedback": "",
+            "reason": "Based on the past feedback, the target variable values have already been achieved."
+        },
+        {
+            "step_index": 4,
+            "error_message": "we fail to adjust variable_power_on_off to its target value within 5 trials."
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

@@ -1,0 +1,115 @@
+{
+    "command_id": 10,
+    "command_string": "Switch the appliance on and steam carrots. Adjust the steam time to 18 minutes.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_menu_index": "steam",
+        "variable_steam_time": 18
+    },
+    "executed_goal_state": {
+        "variable_defrost_time": 0,
+        "variable_menu_index": "steam",
+        "variable_menu_time": 18,
+        "variable_power_on_off": "on",
+        "variable_preset_time": "1 hr",
+        "variable_quick_warm_time": 3,
+        "variable_slow_warm_setting": "LO",
+        "variable_steam_time": 18,
+        "variable_sterilize_time": 15
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be switched on to proceed with setting the desired menu and time adjustments.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "slow",
+                "variable_menu_time": "LO"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Slow'.",
+            "reason": "We need to cycle through the menu options to reach 'Steam', so the next step is to press the menu button once.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times = 4)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "preset",
+                "variable_menu_time": "1 hr"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Steam'.",
+            "reason": "We need to cycle through the menu options to select 'Steam'. It is currently set to 'Slow', so pressing the menu button four times will adjust it to 'Steam'.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'quick', 'variable_menu_time': 3}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'defrost', 'variable_menu_time': 0}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'sterilize', 'variable_menu_time': 15}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'steam', 'variable_menu_time': 12}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'preset', 'variable_menu_time': '1 hr'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu', 1), 'variable_menu_index': 'quick', 'variable_menu_time': 3}",
+                "executed action: run_action('press_menu_button', execution_times=4), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'steam', 'variable_menu_time': 12}",
+                "executed action: run_action('press_plus_button', execution_times=6), feedback: {'feature': ('menu', 2), 'variable_menu_time': 18, 'variable_menu_index': 'steam'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_menu_button', execution_times=4)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "steam",
+                "variable_menu_time": 12
+            },
+            "expected_feedback": "the variable_menu_index becomes 'steam'.",
+            "reason": "we need to cycle through the menu options until we reach the 'steam' setting, which is 4 presses from the current 'quick' setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_plus_button', execution_times=6)",
+            "grounded_action": "press_plus_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    2
+                ],
+                "variable_menu_time": 18,
+                "variable_menu_index": "steam"
+            },
+            "expected_feedback": "the variable_menu_setting becomes 18.",
+            "reason": "We need to adjust the steam time from its default value of 12 minutes to 18 minutes by incrementing using the plus button.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 25
+}

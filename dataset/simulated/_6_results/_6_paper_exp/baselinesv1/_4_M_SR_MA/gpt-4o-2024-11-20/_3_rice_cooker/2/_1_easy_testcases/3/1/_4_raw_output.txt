@@ -1,0 +1,124 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _3_rice_cooker 2 var 3
+processing:  _3_rice_cooker 2 3
+trial:  1
+attempt:  0
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_1_easy_testcases/3/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["select_cooking_mode", "adjust_preset_timer", "start_cooking"]
+feature_choice_reason = "Feature 'select_cooking_mode' is used to set the cooking mode to 'congee'. Feature 'adjust_preset_timer' is used to set the preset timer to 12 hours (720 minutes). Feature 'start_cooking' is used to start the machine."
+changing_variables = ["variable_cooking_mode", "variable_preset_timer", "variable_start_running"]
+goal_state = ExtendedSimulator()
+# "select_cooking_mode", step 1, variable_cooking_mode
+goal_state.variable_cooking_mode.set_current_value("congee")
+# "adjust_preset_timer", step 1, variable_preset_timer
+goal_state.variable_preset_timer.set_current_value(720) # The number represents minutes.
+# "start_cooking", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_cooking_mode: Fast cook
+variable_preset_timer: 0
+variable_start_running: off
+
+current_state_simulator when it is just created: 
+
+ variable_cooking_mode: fast cook
+variable_preset_timer: 0
+variable_start_running: off
+
+goal state:  variable_cooking_mode: congee
+variable_preset_timer: 720
+variable_start_running: on
+current feature:  select_cooking_mode
+step_info:  {'step': 1, 'actions': ['press_menu_cancel_button'], 'variable': 'variable_cooking_mode'}
+executing action: ('press_menu_cancel_button', 1)
+goal state string:  We want to have the variable: variable_cooking_mode to have a value of congee. 
+goal_state_simulator: variable_cooking_mode: congee
+variable_preset_timer: 0
+variable_start_running: off
+current_state_simulator: variable_cooking_mode: white rice
+variable_preset_timer: 0
+variable_start_running: off
+variable_name: variable_cooking_mode
+actions: ['press_menu_cancel_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_menu_cancel_button', 1)]
+feedbacks:  ["applied action: ('press_menu_cancel_button', 1), feedback: {'feature': ('cooking_mode_selection', 1), 'variable_cooking_mode': 'White rice'}", "applied action: ('press_menu_cancel_button', 1), feedback: {'feature': ('cooking_mode_selection', 1), 'variable_cooking_mode': 'Congee'}"]
+check state....
+Feedback Variable: 
+
+ variable_cooking_mode: congee 
+
+
+Comparison result: 
+
+ reason = "The feedback value for 'variable_cooking_mode' is 'congee', which matches the goal value 'congee'. Based on Rule 1, the values are the same, so the goal is achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_preset_timer
+step_info:  {'step': 1, 'actions': ['press_preset_time_time_button'], 'variable': 'variable_preset_timer'}
+executing action: ('press_preset_time_time_button', 1)
+goal state string:  We want to have the variable: variable_preset_timer to have a value of 720. 
+goal_state_simulator: variable_cooking_mode: congee
+variable_preset_timer: 720
+variable_start_running: off
+current_state_simulator: variable_cooking_mode: congee
+variable_preset_timer: 15
+variable_start_running: off
+variable_name: variable_preset_timer
+actions: ['press_preset_time_time_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_preset_time_time_button', 47)]
+feedbacks:  ["applied action: ('press_preset_time_time_button', 1), feedback: {'feature': ('preset_timer', 1), 'variable_preset_timer': 0.25}", "applied action: ('press_preset_time_time_button', 47), feedback: {'feature': ('preset_timer', 1), 'variable_preset_timer': 12.0}"]
+check state....
+Feedback Variable: 
+
+ variable_preset_timer: 12.0 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_preset_timer' to have a value of 720 minutes. The feedback shows 'variable_preset_timer' as 12.0. Both values represent time, and since 12 hours is equivalent to 720 minutes, they are semantically the same when compared using the same time unit."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start_cooking
+step_info:  {'step': 1, 'actions': ['press_start_button'], 'variable': 'variable_start_running', 'comment': 'value always set to on'}
+executing action: ('press_start_button', 1)
+goal state string:  We want to have the variable: variable_start_running to have a value of on. 
+goal_state_simulator: variable_cooking_mode: congee
+variable_preset_timer: 720
+variable_start_running: on
+current_state_simulator: variable_cooking_mode: congee
+variable_preset_timer: 720
+variable_start_running: on
+variable_name: variable_start_running
+actions: ['press_start_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_start_button', 1), feedback: {'feature': ('start_cooking', 1), 'variable_start_running': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_start_running: on 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_start_running' to have a value of 'on'. The feedback also shows 'variable_start_running' is 'on'. Based on the comparison rules, the values match exactly, so the goal has been reached."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 3, 'command': 'Set the mode to congee for breakfast, starting 12 hours from now, and start the machine.', 'target_state': {'variable_start_running': 'on', 'variable_cooking_mode': 'Congee', 'variable_preset_timer': 12}, 'important_target_states': {'variable_start_running': 'on', 'variable_cooking_mode': 'Congee', 'variable_preset_timer': 12}}
+robot's decision {'variable_cooking_mode': 'Congee', 'variable_preset_timer': 12.0, 'variable_start_running': 'on'}
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_1_easy_testcases/3/1/_3_log_record.json' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_1_easy_testcases/3/1/_3_log_record_backup.json'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_1_easy_testcases/3/1/_3_log_record.json' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/2/_1_easy_testcases/3/1/_3_log_record.json' created.

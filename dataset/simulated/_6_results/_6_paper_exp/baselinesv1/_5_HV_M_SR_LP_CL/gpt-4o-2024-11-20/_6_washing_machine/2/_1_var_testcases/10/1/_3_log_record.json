@@ -1,0 +1,131 @@
+{
+    "command_id": 10,
+    "command_string": "Turn on the washer, use 'Soak' program for a medium load. Set wash to 14 minutes, rinse twice, and spin for 5 minutes. Start it.",
+    "ground_truth_goal_state": {
+        "variable_on_off": "on",
+        "variable_start_running": "start",
+        "variable_washing_program": "Soak",
+        "variable_load_size": "2",
+        "variable_wash_time": 14,
+        "variable_rinse_times": 2,
+        "variable_spin_time": 5
+    },
+    "executed_goal_state": {
+        "variable_load_size": "1",
+        "variable_on_off": "on",
+        "variable_rinse_times": 0,
+        "variable_spin_time": 0,
+        "variable_start_running": "pause",
+        "variable_wash_time": 0,
+        "variable_washing_program": "Rapid"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "the washer needs to be turned on before proceeding with any other operations.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_button', execution_times=3)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Rapid"
+            },
+            "expected_feedback": "variable_program becomes 'Soak'.",
+            "reason": "The feature is currently 'select_program', and we need to set the washing program to 'Soak'. Pressing the program button three times will cycle to the desired 'Soak' program.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Heavy'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Gentle'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Normal'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Rapid'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}",
+                "executed action: run_action('press_program_button', execution_times=4), feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Rapid'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Heavy'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Gentle'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Normal'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Rapid'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_program_button', execution_times=4)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Rapid"
+            },
+            "expected_feedback": "the variable_program becomes 'Soak'.",
+            "reason": "The current value of variable_program is 'Soak', but we want to ensure the appliance is reset back to the correct target value 'Soak' to continue the process.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Heavy'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Gentle'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Normal'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Rapid'}",
+                "applied action: press_program_button, feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Soak'}",
+                "executed action: run_action('press_program_button', execution_times = 1), feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Heavy'}",
+                "executed action: run_action('press_program_button', execution_times=3), feedback: {'feature': ('select_washing_program', 1), 'variable_washing_program': 'Rapid'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_program_button', execution_times = 1)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Heavy"
+            },
+            "expected_feedback": "the variable_program becomes 'Heavy'.",
+            "reason": "The current value of the variable_program is 'Soak', and based on the sequence, pressing the program button once will cycle it to 'Heavy', bringing it closer to the 'Soak' program which we aim to reach.",
+            "reached_goal": false
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_program_button', execution_times=3)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Rapid"
+            },
+            "expected_feedback": "the variable_program becomes 'Soak'.",
+            "reason": "The current program is 'Heavy'. We need to cycle through the programs ('Gentle', 'Normal', 'Rapid') to reach 'Soak'.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 5,
+            "error_message": "we fail to adjust variable_program to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is pause (type: <class 'str'>), but the ground truth is start (type: <class 'str'>)",
+    "step_size": 34
+}

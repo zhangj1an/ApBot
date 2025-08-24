@@ -1,0 +1,74 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the washing machine, set it to 'Regular' program, choose 'High' water level, allocate 45 minutes for time management, rinse '2 Times', and spin 'Regular'.",
+    "ground_truth_goal_state": {
+        "variable_on_off": "on",
+        "variable_program": "Regular",
+        "variable_water_level": "High",
+        "variable_time_manager": "45",
+        "variable_rinse": "2 Times",
+        "variable_spin": "Regular"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "unlocked",
+        "variable_clean_tub": "on",
+        "variable_on_off": "on",
+        "variable_program": "Free-cleaning function",
+        "variable_rinse": "1 Time",
+        "variable_spin": "Short",
+        "variable_start_running": "pause",
+        "variable_time_manager": 0,
+        "variable_water_level": "Low"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_on_off_button",
+                1
+            ],
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_program_buttons",
+                1
+            ],
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Delicates"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_program_buttons",
+                7
+            ],
+            "grounded_action": "press_program_buttons",
+            "current_observation": {
+                "feature": [
+                    "set_program",
+                    1
+                ],
+                "variable_program": "Free-cleaning function"
+            },
+            "mismatch": "The goal state requires the variable_program to have a value of 'Regular'. The feedback shows the value as 'free-cleaning function'. These two values do not match semantically or textually. Additionally, there is no indication that 'free-cleaning function' is equivalent to 'Regular' in the context of the washing machine's program settings. Therefore, the feedback does not satisfy the goal state requirement. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_program, the value decided by the robot is Free-cleaning function (type: <class 'str'>), but the ground truth is Regular (type: <class 'str'>)",
+    "step_size": 9
+}

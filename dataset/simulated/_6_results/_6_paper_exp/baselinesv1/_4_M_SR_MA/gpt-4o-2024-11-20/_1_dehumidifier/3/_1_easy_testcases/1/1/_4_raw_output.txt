@@ -1,0 +1,119 @@
+extracting control panel labels...
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_0_reasoning' created successfully.
+Control panel details saved to: /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_0_reasoning/_1_control_panel_label_details.txt
+defining variables...
+attempt:  0
+Attempt 1 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+passed syntax check 4
+passed syntax check 5
+passed syntax check 6
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_0_reasoning/_3_proposed_feature_list.py
+
+Attempt to generate world model: 0
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_0_reasoning/_4_proposed_world_model.py
+processing:  _1_dehumidifier 3 var 1
+processing:  _1_dehumidifier 3 1
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_1_easy_testcases/1/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/3/_1_easy_testcases/1/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["power_control", "adjust_timer"]
+feature_choice_reason = "Feature 'power_control' is required to turn on the appliance. Feature 'adjust_timer' is required to set the timer to 2 hours."
+changing_variables = ["variable_power_on_off", "variable_timer"]
+goal_state = ExtendedSimulator()
+# "power_control", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "adjust_timer", step 1, variable_timer
+goal_state.variable_timer.set_current_value("2H")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: off
+variable_timer: 0
+variable_uv_light: off
+
+current_state_simulator when it is just created: 
+
+ variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: off
+variable_timer: 0
+variable_uv_light: off
+
+goal state:  variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: on
+variable_timer: 2H
+variable_uv_light: off
+current feature:  power_control
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal state string:  We want to have the variable: variable_power_on_off to have a value of on. 
+goal_state_simulator: variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: on
+variable_timer: 0
+variable_uv_light: off
+current_state_simulator: variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: on
+variable_timer: 0
+variable_uv_light: off
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_power_on_off' to be 'on,' and the feedback also shows 'variable_power_on_off' as 'on.' According to Rule 1, the values match exactly, so the goal is achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_timer
+step_info:  {'step': 1, 'actions': ['press_timer_button'], 'variable': 'variable_timer'}
+executing action: ('press_timer_button', 1)
+goal state string:  We want to have the variable: variable_timer to have a value of 2H. 
+goal_state_simulator: variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: on
+variable_timer: 2H
+variable_uv_light: off
+current_state_simulator: variable_fan_speed_mode: 1
+variable_ionizer: off
+variable_power_on_off: on
+variable_timer: 1H
+variable_uv_light: off
+variable_name: variable_timer
+actions: ['press_timer_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_timer_button', 1)]
+feedbacks:  ["applied action: ('press_timer_button', 1), feedback: {'feature': ('set_timer', 1), 'variable_timer': '1'}", "applied action: ('press_timer_button', 1), feedback: {'feature': ('set_timer', 1), 'variable_timer': '2'}"]
+check state....
+Feedback Variable: 
+
+ variable_timer: 2 
+
+
+Comparison result: 
+
+ reason = "The goal state requires '2H', but removing the text leaves '2', which matches the feedback value. Both represent the same timer setting of 2 hours."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 1, 'command': 'Turn on the dehumidifier and set the timer to run for 2 hours.', 'target_state': {'variable_power_on_off': 'on', 'variable_timer': '2', 'variable_uv_light': 'off', 'variable_ionizer': 'off', 'variable_fan_speed_mode': '1'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_timer': '2'}}
+robot's decision {'variable_fan_speed_mode': '1', 'variable_ionizer': 'off', 'variable_power_on_off': 'on', 'variable_timer': '2', 'variable_uv_light': 'off'}

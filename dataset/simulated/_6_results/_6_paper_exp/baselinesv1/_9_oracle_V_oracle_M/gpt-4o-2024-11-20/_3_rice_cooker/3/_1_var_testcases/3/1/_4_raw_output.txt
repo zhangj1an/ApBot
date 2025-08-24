@@ -1,0 +1,321 @@
+processing:  _3_rice_cooker 3 var 2
+processing:  _3_rice_cooker 3 2
+trial:  1
+attempt:  0
+generated goal state code:  feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is chosen to adjust the delay time to 2 hours. Feature 'menu' is chosen to set the rice cooker to Brown Rice. Feature 'start' is chosen to start running the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(2) # each number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Brown Rice")
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is chosen to adjust the delay time to 2 hours. Feature 'menu' is chosen to set the rice cooker to Brown Rice. Feature 'start' is chosen to start running the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(2) # each number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Brown Rice")
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on") 
+Error: The following variables are missing from the changing_variables list and should be added in: ['variable_cooking_time']
+
+finishing one round of test...
+attempt:  1
+generated goal state code:  feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is chosen to adjust the delay time to 2 hours. Feature 'menu' is chosen to set the rice cooker to Brown Rice and adjust the cooking time. Feature 'start' is chosen to start running the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_cooking_time", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(2) # each number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Brown Rice")
+# "menu", step 2, variable_cooking_time
+goal_state.variable_cooking_time.set_current_value(30) # each number represents minutes.
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_9_oracle_V_oracle_M/gpt-4o-2024-11-20/_3_rice_cooker/3/_1_var_testcases/2/1' created successfully.
+setting specific
+entered this loop
+initial appliance state:  variable_cooking_time: 30
+variable_delay_timer: 0
+variable_menu_selection: White Rice
+variable_start_running: off
+
+current_state_simulator when it is just created: 
+
+ variable_cooking_time: 30
+variable_delay_timer: 0
+variable_menu_selection: White Rice
+variable_start_running: off
+
+goal state:  variable_cooking_time: 30
+variable_delay_timer: 2
+variable_menu_selection: Brown Rice
+variable_start_running: on
+current feature:  delay_timer
+step_info:  {'step': 1, 'actions': ['press_delay_timer_button']}
+executing action: ('press_delay_timer_button', 1)
+step_info:  {'step': 2, 'actions': ['press_plus_button', 'press_minus_button'], 'variable': 'variable_delay_timer'}
+executing action: ('press_plus_button', 1)
+goal state string:  We want to have the variable: variable_delay_timer to have a value of 2. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 2
+variable_menu_selection: White Rice
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 0.5
+variable_menu_selection: White Rice
+variable_start_running: off
+variable_name: variable_delay_timer
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_plus_button', 3)]
+feedbacks:  ["applied action: ('press_delay_timer_button', 1), feedback: {'feature': ('delay_timer', 1), 'variable_delay_timer': 0}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('delay_timer', 2), 'variable_delay_timer': 0.5}", "applied action: ('press_plus_button', 3), feedback: {'feature': ('delay_timer', 2), 'variable_delay_timer': 2.0}"]
+check state....
+Feedback Variable: 
+
+ variable_delay_timer: 2.0 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_delay_timer to have a value of 2. The feedback shows the variable_delay_timer value as 2.0. According to Rule 2, numerical values with different textual formatting or capitalization are considered semantically the same. Therefore, the goal state and the feedback match."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  menu
+step_info:  {'step': 1, 'actions': ['press_menu_button'], 'variable': 'variable_menu_selection'}
+executing action: ('press_menu_button', 1)
+goal state string:  We want to have the variable: variable_menu_selection to have a value of Brown Rice. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 2.0
+variable_menu_selection: Brown Rice
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 2.0
+variable_menu_selection: Brown Rice
+variable_start_running: off
+variable_name: variable_menu_selection
+actions: ['press_menu_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_selection': 'Brown Rice', 'variable_cooking_time': 30}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_selection: brown rice 
+
+
+Comparison result: 
+
+ reason = "The goal is to set the variable 'variable_menu_selection' to 'Brown Rice'. The feedback shows 'variable_menu_selection' as 'brown rice'. Both values are semantically the same, differing only in capitalization, which makes them equivalent according to the comparison rules."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 2, 'actions': ['press_plus_button', 'press_minus_button'], 'variable': 'variable_cooking_time'}
+executing action: ('press_plus_button', 1)
+goal state string:  We want to have the variable: variable_cooking_time to have a value of 30. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 2.0
+variable_menu_selection: Brown Rice
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 31
+variable_delay_timer: 2.0
+variable_menu_selection: Brown Rice
+variable_start_running: off
+variable_name: variable_cooking_time
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_minus_button', 1)]
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_selection': 'Brown Rice', 'variable_cooking_time': 30}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_cooking_time': 31, 'variable_menu_selection': 'Brown Rice'}", "applied action: ('press_minus_button', 1), feedback: {'feature': ('menu', 2), 'variable_cooking_time': 30, 'variable_menu_selection': 'Brown Rice'}"]
+check state....
+Feedback Variable: 
+
+ variable_cooking_time: 30 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time' to have a value of 30, and the feedback shows 'variable_cooking_time' is also 30. Since the values are identical, the goal is reached."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start
+step_info:  {'step': 1, 'actions': ['press_start_button'], 'comment': "variable_start_running: set to 'on'"}
+executing action: ('press_start_button', 1)
+ground truth info {'id': 2, 'command': 'Adjust the delay time to 2 hours, set the rice cooker to Brown Rice, and start running.', 'target_state': {'variable_menu_selection': 'Brown Rice', 'variable_cooking_time': 30, 'variable_delay_timer': 2, 'variable_start_running': 'on'}, 'important_target_states': {'variable_menu_selection': 'Brown Rice', 'variable_delay_timer': 2, 'variable_start_running': 'on'}}
+robot's decision {'variable_cooking_time': 30, 'variable_delay_timer': 2.0, 'variable_menu_selection': 'Brown Rice', 'variable_start_running': 'on'}
+processing:  _3_rice_cooker 3 var 3
+processing:  _3_rice_cooker 3 3
+trial:  1
+attempt:  0
+generated goal state code:  feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is used to set the delay time to 1 hour. Feature 'menu' is used to select Quinoa. Feature 'start' is used to start the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(1) # The number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Quinoa")
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is used to set the delay time to 1 hour. Feature 'menu' is used to select Quinoa. Feature 'start' is used to start the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(1) # The number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Quinoa")
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on") 
+Error: The following variables are missing from the changing_variables list and should be added in: ['variable_cooking_time']
+
+finishing one round of test...
+attempt:  1
+generated goal state code:  feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is used to set the delay time to 1 hour. Feature 'menu' is used to select Quinoa and adjust the cooking time. Feature 'start' is used to start the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_cooking_time", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(1) # The number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Quinoa")
+# "menu", step 2, variable_cooking_time
+goal_state.variable_cooking_time.set_current_value(30) # The number represents minutes.
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_9_oracle_V_oracle_M/gpt-4o-2024-11-20/_3_rice_cooker/3/_1_var_testcases/3/1' created successfully.
+setting specific
+entered this loop
+initial appliance state:  variable_cooking_time: 30
+variable_delay_timer: 0
+variable_menu_selection: White Rice
+variable_start_running: off
+
+current_state_simulator when it is just created: 
+
+ variable_cooking_time: 30
+variable_delay_timer: 0
+variable_menu_selection: White Rice
+variable_start_running: off
+
+goal state:  variable_cooking_time: 30
+variable_delay_timer: 1
+variable_menu_selection: Quinoa
+variable_start_running: on
+current feature:  delay_timer
+step_info:  {'step': 1, 'actions': ['press_delay_timer_button']}
+executing action: ('press_delay_timer_button', 1)
+step_info:  {'step': 2, 'actions': ['press_plus_button', 'press_minus_button'], 'variable': 'variable_delay_timer'}
+executing action: ('press_plus_button', 1)
+goal state string:  We want to have the variable: variable_delay_timer to have a value of 1. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 1
+variable_menu_selection: White Rice
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 0.5
+variable_menu_selection: White Rice
+variable_start_running: off
+variable_name: variable_delay_timer
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_plus_button', 1)]
+feedbacks:  ["applied action: ('press_delay_timer_button', 1), feedback: {'feature': ('delay_timer', 1), 'variable_delay_timer': 0}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('delay_timer', 2), 'variable_delay_timer': 0.5}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('delay_timer', 2), 'variable_delay_timer': 1.0}"]
+check state....
+Feedback Variable: 
+
+ variable_delay_timer: 1.0 
+
+
+Comparison result: 
+
+ reason = "The goal state requires variable_delay_timer to have a value of 1. The feedback shows variable_delay_timer: 1.0. According to Rule 2, if the values contain numbers and differ only in textual formatting or capitalization, they are considered semantically the same. Here, 1 and 1.0 are equivalent numeric values."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  menu
+step_info:  {'step': 1, 'actions': ['press_menu_button'], 'variable': 'variable_menu_selection'}
+executing action: ('press_menu_button', 1)
+goal state string:  We want to have the variable: variable_menu_selection to have a value of Quinoa. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 1.0
+variable_menu_selection: Quinoa
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 1.0
+variable_menu_selection: Brown Rice
+variable_start_running: off
+variable_name: variable_menu_selection
+actions: ['press_menu_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_menu_button', 1)]
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_selection': 'Brown Rice', 'variable_cooking_time': 30}", "applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_selection': 'Quinoa', 'variable_cooking_time': 30}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_selection: quinoa 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_menu_selection' to have a value of 'Quinoa'. The feedback shows 'variable_menu_selection: quinoa'. Since the values only differ in capitalization ('Quinoa' vs 'quinoa'), they are semantically the same according to Rule 2."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 2, 'actions': ['press_plus_button', 'press_minus_button'], 'variable': 'variable_cooking_time'}
+executing action: ('press_plus_button', 1)
+goal state string:  We want to have the variable: variable_cooking_time to have a value of 30. 
+goal_state_simulator: variable_cooking_time: 30
+variable_delay_timer: 1.0
+variable_menu_selection: Quinoa
+variable_start_running: off
+current_state_simulator: variable_cooking_time: 31
+variable_delay_timer: 1.0
+variable_menu_selection: Quinoa
+variable_start_running: off
+variable_name: variable_cooking_time
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_minus_button', 1)]
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_selection': 'Quinoa', 'variable_cooking_time': 30}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_cooking_time': 31, 'variable_menu_selection': 'Quinoa'}", "applied action: ('press_minus_button', 1), feedback: {'feature': ('menu', 2), 'variable_cooking_time': 30, 'variable_menu_selection': 'Quinoa'}"]
+check state....
+Feedback Variable: 
+
+ - variable_cooking_time: 30 
+
+
+Comparison result: 
+
+ reason = "The goal is to have the variable 'variable_cooking_time' set to 30. The feedback also shows 'variable_cooking_time' as 30. Since the values are identical and match perfectly according to the comparison rules, the goal has been achieved."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start
+step_info:  {'step': 1, 'actions': ['press_start_button'], 'comment': "variable_start_running: set to 'on'"}
+executing action: ('press_start_button', 1)
+ground truth info {'id': 3, 'command': 'Adjust the delay time to 1 hour, choose Quinoa, and start running.', 'target_state': {'variable_menu_selection': 'Quinoa', 'variable_cooking_time': 30, 'variable_delay_timer': 1, 'variable_start_running': 'on'}, 'important_target_states': {'variable_menu_selection': 'Quinoa', 'variable_delay_timer': 1, 'variable_start_running': 'on'}}
+robot's decision {'variable_cooking_time': 30, 'variable_delay_timer': 1.0, 'variable_menu_selection': 'Quinoa', 'variable_start_running': 'on'}

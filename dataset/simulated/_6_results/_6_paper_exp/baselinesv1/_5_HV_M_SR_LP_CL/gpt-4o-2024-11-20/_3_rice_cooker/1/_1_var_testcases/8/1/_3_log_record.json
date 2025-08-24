@@ -1,0 +1,116 @@
+{
+    "command_id": 8,
+    "command_string": "Set the rice cooker to prepare beans in the rice cooker to be cooked for 1 hour and 10 minutes, then start.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_menu_index": "Bean",
+        "variable_cooking_time_hour": 1,
+        "variable_cooking_time_minute": 10
+    },
+    "executed_goal_state": {
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 0,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "Steam",
+        "variable_preset_timer_hour": 0,
+        "variable_preset_timer_minute": 0,
+        "variable_start_running": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Porridge"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "we need to set the cooking mode to 'Bean' in order to prepare beans.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Reheat'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "executed action: run_action('press_menu_button', execution_times=5), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Reheat'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}"
+            ]
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=5)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Porridge"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "The variable_cooking_mode is currently set to 'Bean', and we need to cycle through the menu options to make sure the machine is set to 'Bean' mode for preparation.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Reheat'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "executed action: run_action('press_menu_button', execution_times=1), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "executed action: run_action('press_menu_button', execution_times = 1), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Soup"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Soup'.",
+            "reason": "the current cooking mode is set to 'Bean' and we need to cycle through the menu options to select 'Bean' as the cooking mode again.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_menu_button', execution_times = 1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Steam"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Reheat'.",
+            "reason": "we need to cycle through the menu options to eventually select 'Bean' mode, and the current value is 'Soup', so pressing the menu button once moves to 'Reheat'.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 4,
+            "error_message": "we fail to adjust variable_cooking_mode to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is off (type: <class 'str'>), but the ground truth is on (type: <class 'str'>)",
+    "step_size": 33
+}

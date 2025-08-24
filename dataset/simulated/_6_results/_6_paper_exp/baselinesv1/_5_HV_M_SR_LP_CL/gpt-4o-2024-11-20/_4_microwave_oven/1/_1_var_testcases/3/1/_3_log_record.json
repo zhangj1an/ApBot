@@ -1,0 +1,185 @@
+{
+    "command_id": 3,
+    "command_string": "Use time cooking setting to cook at 70% power for 5 minutes. Then start the appliance.",
+    "ground_truth_goal_state": {
+        "variable_microwave_cooking_time": "00:05:00",
+        "variable_microwave_power_level": "PL7",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_beverage_setting": "1",
+        "variable_child_lock": "unlocked",
+        "variable_clock": "00:00:00",
+        "variable_dinner_plate_setting": "9.0",
+        "variable_frozen_vegetable_setting": "4.0",
+        "variable_kitchen_timer": "00:00:00",
+        "variable_microwave_cooking_time": "00:05:00",
+        "variable_microwave_power_level": "PL88088",
+        "variable_pizza_setting": "4.0",
+        "variable_popcorn_setting": "1.75",
+        "variable_potato_setting": "1",
+        "variable_start_running": "off",
+        "variable_time_defrost": "00:00:00",
+        "variable_weight_defrost": 0
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_time_cook_button",
+                1
+            ],
+            "grounded_action": "press_time_cook_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    1
+                ],
+                "variable_microwave_cooking_time": "00:00:00"
+            }
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_number_5_button', execution_times = 1)",
+            "grounded_action": "press_number_5_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:00:05"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:05:00'.",
+            "reason": "we need to press number 5 to add 5 minutes to the cooking time.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_number_0_button', execution_times = 1)",
+            "grounded_action": "press_number_0_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:00:50"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:00:50'.",
+            "reason": "we need to press number pads sequentially to adjust the cooking time to 5 minutes.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_number_0_button', execution_times = 1)",
+            "grounded_action": "press_number_0_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:05:00"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:05:00'.",
+            "reason": "To adjust the cooking time to the target value of 5 minutes, we need to press 0 to complete the time input of 00:05:00.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_power_button",
+                1
+            ],
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    3
+                ],
+                "variable_microwave_cooking_time": "00:05:00",
+                "variable_microwave_power_level": "PL10"
+            }
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_number_7_button', execution_times = 1)",
+            "grounded_action": "press_number_8_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL8"
+            },
+            "expected_feedback": "the variable_power becomes 'PL7'.",
+            "reason": "we need to set the microwave power level to 70%, which corresponds to PL7, by pressing the number pad '7'.",
+            "reached_goal": false
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_number_7_button', execution_times = 1)",
+            "grounded_action": "press_number_8_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL88"
+            },
+            "expected_feedback": "the variable_power becomes 'PL7'.",
+            "reason": "the current power setting is PL8, and we need to adjust it to PL7 for the desired 70% power level.",
+            "reached_goal": false
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_number_0_button', execution_times = 1)",
+            "grounded_action": "press_number_0_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL880"
+            },
+            "expected_feedback": "the variable_power becomes 'PL7'.",
+            "reason": "we need to set the power level to 70%, so we use the number pad to input the correct value.",
+            "reached_goal": false
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_number_7_button', execution_times = 1)",
+            "grounded_action": "press_number_8_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL8808"
+            },
+            "expected_feedback": "the variable_power becomes 'PL7'.",
+            "reason": "The target power level is 70% (PL7), so we need to press the number 7 button to achieve this.",
+            "reached_goal": false
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_number_7_button', execution_times = 1)",
+            "grounded_action": "press_number_8_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL88088"
+            },
+            "expected_feedback": "the variable_power becomes 'PL7'.",
+            "reason": "we need to adjust the power level to 70% by pressing the number 7 button.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 10,
+            "error_message": "we fail to adjust variable_power to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_microwave_power_level, the value decided by the robot is PL88088 (type: <class 'str'>), but the ground truth is PL7 (type: <class 'str'>)",
+    "step_size": 11
+}

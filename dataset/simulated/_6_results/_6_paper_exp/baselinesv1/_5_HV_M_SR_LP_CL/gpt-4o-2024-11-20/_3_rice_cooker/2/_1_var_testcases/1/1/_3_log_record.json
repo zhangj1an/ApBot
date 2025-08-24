@@ -1,0 +1,79 @@
+{
+    "command_id": 1,
+    "command_string": "Set the mode to congee, set preset timer to 8 hours for tomorrow morning, and start the machine.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_cooking_mode": "Congee",
+        "variable_preset_timer": 8
+    },
+    "executed_goal_state": {
+        "variable_cooking_mode": "Congee",
+        "variable_preset_timer": 8.0,
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_cancel_button', execution_times=1)",
+            "grounded_action": "press_menu_cancel_button",
+            "current_observation": {
+                "feature": [
+                    "cooking_mode_selection",
+                    1
+                ],
+                "variable_cooking_mode": "White rice"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'white rice'.",
+            "reason": "we are cycling through the cooking modes to set it to 'congee', and 'white rice' is the next mode after 'fast cook' in the list.",
+            "reached_goal": false
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_cancel_button', execution_times=1)",
+            "grounded_action": "press_menu_cancel_button",
+            "current_observation": {
+                "feature": [
+                    "cooking_mode_selection",
+                    1
+                ],
+                "variable_cooking_mode": "Congee"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'congee'.",
+            "reason": "the goal is to set the mode to 'congee', and pressing the menu/cancel button cycles through the cooking modes.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_preset_time_time_button', execution_times=32)",
+            "grounded_action": "press_preset_time_time_button",
+            "current_observation": {
+                "feature": [
+                    "preset_timer",
+                    1
+                ],
+                "variable_preset_timer": 8.0
+            },
+            "expected_feedback": "the variable_preset_timer becomes 480.",
+            "reason": "We need to set the preset timer to 8 hours (8 hours = 480 minutes). Each button press increases the timer by 15 minutes, so we need 32 presses.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start_cooking",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous steps have been completed (mode set to congee, preset timer set to 8 hours), so the next action is to start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 35
+}

@@ -1,0 +1,103 @@
+{
+    "command_id": 5,
+    "command_string": "Set it to cook 'MIXED' rice with a reservation timer set for 6 hours, then start the machine.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "MIXED",
+        "variable_delay_timer": 6,
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_delay_timer": 0,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "PORRIDGE",
+        "variable_quick_rice": "off",
+        "variable_start_running": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=6)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "SOUP"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'mixed'.",
+            "reason": "we need to press the menu button six times to cycle through the options until the menu index is set to 'mixed'.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEW'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'WHITE RICE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BROWN'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'PORRIDGE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'GRAINS'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'MIXED'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEAM'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'SOUP'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEW'}",
+                "executed action: run_action('press_menu_button', execution_times=4), feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'GRAINS'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'MIXED'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEAM'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'SOUP'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEW'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'WHITE RICE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BROWN'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'PORRIDGE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'GRAINS'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'MIXED'}"
+            ]
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=4)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "GRAINS"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'MIXED'.",
+            "reason": "Based on the past executed actions, we have cycled through the menu options, and we are currently on 'STEAM'. By pressing the 'press_menu_button' four times, we will reach 'MIXED', which is our target menu option.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'MIXED'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEAM'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'SOUP'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'STEW'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'WHITE RICE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BROWN'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'PORRIDGE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'GRAINS'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'MIXED'}",
+                "executed action: run_action('press_menu_button', execution_times=6), feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'PORRIDGE'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=6)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "PORRIDGE"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'MIXED'.",
+            "reason": "By pressing the menu button 6 times from the current position, the selection will cycle to the desired 'MIXED' function.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 3,
+            "error_message": "we fail to adjust variable_menu_index to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_menu_index, the value decided by the robot is PORRIDGE (type: <class 'str'>), but the ground truth is MIXED (type: <class 'str'>)",
+    "step_size": 46
+}

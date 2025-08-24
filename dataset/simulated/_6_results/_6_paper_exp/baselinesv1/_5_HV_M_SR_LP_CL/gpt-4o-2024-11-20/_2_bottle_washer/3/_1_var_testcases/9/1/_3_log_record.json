@@ -1,0 +1,80 @@
+{
+    "command_id": 9,
+    "command_string": "Turn on the appliance, set 'Wash Only' mode, and initiate the cleaning cycle.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_wash_mode": "Wash Only",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_sterilize_dry_mode": "Sterilize & Dry",
+        "variable_wash_mode": "Wash Only"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_and_hold_power_button', execution_times=1, duration=3)",
+            "grounded_action": "press_and_hold_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be turned on as the first step to begin setting up the desired mode and starting the cleaning cycle.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_wash_mode_button', execution_times=1)",
+            "grounded_action": "press_wash_mode_button",
+            "current_observation": {
+                "feature": [
+                    "select_wash_mode",
+                    1
+                ],
+                "variable_wash_mode": "Wash, Sterilize, Dry"
+            },
+            "expected_feedback": "the variable_wash_mode becomes 'Wash, Sterilize, Dry'.",
+            "reason": "we need to cycle through the wash modes to set the variable to 'Wash Only'.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_wash_mode_button', execution_times=1)",
+            "grounded_action": "press_wash_mode_button",
+            "current_observation": {
+                "feature": [
+                    "select_wash_mode",
+                    1
+                ],
+                "variable_wash_mode": "Wash Only"
+            },
+            "expected_feedback": "the variable_wash_mode becomes 'Wash Only'.",
+            "reason": "Currently, the wash mode is set to 'Wash, Sterilize, Dry'. We need to press the 'wash mode' button to cycle to 'Wash Only'.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the machine is turned on and 'Wash Only' mode is selected, so now we start the cleaning cycle.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

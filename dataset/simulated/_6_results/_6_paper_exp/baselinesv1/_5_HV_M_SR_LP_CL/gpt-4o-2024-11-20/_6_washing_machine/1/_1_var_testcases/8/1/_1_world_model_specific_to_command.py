@@ -1,0 +1,2 @@
+class ExtendedSimulator(Simulator):
+    pass

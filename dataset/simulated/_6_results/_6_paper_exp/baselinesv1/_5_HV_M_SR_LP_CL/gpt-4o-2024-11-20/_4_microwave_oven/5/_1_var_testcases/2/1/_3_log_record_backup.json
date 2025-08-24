@@ -1,0 +1,120 @@
+{
+    "command_id": 2,
+    "command_string": "Turn on the microwave oven to keep dinner warm. Set the temperature to 100\u00b0C, function dial to 'Convection', selector dial to 'Bottom Heating', and timer to '40'.",
+    "ground_truth_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_temperature_dial": "100\u00b0C",
+        "variable_selector_dial": "Bottom Heating",
+        "variable_timer_dial": "40"
+    },
+    "executed_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_selector_dial": "Top Heating",
+        "variable_temperature_dial": "100\u00b0C",
+        "variable_timer_dial": "Off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_temperature_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "temp",
+                    1
+                ],
+                "variable_temperature_dial": "100\u00b0C"
+            },
+            "expected_feedback": "variable_temperature_dial becomes '100\u00b0C'.",
+            "reason": "we need to adjust the temperature to 100\u00b0C by turning the temperature dial clockwise.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "function",
+                    1
+                ],
+                "variable_function_dial": "Convection"
+            },
+            "expected_feedback": "variable_function_dial becomes 'Convection'.",
+            "reason": "The function dial needs to be set to 'Convection' to achieve the desired settings for keeping dinner warm.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top Heating"
+            },
+            "expected_feedback": "variable_selector_dial becomes 'Bottom Heating'.",
+            "reason": "The selector dial needs to be adjusted to 'Bottom Heating' to match the target settings.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top & Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Off'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}",
+                "executed action: run_action('turn_selector_dial_clockwise', execution_times=3), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top & Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Off'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top Heating"
+            },
+            "expected_feedback": "the variable_selector_dial becomes 'Bottom Heating'.",
+            "reason": "The selector dial needs to be set to 'Bottom Heating', which currently requires three clockwise turns from the current state.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top & Bottom Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Off'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}",
+                "applied action: turn_selector_dial_clockwise, feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}",
+                "executed action: run_action('turn_selector_dial_clockwise', execution_times=3), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top Heating"
+            },
+            "expected_feedback": "the variable_selector_dial becomes 'Bottom Heating'.",
+            "reason": "we need to adjust the selector dial back to 'Bottom Heating', and since the current value is 'Bottom Heating' and it cycles, we execute the action 3 times.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 5,
+            "error_message": "we fail to adjust variable_selector_dial to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_selector_dial, the value decided by the robot is Top Heating (type: <class 'str'>), but the ground truth is Bottom Heating (type: <class 'str'>)"
+}

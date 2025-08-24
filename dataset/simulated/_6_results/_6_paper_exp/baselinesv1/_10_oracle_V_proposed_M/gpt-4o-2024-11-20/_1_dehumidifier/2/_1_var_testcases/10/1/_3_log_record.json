@@ -1,0 +1,80 @@
+{
+    "command_id": 10,
+    "command_string": "Start the dehumidifier and set the programmable timer to 12 hours.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_timer": "12"
+    },
+    "executed_goal_state": {
+        "variable_cool_mode_temperature": 0,
+        "variable_fan_speed": "HIGH",
+        "variable_operating_mode": "COOL",
+        "variable_power_on_off": "on",
+        "variable_timer": 12
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_on_off_button",
+                1
+            ],
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_timer_button",
+                1
+            ],
+            "grounded_action": "press_timer_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": 1
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_timer_button",
+                10
+            ],
+            "grounded_action": "press_timer_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": 11
+            },
+            "mismatch": "The goal state requires the variable 'variable_timer_setting' to have a value of 12. The feedback shows 'variable_timer' with a value of 11. Both variable names represent the same item, but the values are different. Since the goal value is 12 and the feedback value is 11, the goal has not been reached yet."
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_timer_button",
+                11
+            ],
+            "grounded_action": "press_timer_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": 12
+            }
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct"
+}

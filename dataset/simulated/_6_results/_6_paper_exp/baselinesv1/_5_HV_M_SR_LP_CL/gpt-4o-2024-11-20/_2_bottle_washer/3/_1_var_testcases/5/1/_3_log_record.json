@@ -1,0 +1,88 @@
+{
+    "command_id": 5,
+    "command_string": "Turn on the machine and choose the 'Dry Only' mode to dry a washed bottle, and press start to begin.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_sterilize_dry_mode": "Dry Only",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_sterilize_dry_mode": "Dry Only",
+        "variable_wash_mode": "Wash & Dry"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_and_hold_power_button', execution_times=1, duration=3)",
+            "grounded_action": "press_and_hold_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance is currently powered off, so we need to turn it on as the first step.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_sterilize_dry_button', execution_times=2)",
+            "grounded_action": "press_sterilize_dry_button",
+            "current_observation": {
+                "feature": [
+                    "select_sterilize_dry_mode",
+                    1
+                ],
+                "variable_sterilize_dry_mode": "Sterilize Only"
+            },
+            "expected_feedback": "the variable_sterilize_dry_mode becomes 'Dry Only'.",
+            "reason": "we need to set the sterilize and dry mode to 'Dry Only', and the user manual specifies that pressing the 'Sterilize-Dry' button 2 times will achieve this.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_sterilize_dry_button, feedback: {'feature': ('select_sterilize_dry_mode', 1), 'variable_sterilize_dry_mode': 'Sterilize & Dry'}",
+                "applied action: press_sterilize_dry_button, feedback: {'feature': ('select_sterilize_dry_mode', 1), 'variable_sterilize_dry_mode': 'Dry Only'}",
+                "applied action: press_sterilize_dry_button, feedback: {'feature': ('select_sterilize_dry_mode', 1), 'variable_sterilize_dry_mode': 'Sterilize Only'}",
+                "applied action: press_sterilize_dry_button, feedback: {'feature': ('select_sterilize_dry_mode', 1), 'variable_sterilize_dry_mode': 'Sterilize & Dry'}",
+                "executed action: run_action('press_sterilize_dry_button', execution_times=1), feedback: {'feature': ('select_sterilize_dry_mode', 1), 'variable_sterilize_dry_mode': 'Dry Only'}",
+                "executed action: run_action('press_start_pause_button', execution_times=1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_sterilize_dry_button', execution_times=1)",
+            "grounded_action": "press_sterilize_dry_button",
+            "current_observation": {
+                "feature": [
+                    "select_sterilize_dry_mode",
+                    1
+                ],
+                "variable_sterilize_dry_mode": "Dry Only"
+            },
+            "expected_feedback": "the variable_sterilize_dry_mode becomes 'Dry Only'.",
+            "reason": "Currently, the variable_sterilize_dry_mode is 'Sterilize & Dry'. Pressing the button cycles through the modes, and the next mode in sequence is 'Dry Only'.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "We need to press the start button to start the machine after setting the desired mode.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 11
+}

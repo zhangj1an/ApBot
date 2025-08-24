@@ -1,0 +1,66 @@
+{
+    "command_id": 6,
+    "command_string": "Activate the washer and dry items for 50 minutes, then ensure they stay sterile with storage mode.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_drying_only_time": 50,
+        "variable_storage_mode": "on"
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "0",
+        "variable_drying_only_time": "50",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_on_off_button', execution_times=1)",
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "As the appliance needs to be activated before performing any other actions, we turn on the power.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_drying_only_button', execution_times=3)",
+            "grounded_action": "press_drying_only_button",
+            "current_observation": {
+                "feature": [
+                    "drying_only",
+                    1
+                ],
+                "variable_drying_only_time": "50"
+            },
+            "expected_feedback": "the variable_drying_only_duration becomes '50 minutes'.",
+            "reason": "The drying duration needs to be set to 50 minutes, and pressing the drying only button three times will achieve this setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_storage_button', execution_times=1)",
+            "grounded_action": "press_storage_button",
+            "current_observation": {
+                "feature": [
+                    "storage_mode",
+                    1
+                ],
+                "variable_storage_mode": "on"
+            },
+            "expected_feedback": "the variable_storage_mode becomes 'on'.",
+            "reason": "The storage mode must be activated to ensure items remain sterile, and pressing the 'storage button' will toggle the variable_storage_mode to 'on'.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 5
+}

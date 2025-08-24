@@ -1,0 +1,65 @@
+{
+    "command_id": 8,
+    "command_string": "Switch on, select 'Wash, Sterilize, Dry', and begin the washing procedure.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_wash_mode": "Wash, Sterilize, Dry",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_sterilize_dry_mode": "Sterilize & Dry",
+        "variable_wash_mode": "Wash, Sterilize, Dry"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_and_hold_power_button', execution_times=1, duration=3)",
+            "grounded_action": "press_and_hold_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance is currently off, and we need to turn it on to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_wash_mode_button', execution_times=1)",
+            "grounded_action": "press_wash_mode_button",
+            "current_observation": {
+                "feature": [
+                    "select_wash_mode",
+                    1
+                ],
+                "variable_wash_mode": "Wash, Sterilize, Dry"
+            },
+            "expected_feedback": "the variable_wash_mode becomes 'Wash, Sterilize, Dry'.",
+            "reason": "We are currently adjusting the wash mode to 'Wash, Sterilize, Dry' as per the target setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous settings are done, so now we start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 3
+}

@@ -1,0 +1,55 @@
+{
+    "command_id": 3,
+    "command_string": "Enable the dehumidifier and initiate the internal drying function.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_internal_drying": "on"
+    },
+    "executed_goal_state": {
+        "variable_anion": "off",
+        "variable_child_lock": "unlocked",
+        "variable_humidity": 0,
+        "variable_internal_drying": "on",
+        "variable_mode": "auto dehumidification",
+        "variable_power_on_off": "on",
+        "variable_sleep": "off",
+        "variable_swing": "off",
+        "variable_temperature_unit": "Celsius",
+        "variable_timer": 0
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "power",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The dehumidifier must be turned on to proceed with enabling the internal drying function.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_and_hold_drying_button', execution_times=1, duration=10)",
+            "grounded_action": "press_and_hold_drying_button",
+            "current_observation": {
+                "feature": [
+                    "internal_drying",
+                    1
+                ],
+                "variable_internal_drying": "on"
+            },
+            "expected_feedback": "the variable_internal_drying becomes 'on'.",
+            "reason": "the internal drying function needs to be started, and the manual specifies pressing and holding the drying button for over 2 seconds to activate this feature. Setting the duration to 10 seconds to be safe.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

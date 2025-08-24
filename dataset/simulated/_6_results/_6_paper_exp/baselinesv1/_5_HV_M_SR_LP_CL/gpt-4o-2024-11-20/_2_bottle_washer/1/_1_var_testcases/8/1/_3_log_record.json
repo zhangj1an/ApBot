@@ -1,0 +1,49 @@
+{
+    "command_id": 8,
+    "command_string": "Power up the machine and perform automatic sterilize and dry for 30 minutes, assuming the bottles are for an infant.",
+    "ground_truth_goal_state": {
+        "variable_drying_time": 30,
+        "variable_on_off": "on"
+    },
+    "executed_goal_state": {
+        "variable_drying_cycle": "0",
+        "variable_drying_time": "30",
+        "variable_on_off": "on",
+        "variable_sterilization_cycle": "running"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The machine needs to be powered on before selecting the automatic sterilize and dry function.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_automatic_sterilize_dry_button', execution_times=1)",
+            "grounded_action": "press_automatic_sterilize_dry_button",
+            "current_observation": {
+                "feature": [
+                    "automatic_sterilize_dry",
+                    1
+                ],
+                "variable_drying_time": "30"
+            },
+            "expected_feedback": "variable_dry_time becomes '30'.",
+            "reason": "The Automatic Sterilize/Dry button needs to be pressed once to set the drying time to 30 minutes.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

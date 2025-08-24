@@ -1,0 +1,52 @@
+{
+    "command_id": 8,
+    "command_string": "Cook 'STEW' with a reservation timer set for 4 hours, then start the machine.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "STEW",
+        "variable_delay_timer": 4,
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_delay_timer": 0,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "WHITE RICE",
+        "variable_quick_rice": "off",
+        "variable_start_running": "off"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_menu_button",
+                1
+            ],
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "BROWN"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_menu_button",
+                7
+            ],
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "WHITE RICE"
+            },
+            "mismatch": "The goal state requires 'variable_menu_index' to have the value 'stew', but the feedback shows 'variable_menu_index' as 'white rice'. The values do not match, and 'white rice' does not represent 'stew'. Additionally, 'stew' is a specific menu option that matches better than 'white rice', so the goal has not been reached yet. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_menu_index, the value decided by the robot is WHITE RICE (type: <class 'str'>), but the ground truth is STEW (type: <class 'str'>)",
+    "step_size": 8
+}

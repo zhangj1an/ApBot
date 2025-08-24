@@ -1,0 +1,184 @@
+{
+    "command_id": 2,
+    "command_string": "Power on the washer, choose 'Gentle' program for a medium load. Set the wash time to 10 minutes, rinse once, and spin for 4 minutes. Begin the washing.",
+    "ground_truth_goal_state": {
+        "variable_on_off": "on",
+        "variable_start_running": "start",
+        "variable_washing_program": "Gentle",
+        "variable_load_size": "2",
+        "variable_wash_time": 10,
+        "variable_rinse_times": 1,
+        "variable_spin_time": 4
+    },
+    "executed_goal_state": {
+        "variable_load_size": "2",
+        "variable_on_off": "on",
+        "variable_rinse_times": 1,
+        "variable_spin_time": 6,
+        "variable_start_running": "pause",
+        "variable_wash_time": 10,
+        "variable_washing_program": "Gentle"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The washer needs to be powered on to proceed with setting the program and other adjustments.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_button', execution_times=1)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Gentle"
+            },
+            "expected_feedback": "the variable_program becomes 'Gentle'.",
+            "reason": "the target program is 'Gentle', so pressing 'press_program_button' should cycle to the desired program.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_load_size_button', execution_times=1)",
+            "grounded_action": "press_load_size_button",
+            "current_observation": {
+                "feature": [
+                    "set_load_size",
+                    1
+                ],
+                "variable_load_size": "2"
+            },
+            "expected_feedback": "the variable_load_size becomes '2---medium'.",
+            "reason": "We need to add just one press to adjust the load size from the current setting '1---small' to the target value '2---medium'.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_wash_button', execution_times=10)",
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 10
+            },
+            "expected_feedback": "the variable_wash_time becomes 10.",
+            "reason": "we need to set the wash time to 10 minutes as per the goal.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_rinse_button', execution_times=1)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_times",
+                    1
+                ],
+                "variable_rinse_times": 1
+            },
+            "expected_feedback": "the variable_rinse_times becomes 1.",
+            "reason": "we need to set the rinse times to 1 as part of the washing settings.",
+            "reached_goal": true
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_spin_button', execution_times=4)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 6
+            },
+            "expected_feedback": "the variable_spin_time becomes 4.",
+            "reason": "the spin time needs to be set to 4 minutes, so pressing the spin button 4 times should adjust it correctly from the current value of 0.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 7}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 8}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 0}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 3}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 4}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 5}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 7}",
+                "executed action: run_action('press_spin_button', execution_times=1), feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 8}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 0}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 3}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 4}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 5}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 7}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 8}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}"
+            ]
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_spin_button', execution_times=1)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 8
+            },
+            "expected_feedback": "the variable_spin_time becomes 4.",
+            "reason": "the spin time is currently at 7 and needs to be adjusted to 4, so we continue to cycle through the available options.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 0}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 3}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 4}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 5}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 7}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 8}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "executed action: run_action('press_spin_button', execution_times=5), feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}"
+            ]
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_spin_button', execution_times=5)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 6
+            },
+            "expected_feedback": "the variable_spin_time becomes 4.",
+            "reason": "Currently, the spin time is 9 minutes. Pressing the spin button cycles through the spin time options in the sequence [0, 3, 4, 5, 6, 7, 8, 9]. By pressing the button 5 times, the spin time can be set to the target value of 4 minutes.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 8,
+            "error_message": "we fail to adjust variable_spin_time to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is pause (type: <class 'str'>), but the ground truth is start (type: <class 'str'>)",
+    "step_size": 54
+}

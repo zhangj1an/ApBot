@@ -1,0 +1,110 @@
+{
+    "command_id": 6,
+    "command_string": "Start the Bread Maker to bake French bread with a dark crust weighing 450g. Set the menu to french and use a 3-hour delay. Use gluten-free setting. Please ensure the appliance starts.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "2 French",
+        "variable_crust_colour": "Dark",
+        "variable_loaf_size": "450g",
+        "variable_gluten_free": "on",
+        "variable_timer": "3",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_colour": "Light",
+        "variable_gluten_free": "off",
+        "variable_loaf_size": "450g",
+        "variable_menu_index": "2 French",
+        "variable_start_running": "off",
+        "variable_timer": 0
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "2 French"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'French'.",
+            "reason": "We need to set the menu to 'French' as part of the goal, pressing the menu button will help cycle through the available options.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_crust_colour_button', execution_times=3)",
+            "grounded_action": "press_crust_colour_button",
+            "current_observation": {
+                "feature": [
+                    "crust_colour_selection",
+                    1
+                ],
+                "variable_crust_colour": "Rapid"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Dark'.",
+            "reason": "The target variable value for crust color is 'Dark', and it seems we need to cycle through the crust color options by pressing the button three times to reach this setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Light'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Medium'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Dark'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Rapid'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Light'}",
+                "executed action: run_action('press_crust_colour_button', execution_times=1), feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Medium'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Dark'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Rapid'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Light'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Medium'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Dark'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_crust_colour_button', execution_times=1)",
+            "grounded_action": "press_crust_colour_button",
+            "current_observation": {
+                "feature": [
+                    "crust_colour_selection",
+                    1
+                ],
+                "variable_crust_colour": "Medium"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Rapid'.",
+            "reason": "We need to cycle through the crust color options to achieve 'Dark'. As the current setting is 'Light', pressing the button once will adjust it to the next option.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Dark'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Rapid'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Light'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Medium'}",
+                "applied action: press_crust_colour_button, feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Dark'}",
+                "executed action: run_action('press_crust_colour_button', execution_times=2), feedback: {'feature': ('crust_colour_selection', 1), 'variable_crust_colour': 'Light'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_crust_colour_button', execution_times=2)",
+            "grounded_action": "press_crust_colour_button",
+            "current_observation": {
+                "feature": [
+                    "crust_colour_selection",
+                    1
+                ],
+                "variable_crust_colour": "Light"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Dark'.",
+            "reason": "Currently, the crust color is 'Light'. By pressing the 'crust_colour' button twice, we can cycle through the values to reach 'Dark' as required.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 4,
+            "error_message": "we fail to adjust variable_crust_color to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_crust_colour, the value decided by the robot is Light (type: <class 'str'>), but the ground truth is Dark (type: <class 'str'>)",
+    "step_size": 25
+}

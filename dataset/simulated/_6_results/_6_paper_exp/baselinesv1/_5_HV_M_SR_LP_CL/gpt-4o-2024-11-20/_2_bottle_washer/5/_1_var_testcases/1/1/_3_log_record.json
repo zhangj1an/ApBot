@@ -1,0 +1,50 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the washer and sterilize the bottles for 10 minutes.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": 10
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "0",
+        "variable_drying_only_time": "0",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "10",
+        "variable_storage_mode": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_on_off_button', execution_times=1)",
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be turned on to proceed with sterilizing the bottles for 10 minutes.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_sterilise_only_button', execution_times=1)",
+            "grounded_action": "press_sterilise_only_button",
+            "current_observation": {
+                "feature": [
+                    "sterilise_only",
+                    1
+                ],
+                "variable_sterilise_only_time": "10"
+            },
+            "expected_feedback": "the variable_sterilise_only_duration becomes '10 minutes'.",
+            "reason": "we need to set the sterilization duration to 10 minutes as per the user command by pressing the sterilise-only button once.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

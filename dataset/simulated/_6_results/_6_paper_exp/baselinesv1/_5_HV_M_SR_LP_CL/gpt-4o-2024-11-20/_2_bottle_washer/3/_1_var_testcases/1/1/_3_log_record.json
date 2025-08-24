@@ -1,0 +1,88 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the bottle washer and set it to 'Wash & Dry' mode, and press start to begin.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_wash_mode": "Wash & Dry",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_sterilize_dry_mode": "Sterilize & Dry",
+        "variable_wash_mode": "Wash & Dry"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_and_hold_power_button', execution_times=1, duration=3)",
+            "grounded_action": "press_and_hold_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to turn on the appliance before setting any modes or starting the cycle.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_wash_mode_button', execution_times=1)",
+            "grounded_action": "press_wash_mode_button",
+            "current_observation": {
+                "feature": [
+                    "select_wash_mode",
+                    1
+                ],
+                "variable_wash_mode": "Wash, Sterilize, Dry"
+            },
+            "expected_feedback": "the variable_wash_mode becomes 'Wash & Dry'.",
+            "reason": "We need to adjust the wash mode to 'Wash & Dry', so we press the wash mode button until it cycles to the desired mode.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_wash_mode_button, feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash Only'}",
+                "applied action: press_wash_mode_button, feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash & Dry'}",
+                "applied action: press_wash_mode_button, feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash, Sterilize, Dry'}",
+                "applied action: press_wash_mode_button, feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash Only'}",
+                "executed action: run_action('press_wash_mode_button', execution_times=1), feedback: {'feature': ('select_wash_mode', 1), 'variable_wash_mode': 'Wash & Dry'}",
+                "executed action: run_action('press_start_pause_button', execution_times=1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_wash_mode_button', execution_times=1)",
+            "grounded_action": "press_wash_mode_button",
+            "current_observation": {
+                "feature": [
+                    "select_wash_mode",
+                    1
+                ],
+                "variable_wash_mode": "Wash & Dry"
+            },
+            "expected_feedback": "the variable_wash_mode becomes 'Wash & Dry'.",
+            "reason": "The target mode 'Wash & Dry' hasn't been achieved yet, so we need to cycle through the wash modes to reach it.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the machine is powered on and the 'Wash & Dry' mode is already selected, so now we start the appliance to begin the cycle.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 10
+}

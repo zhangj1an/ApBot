@@ -1,0 +1,50 @@
+{
+    "command_id": 6,
+    "command_string": "Power up the dehumidifier and engage the Sleep mode for quieter operation during the night.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_fan_speed_mode": "Sleep"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed_mode": "Sleep",
+        "variable_ionizer": "off",
+        "variable_power_on_off": "on",
+        "variable_timer": "0",
+        "variable_uv_light": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "the dehumidifier needs to be powered on to proceed with the operation.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_speed_mode_button', execution_times=5)",
+            "grounded_action": "press_speed_mode_button",
+            "current_observation": {
+                "feature": [
+                    "fan_speed_mode",
+                    1
+                ],
+                "variable_fan_speed_mode": "Sleep"
+            },
+            "expected_feedback": "the variable_fan_speed_mode becomes 'Sleep'.",
+            "reason": "We need to adjust the fan speed mode to 'Sleep'. Since the mode cycles through options, we press the speed mode button 5 times to reach 'Sleep'.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 6
+}

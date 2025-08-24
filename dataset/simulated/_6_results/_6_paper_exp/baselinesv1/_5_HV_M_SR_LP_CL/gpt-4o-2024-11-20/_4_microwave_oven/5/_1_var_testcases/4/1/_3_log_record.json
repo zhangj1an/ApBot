@@ -1,0 +1,81 @@
+{
+    "command_id": 4,
+    "command_string": "Turn on the microwave oven for a quick pizza reheating. Set the temperature to 150\u00b0C, function dial to 'Convection', selector dial to 'Top & Bottom Heating', and timer to '10'.",
+    "ground_truth_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_temperature_dial": "150\u00b0C",
+        "variable_selector_dial": "Top & Bottom Heating",
+        "variable_timer_dial": "10"
+    },
+    "executed_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_selector_dial": "Top & Bottom Heating",
+        "variable_temperature_dial": "150\u00b0C",
+        "variable_timer_dial": "10"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_temperature_dial_clockwise', execution_times=2)",
+            "grounded_action": "turn_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "temp",
+                    1
+                ],
+                "variable_temperature_dial": "150\u00b0C"
+            },
+            "expected_feedback": "the variable_temperature_dial becomes '150\u00b0C'.",
+            "reason": "The target temperature is 150\u00b0C, so we turn the temperature dial clockwise from 'Off' to '150\u00b0C'.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "function",
+                    1
+                ],
+                "variable_function_dial": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Convection'.",
+            "reason": "The feature 'general_cooking' requires setting the 'function dial' to 'Convection' to achieve the goal, so we need to turn the function dial clockwise to set it to the desired value.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top & Bottom Heating"
+            },
+            "expected_feedback": "the variable_selector_dial becomes 'Top & Bottom Heating'.",
+            "reason": "The goal is to adjust the selector dial to 'Top & Bottom Heating', and it requires turning the dial three steps clockwise to reach the target value.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_timer_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_timer_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "timer",
+                    1
+                ],
+                "variable_timer_dial": "10"
+            },
+            "expected_feedback": "variable_timer_dial becomes '10 minutes'.",
+            "reason": "The timer is currently set to 'Off', and we need to adjust it to '10 minutes' as per the goal requirements.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 7
+}

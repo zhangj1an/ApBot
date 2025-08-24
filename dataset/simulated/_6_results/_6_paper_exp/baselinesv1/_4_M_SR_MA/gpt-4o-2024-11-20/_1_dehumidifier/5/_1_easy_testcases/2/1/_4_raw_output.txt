@@ -1,0 +1,109 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/5/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _1_dehumidifier 5 var 2
+processing:  _1_dehumidifier 5 2
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/5/_1_easy_testcases/2/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/5/_1_easy_testcases/2/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["power_control", "control_ion_generator"]
+feature_choice_reason = "Feature 'power_control' is required to turn on the appliance by setting variable_power_on_off to 'on'. Feature 'control_ion_generator' is required to toggle the ion generator to 'on' by setting variable_ion_generator to 'on'."
+changing_variables = ["variable_power_on_off", "variable_ion_generator"]
+goal_state = ExtendedSimulator()
+# "power_control", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "control_ion_generator", step 1, variable_ion_generator
+goal_state.variable_ion_generator.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_fan_speed: low
+variable_ion_generator: off
+variable_power_on_off: off
+variable_sleep_mode: off
+variable_timer: 0
+
+current_state_simulator when it is just created: 
+
+ variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: off
+variable_power_on_off: off
+variable_sleep_mode: off
+variable_timer: 0
+
+goal state:  variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: on
+variable_power_on_off: on
+variable_sleep_mode: off
+variable_timer: 0
+current feature:  power_control
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal_state_simulator: variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: off
+variable_power_on_off: on
+variable_sleep_mode: off
+variable_timer: 0
+current_state_simulator: variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: off
+variable_power_on_off: on
+variable_sleep_mode: off
+variable_timer: 0
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The feedback value 'on' matches the goal value 'on' with the same textual formatting."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  control_ion_generator
+step_info:  {'step': 1, 'actions': ['press_ion_button'], 'variable': 'variable_ion_generator'}
+executing action: ('press_ion_button', 1)
+goal_state_simulator: variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: on
+variable_power_on_off: on
+variable_sleep_mode: off
+variable_timer: 0
+current_state_simulator: variable_fan_speed: 1
+variable_filter_timer_reset: not_reset
+variable_ion_generator: on
+variable_power_on_off: on
+variable_sleep_mode: off
+variable_timer: 0
+variable_name: variable_ion_generator
+actions: ['press_ion_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_ion_button', 1), feedback: {'feature': ('toggle_ion_generator', 1), 'variable_ion_generator': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_ion_generator: on 
+
+
+Comparison result: 
+
+ reason = "The feedback value 'on' exactly matches the goal value 'on'."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 2, 'command': "Turn on the dehumidifier and toggle the ion generator to 'on.'", 'target_state': {'variable_power_on_off': 'on', 'variable_fan_speed': 'low', 'variable_ion_generator': 'on', 'variable_timer': '0', 'variable_sleep_mode': 'off'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_ion_generator': 'on'}}

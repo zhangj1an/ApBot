@@ -1,0 +1,477 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_10_oracle_V_proposed_M/gpt-4o-2024-11-20/_4_microwave_oven/1/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_10_oracle_V_proposed_M/gpt-4o-2024-11-20/_4_microwave_oven/1/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_10_oracle_V_proposed_M/gpt-4o-2024-11-20/_4_microwave_oven/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_10_oracle_V_proposed_M/gpt-4o-2024-11-20/_4_microwave_oven/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _4_microwave_oven 2 var 1
+processing:  _4_microwave_oven 2 1
+trial:  1
+setting agnostic
+initial appliance state:  variable_function: Off
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: off
+
+current_state_simulator when it is just created: 
+
+ variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: OFF
+
+goal state:  variable_function_dial: Toast/Broil
+variable_lower_element_temperature: 450
+variable_timer: 30
+variable_upper_element_temperature: 350
+current feature:  adjust_upper_element_temperature
+step_info:  {'step': 1, 'actions': ['turn_upper_element_temperature_dial_clockwise', 'turn_upper_element_temperature_dial_anticlockwise'], 'variable': 'variable_upper_element_temperature'}
+executing action: ('turn_upper_element_temperature_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_upper_element_temperature to have a value of 350. 
+goal_state_simulator: variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350
+current_state_simulator: variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm
+variable_name: variable_upper_element_temperature
+actions: ['turn_upper_element_temperature_dial_clockwise', 'turn_upper_element_temperature_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_upper_element_temperature_dial_clockwise', 3)]
+feedbacks:  ["applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': 'Keep Warm'}", "applied action: ('turn_upper_element_temperature_dial_clockwise', 3), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '450°F'}"]
+check state....
+Feedback Variable: 
+
+ variable_upper_element_temperature: 450°f 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the value of 'variable_upper_element_temperature' to be '350'. The feedback value is '450°f'. Removing the text '°f', the feedback value becomes '450', which is numerically different from the goal value of '350'. Therefore, the values do not match."
+
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('turn_upper_element_temperature_dial_clockwise', 1)]
+current_action: ('turn_upper_element_temperature_dial_clockwise', 1)
+debug record string: step: 0, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': 'Keep Warm'}
+step: 1, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '250°F'}
+step: 2, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '350°F'}
+step: 3, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '450°F'}
+step: 4, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': 'off'}
+step: 5, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': 'Keep Warm'}
+step: 6, applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '250°F'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_upper_element_temperature_dial_clockwise. The first observed action is turn_upper_element_temperature_dial_clockwise.
+Analysis results: The variable variable_upper_element_temperature is DiscreteVariable with value ranges to be ['Keep Warm', '250°F', '350°F', '450°F', 'off']. The current value is off. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: adjusting_variable_name = "variable_upper_element_temperature"
+
+# The variable variable_upper_element_temperature is DiscreteVariable with value ranges to be ['Keep Warm', '250°F', '350°F', '450°F', 'off']. The current value is off.
+
+# Update the variable definition to match the correct value range and order based on the observation.
+variable_upper_element_temperature = DiscreteVariable(
+    value_range=["Keep Warm", "250°F", "350°F", "450°F", "off"],
+    current_value="off"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('turn_upper_element_temperature_dial_clockwise', 1)]
+after apply action ('turn_upper_element_temperature_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm
+ ('adjust_upper_element_temperature', 1)
+past actions:  [('turn_upper_element_temperature_dial_clockwise', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Off
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: Keep Warm 
+ current state simulator: variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm 
+ goal state simulator: variable_function_dial: Toast/Broil
+variable_lower_element_temperature: 450
+variable_timer: 30
+variable_upper_element_temperature: 350°F
+goal state reached: False
+goal state string:  We want to have the variable: variable_upper_element_temperature to have a value of 350°F. 
+goal_state_simulator: variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: OFF
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm
+variable_name: variable_upper_element_temperature
+actions: ['turn_upper_element_temperature_dial_clockwise', 'turn_upper_element_temperature_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_upper_element_temperature_dial_clockwise', 2)]
+feedbacks:  ["applied action: ('turn_upper_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': 'Keep Warm'}", "applied action: ('turn_upper_element_temperature_dial_clockwise', 2), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '350°F'}"]
+check state....
+Feedback Variable: 
+
+ - variable_upper_element_temperature: 350°f 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_upper_element_temperature' to have a value of '350°F'. The feedback shows 'variable_upper_element_temperature' with a value of '350°f'. Since the difference is only capitalization of the degree symbol, they are semantically the same based on Rule 2."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_function_dial
+step_info:  {'step': 1, 'actions': ['turn_function_dial_clockwise', 'turn_function_dial_anticlockwise'], 'variable': 'variable_function_dial'}
+executing action: ('turn_function_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_function_dial to have a value of Toast/Broil. 
+goal_state_simulator: variable_function_dial: Toast/Broil
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: Toast/Broil
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+variable_name: variable_function_dial
+actions: ['turn_function_dial_clockwise', 'turn_function_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}"]
+check state....
+Feedback Variable: 
+
+ variable_function: convection 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_function_dial' to have a value of 'Toast/Broil'. The past feedback shows 'variable_function' with a value of 'convection'. These values are not semantically equivalent, and there is no indication that 'convection' matches 'Toast/Broil'. Furthermore, 'Toast/Broil' is a specific setting that better matches the goal than 'convection'."
+
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1)]
+current_action: ('turn_function_dial_clockwise', 1)
+debug record string: step: 0, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}
+step: 1, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}
+step: 2, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}
+step: 3, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}
+step: 4, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}
+step: 5, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}
+step: 6, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}
+step: 7, applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_function_dial_clockwise. The first observed action is turn_function_dial_clockwise.
+Analysis results: The variable variable_function_dial is DiscreteVariable with value ranges to be ['Convection', 'Rotisserie', 'Convection Rotisserie', 'Toast/Broil', 'Bake', 'Off']. The current value is Off. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: adjusting_variable_name = "variable_function_dial"
+
+# The variable variable_function_dial is DiscreteVariable with value ranges to be ['Convection', 'Rotisserie', 'Convection Rotisserie', 'Toast/Broil', 'Bake', 'Off']. The current value is Off.  
+
+variable_function_dial = DiscreteVariable(
+    value_range=['Convection', 'Rotisserie', 'Convection Rotisserie', 'Toast/Broil', 'Bake', 'Off'],
+    current_value="Off"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1)]
+after apply action ('turn_upper_element_temperature_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: Off
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm
+ ('adjust_upper_element_temperature', 1)
+after apply action ('turn_upper_element_temperature_dial_clockwise', 2)
+, the state of the user manual simulator is: 
+ variable_function_dial: Off
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_upper_element_temperature', 1)
+after apply action ('turn_function_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: Convection
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_function_dial', 1)
+past actions:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Convection
+variable_lower_element_temperature: off
+variable_timer: off
+variable_upper_element_temperature: 350°F 
+ current state simulator: variable_function_dial: Convection
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F 
+ goal state simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450
+variable_timer: 30
+variable_upper_element_temperature: 350°F
+goal state reached: False
+goal state string:  We want to have the variable: variable_function_dial to have a value of Bake. 
+goal_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: Convection
+variable_lower_element_temperature: OFF
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+variable_name: variable_function_dial
+actions: ['turn_function_dial_clockwise', 'turn_function_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_function_dial_anticlockwise', 2)]
+feedbacks:  ["applied action: ('turn_upper_element_temperature_dial_clockwise', 2), feedback: {'feature': ('adjust_upper', 1), 'variable_upper_element_temperature': '350°F'}", "applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}", "applied action: ('turn_function_dial_anticlockwise', 2), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}"]
+check state....
+Feedback Variable: 
+
+ variable_function: bake 
+
+
+Comparison result: 
+
+ reason = "The feedback shows 'variable_function: bake', and the goal state requires 'variable_function_dial' to be 'Bake'. Both values represent the same function, and capitalization differences do not affect the semantic meaning. Thus, the goal has been achieved."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_lower_element_temperature
+step_info:  {'step': 1, 'actions': ['turn_lower_element_temperature_dial_clockwise', 'turn_lower_element_temperature_dial_anticlockwise'], 'variable': 'variable_lower_element_temperature'}
+executing action: ('turn_lower_element_temperature_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_lower_element_temperature to have a value of 450. 
+goal_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: Keep Warm
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+variable_name: variable_lower_element_temperature
+actions: ['turn_lower_element_temperature_dial_clockwise', 'turn_lower_element_temperature_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_lower_element_temperature_dial_clockwise', 4)]
+feedbacks:  ["applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}", "applied action: ('turn_lower_element_temperature_dial_clockwise', 4), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'off'}"]
+check state....
+Feedback Variable: 
+
+ variable_lower_element_temperature: off 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_lower_element_temperature' to have a value of 450. The feedback shows the value as 'off'. These values are not semantically equivalent, and 'off' does not match the goal value of 450. Additionally, there is no better matching option in the variable range that aligns with the feedback value of 'off'. Therefore, the goal has not been reached."
+
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1), ('turn_function_dial_anticlockwise', 2), ('turn_lower_element_temperature_dial_clockwise', 1)]
+current_action: ('turn_lower_element_temperature_dial_clockwise', 1)
+debug record string: step: 0, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}
+step: 1, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '250°F'}
+step: 2, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '350°F'}
+step: 3, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '450°F'}
+step: 4, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'off'}
+step: 5, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}
+step: 6, applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '250°F'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is turn_lower_element_temperature_dial_clockwise. The first observed action is turn_lower_element_temperature_dial_clockwise.
+Analysis results: The variable variable_lower_element_temperature is DiscreteVariable with value ranges to be ['Keep Warm', '250°F', '350°F', '450°F', 'off']. The current value is off. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: adjusting_variable_name = "variable_lower_element_temperature"
+
+# The variable variable_lower_element_temperature is DiscreteVariable with value ranges to be ['Keep Warm', '250°F', '350°F', '450°F', 'off']. The current value is off.  
+
+variable_lower_element_temperature = DiscreteVariable(
+    value_range=["Keep Warm", "250°F", "350°F", "450°F", "off"],
+    current_value="off"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1), ('turn_function_dial_anticlockwise', 2), ('turn_lower_element_temperature_dial_clockwise', 1)]
+after apply action ('turn_upper_element_temperature_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: Off
+variable_lower_element_temperature: off
+variable_timer: 0
+variable_upper_element_temperature: Keep Warm
+ ('adjust_upper_element_temperature', 1)
+after apply action ('turn_upper_element_temperature_dial_clockwise', 2)
+, the state of the user manual simulator is: 
+ variable_function_dial: Off
+variable_lower_element_temperature: off
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_upper_element_temperature', 1)
+after apply action ('turn_function_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: Convection
+variable_lower_element_temperature: off
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_function_dial', 1)
+after apply action ('turn_function_dial_anticlockwise', 2)
+, the state of the user manual simulator is: 
+ variable_function_dial: Bake
+variable_lower_element_temperature: off
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_function_dial', 1)
+after apply action ('turn_lower_element_temperature_dial_clockwise', 1)
+, the state of the user manual simulator is: 
+ variable_function_dial: Bake
+variable_lower_element_temperature: Keep Warm
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+ ('adjust_lower_element_temperature', 1)
+past actions:  [('turn_upper_element_temperature_dial_clockwise', 1), ('turn_upper_element_temperature_dial_clockwise', 2), ('turn_function_dial_clockwise', 1), ('turn_function_dial_anticlockwise', 2), ('turn_lower_element_temperature_dial_clockwise', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_function: Bake
+variable_lower_element_temperature: Keep Warm
+variable_timer: off
+variable_upper_element_temperature: 350°F 
+ current state simulator: variable_function_dial: Bake
+variable_lower_element_temperature: Keep Warm
+variable_timer: 0
+variable_upper_element_temperature: 350°F 
+ goal state simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450°F
+variable_timer: 30
+variable_upper_element_temperature: 350°F
+goal state reached: False
+goal state string:  We want to have the variable: variable_lower_element_temperature to have a value of 450°F. 
+goal_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450°F
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: Keep Warm
+variable_timer: 0
+variable_upper_element_temperature: 350°F
+variable_name: variable_lower_element_temperature
+actions: ['turn_lower_element_temperature_dial_clockwise', 'turn_lower_element_temperature_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_lower_element_temperature_dial_anticlockwise', 2)]
+feedbacks:  ["applied action: ('turn_function_dial_anticlockwise', 2), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}", "applied action: ('turn_lower_element_temperature_dial_clockwise', 1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}", "applied action: ('turn_lower_element_temperature_dial_anticlockwise', 2), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '450°F'}"]
+check state....
+Feedback Variable: 
+
+ variable_lower_element_temperature: 450°f 
+
+
+Comparison result: 
+
+ Let's analyze the goal state and the feedback:
+
+Goal state: `variable_lower_element_temperature` = "450°F"  
+Feedback: `variable_lower_element_temperature` = "450°f"  
+
+### Step-by-step comparison:
+1. The variable names are the same, so we only compare the values.
+2. The values are "450°F" (goal) and "450°f" (feedback).
+3. The difference between the two values is only in capitalization ("F" vs. "f"). According to comparison rule #2, differences in capitalization or textual formatting are considered semantically the same.
+
+### Conclusion:
+The feedback value matches the goal state value.
+
+reason = "The feedback value '450°f' matches the goal value '450°F' as the difference is only in capitalization, which is semantically equivalent according to rule #2."
+goal_reached = True 
+
+
+Execution failed on attempt 1: EOL while scanning string literal (<string>, line 1)
+Comparison result: 
+
+ reason = "The goal state requires 'variable_lower_element_temperature' to be '450°F'. The feedback shows 'variable_lower_element_temperature' as '450°f'. According to Rule 2, differences in capitalization or textual formatting are considered semantically the same. Therefore, the feedback matches the goal state."
+
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_timer_dial
+step_info:  {'step': 1, 'actions': ['turn_timer_dial_clockwise', 'turn_timer_dial_anticlockwise'], 'variable': 'variable_timer'}
+executing action: ('turn_timer_dial_clockwise', 1)
+goal state string:  We want to have the variable: variable_timer to have a value of 30. 
+goal_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450°F
+variable_timer: 30
+variable_upper_element_temperature: 350°F
+current_state_simulator: variable_function_dial: Bake
+variable_lower_element_temperature: 450°F
+variable_timer: 10
+variable_upper_element_temperature: 350°F
+variable_name: variable_timer
+actions: ['turn_timer_dial_clockwise', 'turn_timer_dial_anticlockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_timer_dial_clockwise', 2)]
+feedbacks:  ["applied action: ('turn_timer_dial_clockwise', 1), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '10'}", "applied action: ('turn_timer_dial_clockwise', 2), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}"]
+check state....
+Feedback Variable: 
+
+ variable_timer: 30 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_timer' to have a value of 30, and the feedback also indicates 'variable_timer' is set to 30. The values are identical, and no additional formatting or interpretation is required."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 1, 'command': 'Turn on the microwave and heat up a bowl of soup with the upper element temperature set to 350°F, the function set to Bake, the lower element temperature set to 450°F, and the timer set to 30 minutes.', 'target_state': {'variable_upper_element_temperature': '350°F', 'variable_function': 'Bake', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30'}, 'important_target_states': {'variable_upper_element_temperature': '350°F', 'variable_function': 'Bake', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30'}}
+robot's decision {'variable_function': 'Bake', 'variable_lower_element_temperature': '450°F', 'variable_timer': '30', 'variable_upper_element_temperature': '350°F'}

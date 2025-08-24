@@ -1,0 +1,143 @@
+{
+    "command_id": 1,
+    "command_string": "Cook bean for 40 minutes, starting now.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_menu_index": "Bean",
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 40
+    },
+    "executed_goal_state": {
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 40,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "Bean",
+        "variable_preset_timer_hour": 0,
+        "variable_preset_timer_minute": 0,
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=5)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Reheat"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "we need to navigate the menu using the 'press_menu_button' action, and pressing it 5 times should select the 'Bean' mode based on the menu order.",
+            "reached_goal": false
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=4)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Soup"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "The cooking mode needs to be set to 'Bean' for this task. Currently, the variable_cooking_mode is at 'Reheat', so we press the menu button four times to achieve this value.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=3)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Glutinous rice"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "The goal is to set the cooking mode to 'Bean', and pressing the menu button 3 times from the current state ('Soup') should achieve this.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_menu_button', execution_times=2)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Bean"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "The target cooking mode is 'Bean', and the menu button needs to be pressed 2 more times from the current menu state 'Glutinous rice' to reach 'Bean'.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_cooking_time_button",
+                1
+            ],
+            "grounded_action": "press_cooking_time_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            }
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_hr_button', execution_times=0)",
+            "grounded_action": "press_hr_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "0 hours is already set for 'variable_cooking_time_hr'.",
+            "reason": "The target variable time for 'variable_cooking_time_hr' is already 0, so no pressing is needed.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_min_button', execution_times=40)",
+            "grounded_action": "press_min_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    3
+                ],
+                "variable_cooking_time_minute": 40,
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "variable_cooking_time_min becomes 40.",
+            "reason": "We need to press the minute button multiple times to set the cooking time to 40 minutes.",
+            "reached_goal": true
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start",
+                    1
+                ]
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "The machine needs to be started to initiate the cooking process after all configurations have been set.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct"
+}

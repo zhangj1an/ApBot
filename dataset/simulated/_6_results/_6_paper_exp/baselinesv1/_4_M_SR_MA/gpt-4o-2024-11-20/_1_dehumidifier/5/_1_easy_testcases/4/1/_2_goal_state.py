@@ -1,0 +1,8 @@
+feature_sequence = ["power_control", "enable_sleep_mode"]
+feature_choice_reason = "Feature 'power_control' is required to turn on the appliance by setting variable_power_on_off. Feature 'enable_sleep_mode' is required to activate the sleep mode by setting variable_sleep_mode."
+changing_variables = ["variable_power_on_off", "variable_sleep_mode"]
+goal_state = ExtendedSimulator()
+# "power_control", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "enable_sleep_mode", step 1, variable_sleep_mode
+goal_state.variable_sleep_mode.set_current_value("on")

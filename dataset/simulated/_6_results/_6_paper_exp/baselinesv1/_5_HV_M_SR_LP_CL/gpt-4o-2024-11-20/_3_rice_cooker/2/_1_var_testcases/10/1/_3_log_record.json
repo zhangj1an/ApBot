@@ -1,0 +1,64 @@
+{
+    "command_id": 10,
+    "command_string": "Set the mode to white rice for dinner in four hours, and start the machine.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_cooking_mode": "White rice",
+        "variable_preset_timer": 4
+    },
+    "executed_goal_state": {
+        "variable_cooking_mode": "White rice",
+        "variable_preset_timer": 4.0,
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_cancel_button', execution_times=1)",
+            "grounded_action": "press_menu_cancel_button",
+            "current_observation": {
+                "feature": [
+                    "cooking_mode_selection",
+                    1
+                ],
+                "variable_cooking_mode": "White rice"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'white rice'.",
+            "reason": "we need to cycle through the cooking modes to set it to 'white rice'.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_preset_time_time_button', execution_times=16)",
+            "grounded_action": "press_preset_time_time_button",
+            "current_observation": {
+                "feature": [
+                    "preset_timer",
+                    1
+                ],
+                "variable_preset_timer": 4.0
+            },
+            "expected_feedback": "the variable_preset_timer becomes 240.",
+            "reason": "We need to adjust the preset timer to 240 minutes (4 hours) by incrementing the timer in steps of 15 minutes. Since the timer starts at 0, pressing the button 16 times will achieve the target value.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start_cooking",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "The cooking mode and preset timer have been set correctly, now the next step is to start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 18
+}

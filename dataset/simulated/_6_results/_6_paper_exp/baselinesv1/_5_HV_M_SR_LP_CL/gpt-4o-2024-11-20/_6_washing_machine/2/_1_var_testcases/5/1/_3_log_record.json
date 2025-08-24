@@ -1,0 +1,160 @@
+{
+    "command_id": 5,
+    "command_string": "Turn the washing machine on, choose 'Soak' program with a medium size load. Set wash to 20 minutes, rinse three times, and spin for 9 minutes. Begin process.",
+    "ground_truth_goal_state": {
+        "variable_on_off": "on",
+        "variable_start_running": "start",
+        "variable_washing_program": "Soak",
+        "variable_load_size": "2",
+        "variable_wash_time": 20,
+        "variable_rinse_times": 3,
+        "variable_spin_time": 9
+    },
+    "executed_goal_state": {
+        "variable_load_size": "2",
+        "variable_on_off": "on",
+        "variable_rinse_times": 3,
+        "variable_spin_time": 9,
+        "variable_start_running": "start",
+        "variable_wash_time": 20,
+        "variable_washing_program": "Soak"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "the washing machine needs to be powered on to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_button', execution_times=4)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_washing_program",
+                    1
+                ],
+                "variable_washing_program": "Soak"
+            },
+            "expected_feedback": "the variable_program becomes 'Soak'.",
+            "reason": "Currently, the variable_program is set to 'Heavy' by default, and we need to cycle through the programs (Heavy -> Gentle -> Normal -> Rapid -> Soak) to reach the target 'Soak' program.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_load_size_button', execution_times=1)",
+            "grounded_action": "press_load_size_button",
+            "current_observation": {
+                "feature": [
+                    "set_load_size",
+                    1
+                ],
+                "variable_load_size": "2"
+            },
+            "expected_feedback": "the variable_load_size becomes '2---medium'.",
+            "reason": "The goal requires setting the load size to medium, so we press the load size button to cycle through the options.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_wash_button', execution_times=20)",
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 20
+            },
+            "expected_feedback": "the variable_wash_time becomes 20.",
+            "reason": "we need to adjust the wash time to 20 minutes as specified in the goal, and each press increases it by 1 minute, starting from 0.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_rinse_button', execution_times=3)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_times",
+                    1
+                ],
+                "variable_rinse_times": 3
+            },
+            "expected_feedback": "the variable_rinse_times becomes 3.",
+            "reason": "we need to set the rinse times to 3 to match the goal state.",
+            "reached_goal": true
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_spin_button', execution_times=9)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 3
+            },
+            "expected_feedback": "the variable_spin_time becomes 9.",
+            "reason": "We need to set the spin time to 9 minutes as per the goal, so we press the spin button 9 times.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 4}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 5}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 7}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 8}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 0}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 3}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 4}",
+                "executed action: run_action('press_spin_button', execution_times=5), feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 9}",
+                "executed action: run_action('press_start_pause_button', execution_times=1), feedback: {'feature': ('start_pause_cycle', 1), 'variable_start_running': 'start'}"
+            ]
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_spin_button', execution_times=5)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 9
+            },
+            "expected_feedback": "the variable_spin_time becomes 9.",
+            "reason": "the current value of variable_spin_time is 4, so pressing the spin button 5 times will set it to the target value of 9.",
+            "reached_goal": true
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause_cycle",
+                    1
+                ],
+                "variable_start_running": "start"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "all necessary settings are configured, so now we start the washing machine cycle.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 55
+}

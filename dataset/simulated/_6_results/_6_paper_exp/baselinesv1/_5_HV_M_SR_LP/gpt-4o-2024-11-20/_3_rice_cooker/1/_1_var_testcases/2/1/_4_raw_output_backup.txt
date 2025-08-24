@@ -1,0 +1,479 @@
+setting agnostic
+current feature:  adjust_cooking_time
+step_info:  {'step': 1, 'actions': ['press_cooking_time_button']}
+len of execution history after automatic execution of action:  1
+step_info:  {'step': 2, 'actions': ['press_hr_button'], 'variable': 'variable_cooking_time_hr'}
+Response: 
+ proposed_action = "run_action('press_hr_button', execution_times=1)"
+expected_feedback = "the variable_cooking_time_hr becomes '1'."
+reason = "we need to adjust the hour setting for cooking time to match the goal of 1 hour and 10 minutes."
+Proposed action in function propose_action:  run_action('press_hr_button', execution_times=1)
+proposed action:  run_action('press_hr_button', execution_times=1)
+expected feedback:  the variable_cooking_time_hr becomes '1'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_cooking_time_hour': 1} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time_hr' to be set to 1 hour. The feedback shows 'variable_cooking_time_hour' is 1. Both the goal and feedback represent the same value, as the numbers match, and the variable names are already verified to represent the same item."
+
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_cooking_time_hour': 1} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cooking_time_hr to be '1'. The feedback shows 'variable_cooking_time_hour' is '1'. Since the variable names represent the same item and the values are numerically identical, the goal state matches the feedback."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+step_info:  {'step': 3, 'actions': ['press_min_button'], 'variable': 'variable_cooking_time_min'}
+Response: 
+ proposed_action = "run_action('press_min_button', execution_times=10)"
+expected_feedback = "the variable_cooking_time_min becomes 10."
+reason = "we need to increase the cooking time by pressing the 'press_min_button' until it reaches the target value of 10 minutes."
+Proposed action in function propose_action:  run_action('press_min_button', execution_times=10)
+proposed action:  run_action('press_min_button', execution_times=10)
+expected feedback:  the variable_cooking_time_min becomes 10.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_cooking_time_minute': 40, 'variable_cooking_time_hour': 1} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time_min' to be 10 minutes, while the feedback shows 'variable_cooking_time_minute' as 40. Both variables represent cooking time in minutes, and the numerical values are directly compared. Since 10 minutes does not match 40 minutes, the goal has not been reached."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ variable_cooking_time_minute: 40 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time_min' to be 10, but the feedback shows 'variable_cooking_time_minute' as 40. Since both represent cooking time in minutes, the values do not match."
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_cooking_time_hour: 1
+variable_cooking_time_minute: 50
+variable_keep_warm_cancel: off
+variable_menu_index: Glutinous rice
+variable_preset_timer_hour: 0
+variable_preset_timer_minute: 0
+variable_start_running: off
+debug record string: step: 0, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 1}
+step: 1, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 0, 'variable_cooking_time_hour': 1}
+step: 2, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 10, 'variable_cooking_time_hour': 1}
+step: 3, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 20, 'variable_cooking_time_hour': 1}
+step: 4, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 30, 'variable_cooking_time_hour': 1}
+step: 5, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 40, 'variable_cooking_time_hour': 1}
+step: 6, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 1}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is press_min_button. The first observed action is press_min_button.
+Analysis results: The variable variable_cooking_time_min is ContinuousVariable with value ranges and step values to be [[0, 50, 10]]. The current value is 50.  
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_cooking_time_min is ContinuousVariable with value ranges and step values to be [[0, 50, 10]]. The current value is 50.   
+
+variable_cooking_time_min = ContinuousVariable(value_ranges_steps=[[0, 50, 10]], current_value=50)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+Error during execution: 'Simulator' object has no attribute 'variable_start_running'
+Error message:  Error during execution: 'Simulator' object has no attribute 'variable_start_running'
+response:  class Simulator(Appliance):
+    def __init__(self):
+        super().__init__()
+        self.variable_start_running = variable_start_running
+        self.variable_cooking_mode = variable_cooking_mode
+        self.variable_cooking_time_hr = variable_cooking_time_hr
+        self.variable_cooking_time_min = variable_cooking_time_min
+        self.variable_preset_time_hr = variable_preset_time_hr
+        self.variable_preset_time_min = variable_preset_time_min
+        self.variable_keep_warm_cancel = variable_keep_warm_cancel
+        self.variable_rice_type = variable_rice_type
+        self.feature = simulator_feature
+        self.variable_input_string = InputString()
+        self.reset()
+
+    def reset(self):
+        self.variable_start_running.set_current_value("off")
+        self.variable_cooking_mode.set_current_value("Glutinous rice")
+        self.variable_cooking_time_hr.set_current_value(0)
+        self.variable_cooking_time_min.set_current_value(50)
+        self.variable_preset_time_hr.set_current_value(0)
+        self.variable_preset_time_min.set_current_value(0)
+        self.variable_keep_warm_cancel.set_current_value("keep_warm")
+        self.variable_rice_type.set_current_value("white")
+        self.feature = copy.deepcopy(simulator_feature)
+        self.variable_input_string = InputString()
+        self.update_display()
+
+    def process_input_string(self, feature, variable_name):
+        if feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            return int(self.variable_input_string.input_string) * 10
+        elif feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_hr":
+            return int(self.variable_input_string.input_string)
+        return int(self.variable_input_string.input_string)
+
+    def get_original_input(self, feature, variable_name):
+        if feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            return int(self.variable_cooking_time_min.get_current_value()) // 10
+        elif feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_hr":
+            return int(self.variable_cooking_time_hr.get_current_value())
+        return int(self.variable_input_string.input_string)
+
+    def press_cooking_time_button(self):
+        self.feature.update_progress("press_cooking_time_button")
+        self.variable_input_string = InputString()
+
+    def press_hr_button(self):
+        self.feature.update_progress("press_hr_button")
+        variable = self.get_current_variable("press_hr_button")
+        feature = self.feature.current_value[0]
+        variable_name = self.feature.get_current_variable("press_hr_button")
+        if feature == "adjust_cooking_time":
+            self.variable_input_string.input_string = str(self.get_original_input(feature, variable_name))
+        variable.set_current_value(self.process_input_string(feature, variable_name))
+
+    def press_min_button(self):
+        self.feature.update_progress("press_min_button")
+        variable = self.get_current_variable("press_min_button")
+        feature = self.feature.current_value[0]
+        variable_name = self.feature.get_current_variable("press_min_button")
+        if feature == "adjust_cooking_time":
+            self.variable_input_string.input_string = str(self.get_original_input(feature, variable_name))
+        variable.set_current_value(self.process_input_string(feature, variable_name))
+
+    def press_start_button(self):
+        self.feature.update_progress("press_start_button")
+        self.variable_start_running.set_current_value("on")
+
+    def press_menu_button(self):
+        self.feature.update_progress("press_menu_button")
+        self.variable_cooking_mode.next()
+
+    def press_preset_timer_button(self):
+        self.feature.update_progress("press_preset_timer_button")
+        self.variable_input_string = InputString()
+
+    def press_white_button(self):
+        self.feature.update_progress("press_white_button")
+        self.variable_rice_type.set_current_value("white")
+
+    def press_brown_rice_button(self):
+        self.feature.update_progress("press_brown_rice_button")
+        self.variable_rice_type.set_current_value("brown")
+
+    def press_keep_warm_cancel_button(self):
+        self.feature.update_progress("press_keep_warm_cancel_button")
+        self.variable_keep_warm_cancel.next()
+
+class ExtendedSimulator(Simulator):
+    def __init__(self):
+        super().__init__()
+        self.variable_on_off = DiscreteVariable(value_range=["on", "off"], current_value="off")
+        self.variable_power = ContinuousVariable(value_ranges_steps=[[0, 100, 5]], current_value=0)
+        self.reset()
+
+    def reset(self):
+        super().reset()
+        self.variable_on_off.set_current_value("off")
+        self.variable_power.set_current_value(0)
+
+    def process_input_string(self, feature, variable_name):
+        if feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            return int(self.variable_input_string.input_string) * 10
+        elif feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_hr":
+            return int(self.variable_input_string.input_string)
+        return int(self.variable_input_string.input_string)
+
+    def get_original_input(self, feature, variable_name):
+        if feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            return int(self.variable_cooking_time_min.get_current_value()) // 10
+        elif feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_hr":
+            return int(self.variable_cooking_time_hr.get_current_value())
+        return int(self.variable_input_string.input_string)
+
+    def press_on_off_button(self):
+        self.feature.update_progress("press_on_off_button")
+        if self.variable_on_off.get_current_value() == "off":
+            self.variable_on_off.set_current_value("on")
+        else:
+            self.variable_on_off.set_current_value("off")
+
+    def press_power_button(self):
+        self.feature.update_progress("press_power_button")
+        self.variable_power.next()
+Attempt 2: Trying to update world model code.
+checking input string compatibility
+Error during execution: 'Simulator' object has no attribute 'variable_start_running'
+Error message:  Error during execution: 'Simulator' object has no attribute 'variable_start_running'
+response:  class Simulator(Appliance):
+    def __init__(self):
+        super().__init__()
+
+        # Initialize variables
+        self.variable_start_running = variable_start_running
+        self.variable_cooking_mode = variable_cooking_mode
+        self.variable_cooking_time_hr = variable_cooking_time_hr
+        self.variable_cooking_time_min = variable_cooking_time_min
+        self.variable_preset_time_hr = variable_preset_time_hr
+        self.variable_preset_time_min = variable_preset_time_min
+        self.variable_keep_warm_cancel = variable_keep_warm_cancel
+        self.variable_rice_type = variable_rice_type
+        self.variable_input_string = InputString()
+        self.feature = simulator_feature
+        self.display = {}
+        self.feasible = DiscreteVariable(value_range=["0", "1"], current_value="1")
+        self.update_display()
+        self.reset()
+
+    def reset(self):
+        self.variable_start_running.set_current_value("off")
+        self.variable_cooking_mode.set_current_value("Glutinous rice")
+        self.variable_cooking_time_hr.set_current_value(0)
+        self.variable_cooking_time_min.set_current_value(50)
+        self.variable_preset_time_hr.set_current_value(0)
+        self.variable_preset_time_min.set_current_value(0)
+        self.variable_keep_warm_cancel.set_current_value("keep_warm")
+        self.variable_rice_type.set_current_value("white")
+        self.variable_input_string = InputString()
+        self.feature = simulator_feature
+        self.update_display()
+
+    def process_input_string(self, current_feature, variable_name):
+        if current_feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            # Process input string for cooking time in minutes
+            return min(max(int(self.variable_input_string.input_string), 0), 50) // 10 * 10
+        return int(self.variable_input_string.input_string)
+
+    def get_original_input(self, current_feature, variable_name):
+        if current_feature == "adjust_cooking_time" and variable_name == "variable_cooking_time_min":
+            # Return original input for cooking time in minutes
+            return self.variable_input_string.input_string
+        return self.variable_input_string.input_string
+
+
+class ExtendedSimulator(Simulator):
+    def __init__(self):
+        super().__init__()
+
+    def press_start_button(self):
+        self.feature.update_progress("press_start_button")
+        self.variable_start_running.set_current_value("on")
+        self.update_display(self.variable_start_running)
+
+    def press_menu_button(self):
+        self.feature.update_progress("press_menu_button")
+        self.execute_action_and_set_next("press_menu_button", variable=self.variable_cooking_mode)
+        self.update_display(self.variable_cooking_mode)
+
+    def press_cooking_time_button(self):
+        self.feature.update_progress("press_cooking_time_button")
+        self.update_display()
+
+    def press_hr_button(self):
+        self.feature.update_progress("press_hr_button")
+        current_variable = self.get_current_variable("press_hr_button")
+        if current_variable == self.variable_cooking_time_hr:
+            self.assign_variable_to_next(current_variable)
+            self.update_display(self.variable_cooking_time_hr)
+        elif current_variable == self.variable_preset_time_hr:
+            self.assign_variable_to_next(current_variable)
+            self.update_display(self.variable_preset_time_hr)
+
+    def press_min_button(self):
+        self.feature.update_progress("press_min_button")
+        current_variable = self.get_current_variable("press_min_button")
+        if current_variable == self.variable_cooking_time_min:
+            self.assign_variable_to_next(current_variable)
+            self.update_display(self.variable_cooking_time_min)
+        elif current_variable == self.variable_preset_time_min:
+            self.assign_variable_to_next(current_variable)
+            self.update_display(self.variable_preset_time_min)
+
+    def press_preset_timer_button(self):
+        self.feature.update_progress("press_preset_timer_button")
+        self.update_display()
+
+    def press_keep_warm_cancel_button(self):
+        self.feature.update_progress("press_keep_warm_cancel_button")
+        self.variable_keep_warm_cancel.next()
+        self.update_display(self.variable_keep_warm_cancel)
+
+    def press_white_button(self):
+        self.feature.update_progress("press_white_button")
+        self.variable_rice_type.set_current_value("white")
+        self.update_display(self.variable_rice_type)
+
+    def press_brown_rice_button(self):
+        self.feature.update_progress("press_brown_rice_button")
+        self.variable_rice_type.set_current_value("brown")
+        self.update_display(self.variable_rice_type)
+Attempt 3: Trying to update world model code.
+checking input string compatibility
+check 1
+Cannot generate updated world model. Returning None.
+Response: 
+ proposed_action = "run_action('press_min_button', execution_times = 30)"
+expected_feedback = "the variable_cooking_time_minute becomes 10."
+reason = "Currently, the appliance is set to 40 minutes. To achieve the target of 10 minutes, we need to press the 'press_min_button' 30 more times to cycle back to the desired value."
+Proposed action in function propose_action:  run_action('press_min_button', execution_times = 30)
+proposed action:  run_action('press_min_button', execution_times = 30)
+expected feedback:  the variable_cooking_time_minute becomes 10.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 1} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cooking_time_min to be set to 10 minutes, while the feedback shows variable_cooking_time_minute is 50 minutes. Since both values represent time in minutes, they can be directly compared. The feedback value (50) does not match the goal value (10). Therefore, the goal has not been reached."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ variable_cooking_time_minute: 50 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_cooking_time_minute to be 10. The feedback shows the variable_cooking_time_minute as 50. Both values represent time, so they should be compared using the same time unit. Since 10 and 50 are not equal, the goal state has not been reached."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_cooking_time_hour: 1
+variable_cooking_time_minute: 0
+variable_keep_warm_cancel: off
+variable_menu_index: Glutinous rice
+variable_preset_timer_hour: 0
+variable_preset_timer_minute: 0
+variable_start_running: off
+debug record string: step: 0, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 0, 'variable_cooking_time_hour': 1}
+step: 1, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 10, 'variable_cooking_time_hour': 1}
+step: 2, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 20, 'variable_cooking_time_hour': 1}
+step: 3, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 30, 'variable_cooking_time_hour': 1}
+step: 4, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 40, 'variable_cooking_time_hour': 1}
+step: 5, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 1}
+step: 6, applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 0, 'variable_cooking_time_hour': 1}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is press_min_button. The first observed action is press_min_button.
+Analysis results: The variable variable_cooking_time_min is ContinuousVariable with value ranges and step values to be [[0, 50, 10]]. The current value is 50.  
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_cooking_time_min is ContinuousVariable with value ranges and step values to be [[0, 50, 10]]. The current value is 50.   
+
+variable_cooking_time_min = ContinuousVariable(value_ranges_steps=[[0, 50, 10]], current_value=50)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Attempt 2: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+
+Your previous attempt to modify the variable_cooking_time_minute becomes 10. has the following result: 
+# "adjust_cooking_time", step 3, variable_cooking_time_min
+goal_state.variable_cooking_time_min.set_value_range(0, 50)  # Adjust the value range based on the revised definition.
+goal_state.variable_cooking_time_min.set_step_value(10)      # Adjust the step size based on the revised definition.
+goal_state.variable_cooking_time_min.set_current_value(10)   # Each number represents a minute.
+This results in an error: set_value_range() takes 2 positional arguments but 3 were given. Please correct the error and try again.
+Attempt to update goal: round 2
+
+Your previous attempt to modify the variable_cooking_time_minute becomes 10. has the following result: 
+# "adjust_cooking_time", step 3, variable_cooking_time_min
+goal_state.variable_cooking_time_min.set_value_range((0, 50))  # Adjust the value range based on the revised definition.
+goal_state.variable_cooking_time_min.set_step_value(10)       # Adjust the step size based on the revised definition.
+goal_state.variable_cooking_time_min.set_current_value(10)    # Each number represents a minute.
+This results in an error: 'ContinuousVariable' object has no attribute 'set_step_value'. Please correct the error and try again.
+Attempt to update goal: round 3
+
+Your previous attempt to modify the variable_cooking_time_minute becomes 10. has the following result: 
+# "adjust_cooking_time", step 3, variable_cooking_time_min
+goal_state.variable_cooking_time_min.set_value_ranges_steps([[0, 50, 10]])  # Adjust the value ranges and step size based on the revised definition.
+goal_state.variable_cooking_time_min.set_current_value(10)    # Each number represents a minute.
+This results in an error: set_value_ranges_steps() missing 1 required positional argument: 'current_value'. Please correct the error and try again.
+Fail to update the goal given calibrated code, calibration failed.
+past actions:  ["run_action('press_hr_button', execution_times=1)", "run_action('press_min_button', execution_times=10)", "run_action('press_min_button', execution_times = 30)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_cooking_time_hour: 1
+variable_cooking_time_minute: 0
+variable_keep_warm_cancel: off
+variable_menu_index: Glutinous rice
+variable_preset_timer_hour: 0
+variable_preset_timer_minute: 0
+variable_start_running: off 
+
+fail to reached goal within 1 steps, we fail to adjust variable_cooking_time_min to its target value.
+ground truth info {'id': 2, 'command': 'Set the rice cooker to cook bean for 1 hour and 10 minutes, then start.', 'target_state': {'variable_start_running': 'on', 'variable_menu_index': 'Bean', 'variable_cooking_time_hour': 1, 'variable_cooking_time_minute': 10, 'variable_preset_timer_hour': 0, 'variable_preset_timer_minute': 0, 'variable_keep_warm_cancel': 'off'}, 'important_target_states': {'variable_start_running': 'on', 'variable_menu_index': 'Bean', 'variable_cooking_time_hour': 1, 'variable_cooking_time_minute': 10}}
+robot's decision {'variable_cooking_time_hour': 1, 'variable_cooking_time_minute': 0, 'variable_keep_warm_cancel': 'off', 'variable_menu_index': 'Glutinous rice', 'variable_preset_timer_hour': 0, 'variable_preset_timer_minute': 0, 'variable_start_running': 'off'}
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_var_testcases/2/1/_3_log_record.json' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_var_testcases/2/1/_3_log_record_backup.json'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_var_testcases/2/1/_3_log_record.json' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_var_testcases/2/1/_3_log_record.json' created.
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_3_rice_cooker/5/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/1/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/1/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/2/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/2/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_4_proposed_world_model.py. Skipping...

@@ -1,0 +1,171 @@
+{
+    "command_id": 2,
+    "command_string": "Make French Bread. Set the cycle to 'French'. Choose 'Medium' crust color. Choose loaf size '1.5-lb'. Set the delay timer to 3 hours. Start the bread maker.",
+    "ground_truth_goal_state": {
+        "variable_cycle": "2 French",
+        "variable_crust_color": "Medium",
+        "variable_loaf_size": "1.5-lb",
+        "variable_delay_timer": "3",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_color": "Medium",
+        "variable_cycle": "2 French",
+        "variable_delay_timer": 3,
+        "variable_loaf_size": "1.5-lb",
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_cycle_button', execution_times=1)",
+            "grounded_action": "press_cycle_button",
+            "current_observation": {
+                "feature": [
+                    "select_cycle",
+                    1
+                ],
+                "variable_cycle": "2 French"
+            },
+            "expected_feedback": "the variable_cycle becomes 'French'.",
+            "reason": "we need to adjust the cycle to 'French', and pressing the cycle button switches to the next cycle.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_crust_button', execution_times=1)",
+            "grounded_action": "press_crust_button",
+            "current_observation": {
+                "feature": [
+                    "select_crust_color",
+                    1
+                ],
+                "variable_crust_color": "Dark"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Medium'.",
+            "reason": "the crust color needs to be set to 'Medium' for the French bread, and pressing the crust button will cycle through the options to reach this setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_crust_button, feedback: {'feature': ('select_crust_color', 1), 'variable_crust_color': 'Light'}",
+                "applied action: press_crust_button, feedback: {'feature': ('select_crust_color', 1), 'variable_crust_color': 'Medium'}",
+                "applied action: press_crust_button, feedback: {'feature': ('select_crust_color', 1), 'variable_crust_color': 'Dark'}",
+                "applied action: press_crust_button, feedback: {'feature': ('select_crust_color', 1), 'variable_crust_color': 'Light'}",
+                "executed action: run_action('press_crust_button', execution_times = 1), feedback: {'feature': ('select_crust_color', 1), 'variable_crust_color': 'Medium'}",
+                "executed action: run_action('press_loaf_size_button', execution_times=1), feedback: {'feature': ('select_loaf_size', 1), 'variable_loaf_size': '1.5-lb'}",
+                "executed action: run_action('press_delay_timer_plus_button', execution_times=180), feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 12}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 13}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 0}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 1}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 2}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 3}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 4}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 5}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 6}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 7}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 8}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 9}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 10}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 11}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 12}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 13}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_crust_button', execution_times = 1)",
+            "grounded_action": "press_crust_button",
+            "current_observation": {
+                "feature": [
+                    "select_crust_color",
+                    1
+                ],
+                "variable_crust_color": "Medium"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Medium'.",
+            "reason": "the current crust color is 'Light', and we need to adjust it to 'Medium'.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_loaf_size_button', execution_times=1)",
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "select_loaf_size",
+                    1
+                ],
+                "variable_loaf_size": "1.5-lb"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '2.0lb'.",
+            "reason": "The current variable_loaf_size is '1.5lb' and needs to be adjusted to '2.0lb' first before cycling back to '1.5lb'.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_delay_timer_plus_button', execution_times=180)",
+            "grounded_action": "press_delay_timer_plus_button",
+            "current_observation": {
+                "feature": [
+                    "set_delay_timer",
+                    1
+                ],
+                "variable_delay_timer": 12
+            },
+            "expected_feedback": "the variable_delay_timer becomes 180 minutes.",
+            "reason": "we want to set the delay timer to 3 hours (180 minutes), and pressing the plus button increases the timer incrementally.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 13}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 0}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 1}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 2}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 3}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 4}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 5}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 6}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 7}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 8}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 9}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 10}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 11}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 12}",
+                "applied action: press_delay_timer_plus_button, feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 13}",
+                "executed action: run_action('press_delay_timer_minus_button', execution_times=10), feedback: {'feature': ('set_delay_timer', 1), 'variable_delay_timer': 3}",
+                "executed action: run_action('press_start_stop_button', execution_times = 1), feedback: {'feature': ('start_stop_operation', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_delay_timer_minus_button', execution_times=10)",
+            "grounded_action": "press_delay_timer_minus_button",
+            "current_observation": {
+                "feature": [
+                    "set_delay_timer",
+                    1
+                ],
+                "variable_delay_timer": 3
+            },
+            "expected_feedback": "the variable_delay_timer becomes 3.",
+            "reason": "Currently, the delay timer is set to 13. To adjust it to the desired value of 3, we need to decrease it by 10 minutes by pressing the minus button 10 times.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_start_stop_button', execution_times = 1)",
+            "grounded_action": "press_start_stop_button",
+            "current_observation": {
+                "feature": [
+                    "start_stop_operation",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous settings are done, so now we start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 234
+}

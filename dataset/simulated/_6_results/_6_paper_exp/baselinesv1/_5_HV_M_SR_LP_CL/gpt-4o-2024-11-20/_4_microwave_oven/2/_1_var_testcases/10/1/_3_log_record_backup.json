@@ -1,0 +1,127 @@
+{
+    "command_id": 10,
+    "command_string": "Cook a batch of nachos by setting the upper element temperature to 450\u00b0F, function to Toast/Broil, lower element temperature to 450\u00b0F, and timer to 20 minutes.",
+    "ground_truth_goal_state": {
+        "variable_upper_element_temperature": "450\u00b0F",
+        "variable_function": "Toast/Broil",
+        "variable_lower_element_temperature": "450\u00b0F",
+        "variable_timer": "20"
+    },
+    "executed_goal_state": {
+        "variable_function": "Bake",
+        "variable_lower_element_temperature": "off",
+        "variable_timer": "off",
+        "variable_upper_element_temperature": "450\u00b0F"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_upper_element_temperature_dial_clockwise', execution_times=4)",
+            "grounded_action": "turn_upper_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_upper",
+                    1
+                ],
+                "variable_upper_element_temperature": "450\u00b0F"
+            },
+            "expected_feedback": "variable_upper_element_temperature becomes '450'.",
+            "reason": "The target for the upper element temperature is 450\u00b0F. Turning the dial clockwise 4 times should increase the temperature setting from 'OFF' to '450'.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Toast/Broil'.",
+            "reason": "We need to set the function dial to 'Toast/Broil' as instructed, and turning it clockwise will adjust it toward this target setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}",
+                "executed action: run_action('turn_function_dial_clockwise', execution_times=3), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Bake"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Toast/Broil'.",
+            "reason": "The function dial is currently set to 'Rotisserie' and needs to be adjusted to 'Toast/Broil'. Since each clockwise action increments the function, three clockwise turns will reach the desired setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "applied action: turn_function_dial_clockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "executed action: run_action('turn_function_dial_clockwise', execution_times=1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}",
+                "executed action: run_action('turn_function_dial_clockwise', execution_times=4), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Convection'.",
+            "reason": "Currently, the function dial is set to 'Off'. To reach 'Toast/Broil', I need to turn the function dial clockwise step by step.",
+            "reached_goal": false
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=4)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Bake"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Toast/Broil'.",
+            "reason": "The desired function is set to 'Toast/Broil', and 4 clockwise turns from the current position 'Off' will reach 'Toast/Broil'.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 5,
+            "error_message": "we fail to adjust variable_function_dial to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_function, the value decided by the robot is Bake (type: <class 'str'>), but the ground truth is Toast/Broil (type: <class 'str'>)"
+}

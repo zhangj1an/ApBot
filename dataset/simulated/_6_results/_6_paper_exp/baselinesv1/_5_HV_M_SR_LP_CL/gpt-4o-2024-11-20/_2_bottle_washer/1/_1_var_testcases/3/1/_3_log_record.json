@@ -1,0 +1,49 @@
+{
+    "command_id": 3,
+    "command_string": "Switch on the appliance and run a 60-minute automatic sterilize and dry program.",
+    "ground_truth_goal_state": {
+        "variable_drying_time": 60,
+        "variable_on_off": "on"
+    },
+    "executed_goal_state": {
+        "variable_drying_cycle": "0",
+        "variable_drying_time": "60",
+        "variable_on_off": "on",
+        "variable_sterilization_cycle": "running"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_on_off_button', execution_times=1)",
+            "grounded_action": "press_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to switch on the appliance to start setting up the program.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_automatic_sterilize_dry_button', execution_times=3)",
+            "grounded_action": "press_automatic_sterilize_dry_button",
+            "current_observation": {
+                "feature": [
+                    "automatic_sterilize_dry",
+                    1
+                ],
+                "variable_drying_time": "60"
+            },
+            "expected_feedback": "the variable_dry_time becomes '60'.",
+            "reason": "we aim to set the dry time to 60 minutes, which requires pressing the automatic sterilize/dry button three times according to the user manual.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

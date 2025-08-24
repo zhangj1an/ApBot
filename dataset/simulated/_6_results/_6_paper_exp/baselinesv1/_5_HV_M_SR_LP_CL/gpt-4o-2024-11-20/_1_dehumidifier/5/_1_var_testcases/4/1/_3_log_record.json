@@ -1,0 +1,50 @@
+{
+    "command_id": 4,
+    "command_string": "Power on the dehumidifier and activate the sleep mode.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_sleep_mode": "on"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed": "low",
+        "variable_ion_generator": "off",
+        "variable_power_on_off": "on",
+        "variable_sleep_mode": "on",
+        "variable_timer": "0"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times = 1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "We need to power on the appliance first in order to continue setting other features such as sleep mode.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_sleep_button', execution_times = 1)",
+            "grounded_action": "press_sleep_button",
+            "current_observation": {
+                "feature": [
+                    "activate_sleep_mode",
+                    1
+                ],
+                "variable_sleep_mode": "on"
+            },
+            "expected_feedback": "the variable_sleep_mode becomes 'on'.",
+            "reason": "the dehumidifier is powered on already, so activating the sleep mode requires pressing the sleep button.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

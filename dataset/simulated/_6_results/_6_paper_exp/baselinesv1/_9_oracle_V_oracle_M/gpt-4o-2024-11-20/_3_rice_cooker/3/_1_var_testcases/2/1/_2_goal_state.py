@@ -1,0 +1,12 @@
+feature_sequence = ["delay_timer", "menu", "start"]
+feature_choice_reason = "Feature 'delay_timer' is chosen to adjust the delay time to 2 hours. Feature 'menu' is chosen to set the rice cooker to Brown Rice and adjust the cooking time. Feature 'start' is chosen to start running the appliance."
+changing_variables = ["variable_delay_timer", "variable_menu_selection", "variable_cooking_time", "variable_start_running"]
+goal_state = Simulator()
+# "delay_timer", step 2, variable_delay_timer
+goal_state.variable_delay_timer.set_current_value(2) # each number represents an hour.
+# "menu", step 1, variable_menu_selection
+goal_state.variable_menu_selection.set_current_value("Brown Rice")
+# "menu", step 2, variable_cooking_time
+goal_state.variable_cooking_time.set_current_value(30) # each number represents minutes.
+# "start", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")

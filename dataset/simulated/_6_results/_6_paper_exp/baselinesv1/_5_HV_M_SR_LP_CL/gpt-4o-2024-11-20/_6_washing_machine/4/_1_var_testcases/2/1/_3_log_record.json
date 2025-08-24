@@ -1,0 +1,293 @@
+{
+    "command_id": 2,
+    "command_string": "Turn on the washing machine and set it to perform a Speedy wash. Use a water level of 35 L and wash for 6 minutes only with no rinse, then start the machine running.",
+    "ground_truth_goal_state": {
+        "variable_rinse_type": "no rinsing",
+        "variable_wash_time": 6,
+        "variable_water_level": "35 L",
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_program": "P3. Speedy"
+    },
+    "executed_goal_state": {
+        "variable_delay_time": 0,
+        "variable_power_on_off": "on",
+        "variable_program": "P3. Speedy",
+        "variable_rinse_type": "no rinsing",
+        "variable_spin_time": 0,
+        "variable_start_running": "on",
+        "variable_wash_time": 6,
+        "variable_water_level": "35 L"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The washing machine needs to be powered on to begin configuring the washing settings.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_button', execution_times = 2)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_program",
+                    1
+                ],
+                "variable_program": "P3. Speedy"
+            },
+            "expected_feedback": "the variable_program becomes 'P3 (Speedy)'.",
+            "reason": "We need to set the washing program to 'P3 (Speedy)' and pressing the program button twice is expected to choose this option.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_water_level_button', execution_times=3)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "set_water_level",
+                    1
+                ],
+                "variable_water_level": "40 L"
+            },
+            "expected_feedback": "the variable_water_level becomes 35.",
+            "reason": "The current water level is set to 25, and pressing the water level button 3 times will increase it to 35 as per the manual (increments of 10).",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '30 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '25 L (Auto)'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '59 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '50 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '40 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "executed action: run_action('press_water_level_button', execution_times=0), feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "executed action: run_action('press_wash_button', execution_times=2), feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 4}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 5}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 6}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 7}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 8}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 9}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 10}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 11}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 12}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 13}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 14}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 15}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 16}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 17}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 18}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 0}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 3}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 4}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 5}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_water_level_button', execution_times=0)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "set_water_level",
+                    1
+                ],
+                "variable_water_level": "35 L"
+            },
+            "expected_feedback": "the variable_water_level becomes '35 L'.",
+            "reason": "The variable 'variable_water_level' is already at the target value ('35 L'), so no further actions are needed for this feature.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_wash_button', execution_times=2)",
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 4
+            },
+            "expected_feedback": "the variable_washing_time becomes 6.",
+            "reason": "The wash time needs to be increased from the current setting to 6 minutes, and pressing the button twice should achieve this target.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 5}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 6}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 7}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 8}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 9}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 10}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 11}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 12}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 13}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 14}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 15}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 16}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 17}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 18}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 0}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 3}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 4}",
+                "applied action: press_wash_button, feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 5}",
+                "executed action: run_action('press_wash_button', execution_times=1), feedback: {'feature': ('set_wash_time', 1), 'variable_wash_time': 6}",
+                "executed action: run_action('press_rinse_button', execution_times=3), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_wash_button', execution_times=1)",
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 6
+            },
+            "expected_feedback": "the variable_washing_time becomes 6.",
+            "reason": "The current washing time is 5, and pressing the wash button increments it to 6, which is the target value we aim to achieve.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_rinse_button', execution_times=3)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Normal Rinse 2 times"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'No rinsing'.",
+            "reason": "we need to set the rinse type to 'No rinsing', which requires pressing the rinse button 3 times based on the current state.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "executed action: run_action('press_rinse_button', execution_times=2), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}"
+            ]
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_rinse_button', execution_times=2)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Normal Rinse 1 time"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'No rinsing'.",
+            "reason": "Based on the past executed actions, we are currently at 'Water-Injection Rinse 2 times'. Pressing the rinse button twice will cycle the variable_rinse_type through 'no rinsing', which matches the target rinse type in the task.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "executed action: run_action('press_rinse_button', execution_times=1), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "executed action: run_action('press_rinse_button', execution_times=2), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "executed action: run_action('press_start_pause_button', execution_times=1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}",
+                "applied action: press_start_pause_button, feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}",
+                "applied action: press_start_pause_button, feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_rinse_button', execution_times=1)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Normal Rinse 2 times"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'Normal Rinse 2 times'.",
+            "reason": "To adjust the rinse type to 'No rinsing', we need to cycle through the options. The next option is 'Normal Rinse 2 times'.",
+            "reached_goal": false
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_rinse_button', execution_times=2)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "no rinsing"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'No rinsing'.",
+            "reason": "We need to set the rinse type to 'No rinsing', and currently it is 'Normal Rinse 2 times'. Pressing the rinse button twice will cycle through the options to achieve the desired setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 11,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'start'.",
+            "reason": "the previous settings are done, so now we start the machine.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_start_pause_button, feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}",
+                "applied action: press_start_pause_button, feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}",
+                "executed action: end, feedback: "
+            ]
+        },
+        {
+            "index": 12,
+            "proposed_action": "end",
+            "current_observation": "",
+            "expected_feedback": "",
+            "reason": "It seems the target variable values for this feature have already been achieved."
+        },
+        {
+            "step_index": 13,
+            "error_message": "we fail to adjust variable_start_running to its target value within 5 trials."
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 100
+}

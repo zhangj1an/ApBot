@@ -1,0 +1,605 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _2_bottle_washer 4 var 2
+processing:  _2_bottle_washer 4 2
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/4/_1_easy_testcases/2/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_2_bottle_washer/4/_1_easy_testcases/2/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["turn_on_off_appliance", "set_and_adjust_menu"]
+feature_choice_reason = "Feature 'turn_on_off_appliance' is required to power on the appliance. Feature 'set_and_adjust_menu' is required to select the 'Slow' menu and set its value to 'HI'."
+changing_variables = ["variable_power_on_off", "variable_menu_index", "variable_menu_setting"]
+goal_state = ExtendedSimulator()
+# "turn_on_off_appliance", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "set_and_adjust_menu", step 1, variable_menu_index
+goal_state.variable_menu_index.set_current_value("Slow")
+# "set_and_adjust_menu", step 2, variable_menu_setting
+goal_state.variable_menu_setting = goal_state.menu_setting_dict["Slow"]
+goal_state.variable_menu_setting.set_current_value("HI")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_defrost_time: 0
+variable_menu_index: quick
+variable_power_on_off: off
+variable_preset_time: 1 hr
+variable_quick_warm_time: 3
+variable_slow_warm_setting: LO
+variable_steam_time: 12
+variable_sterilize_time: 15
+
+current_state_simulator when it is just created: 
+
+ variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: off
+
+goal state:  variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current feature:  turn_on_off_appliance
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal_state_simulator: variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The goal requires the variable 'variable_power_on_off' to have a value of 'on'. The feedback also shows 'variable_power_on_off: on'. Both are in agreement semantically, including capitalization and textual formatting."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  set_and_adjust_menu
+step_info:  {'step': 1, 'actions': ['press_menu_button'], 'variable': 'variable_menu_index'}
+executing action: ('press_menu_button', 1)
+goal_state_simulator: variable_menu_index: Slow
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Slow
+variable_menu_setting: LO
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_menu_index
+actions: ['press_menu_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_index: slow 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_menu_index' to have the value 'Slow'. The feedback shows 'slow'. Following Rule 2, differences in capitalization or textual formatting are considered semantically the same. Therefore, 'Slow' and 'slow' are equivalent."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 2, 'actions': ['press_plus_button', 'press_minus_button'], 'variable': 'variable_menu_setting'}
+executing action: ('press_plus_button', 1)
+goal_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_menu_setting
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_time: hi 
+
+
+Comparison result: 
+
+ reason = "The feedback variable_menu_time stating 'hi' does not match the intended value of 'HI' for the goal variable variable_menu_setting. While the values may seem semantically similar due to capitalization, the contextual meaning of variable names differs. Thus, the feedback does not satisfy the desired goal criteria, as it does not refer to the correct variable or value pairing."
+
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+current_action: ('press_plus_button', 1)
+debug record string: step: 0, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 1, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+step: 2, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 3, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+
+Attempt 1: Trying to analyse the past debug record.
+Response:
+ ```python
+variable_name = "variable_menu_setting_slow"
+variable_is_continuous = False
+effective_action = "press_plus_button"
+step_index = 0
+first_observed_action_taken = "press_plus_button"
+record_sequence = ["HI", "LO", "HI", "LO"]
+```
+The effective action is press_plus_button. The first observed action is press_plus_button.
+Analysis results: The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO.  
+
+variable_menu_setting_slow = DiscreteVariable(value_range=["HI", "LO"], current_value="LO")
+menu_setting_dict["Slow"] = variable_menu_setting_slow
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+Attempt 1: Trying to update world model code.
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+after apply action ('press_power_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('turn_on_off_appliance', 1)
+after apply action ('press_menu_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: LO
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 1)
+after apply action ('press_plus_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 2)
+past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_defrost_time: 0
+variable_menu_index: slow
+variable_menu_time: HI
+variable_power_on_off: on
+variable_preset_time: 1 hr
+variable_quick_warm_time: 3
+variable_slow_warm_setting: HI
+variable_steam_time: 12
+variable_sterilize_time: 15 
+ current state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on 
+ goal state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+goal state reached: False
+goal_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_menu_setting
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}", "applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_time: hi 
+
+
+Comparison result: 
+
+ reason = "The goal requires the variable 'variable_menu_setting' to have the value 'HI'. However, the feedback provided is for 'variable_menu_time' with the value 'hi'. The variable names do not match, and therefore, they represent different items, making the comparison irrelevant in this context."
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+current_action: ('press_plus_button', 1)
+debug record string: step: 0, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 1, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+step: 2, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 3, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+
+Attempt 1: Trying to analyse the past debug record.
+Response:
+ ```python
+variable_name = "variable_menu_setting_slow"
+variable_is_continuous = False
+effective_action = "press_plus_button"
+step_index = 0
+first_observed_action_taken = "press_plus_button"
+record_sequence = ["HI", "LO", "HI", "LO"]
+```
+The effective action is press_plus_button. The first observed action is press_plus_button.
+Analysis results: The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO.  
+
+variable_menu_setting_slow = DiscreteVariable(value_range=["HI", "LO"], current_value="LO")
+menu_setting_dict["Slow"] = variable_menu_setting_slow
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+Attempt 1: Trying to update world model code.
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+after apply action ('press_power_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('turn_on_off_appliance', 1)
+after apply action ('press_menu_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: LO
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 1)
+after apply action ('press_plus_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 2)
+past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_defrost_time: 0
+variable_menu_index: slow
+variable_menu_time: HI
+variable_power_on_off: on
+variable_preset_time: 1 hr
+variable_quick_warm_time: 3
+variable_slow_warm_setting: HI
+variable_steam_time: 12
+variable_sterilize_time: 15 
+ current state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on 
+ goal state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+goal state reached: False
+goal_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_menu_setting
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}", "applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_time: hi 
+
+
+Comparison result: 
+
+ reason = "The goal variable 'variable_menu_setting' requires the value 'HI'. The feedback given shows 'variable_menu_time' with value 'hi'. Comparing their semantic equivalence considering rules 1 and 6, 'HI' in the goal does not match 'hi' in this specific context because they pertain to different variables, and variable names are already verified to represent the same item."
+
+goal_reached = False 
+
+
+detecting mismatch!!
+setting agnostic
+currently, here are the past actions taken:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+current_action: ('press_plus_button', 1)
+debug record string: step: 0, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 1, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+step: 2, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}
+step: 3, applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'LO', 'variable_menu_index': 'slow'}
+
+Attempt 1: Trying to analyse the past debug record.
+Response:
+ ```python
+variable_name = "variable_menu_setting_slow"
+variable_is_continuous = False
+effective_action = "press_plus_button"
+step_index = 0
+first_observed_action_taken = "press_plus_button"
+record_sequence = ["HI", "LO", "HI", "LO"]
+```
+The effective action is press_plus_button. The first observed action is press_plus_button.
+Analysis results: The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_menu_setting_slow is DiscreteVariable with value ranges to be ['HI', 'LO']. The current value is LO.  
+
+variable_menu_setting_slow = DiscreteVariable(value_range=["HI", "LO"], current_value="LO")
+menu_setting_dict["Slow"] = variable_menu_setting_slow
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+Attempt 1: Trying to update world model code.
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+Located Var Format
+Attempt to update goal: round 1
+Goal state updated successfully and saved to temp_goal.py.
+setting agnostic
+reverting to previous state!!!
+all past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+after apply action ('press_power_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Quick
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('turn_on_off_appliance', 1)
+after apply action ('press_menu_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: LO
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 1)
+after apply action ('press_plus_button', 1)
+, the state of the user manual simulator is: 
+ variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+ ('set_and_adjust_menu', 2)
+past actions:  [('press_power_button', 1), ('press_menu_button', 1), ('press_plus_button', 1)]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_defrost_time: 0
+variable_menu_index: slow
+variable_menu_time: HI
+variable_power_on_off: on
+variable_preset_time: 1 hr
+variable_quick_warm_time: 3
+variable_slow_warm_setting: HI
+variable_steam_time: 12
+variable_sterilize_time: 15 
+ current state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on 
+ goal state simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+goal state reached: False
+goal_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: LO
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+current_state_simulator: variable_menu_index: Slow
+variable_menu_setting: HI
+variable_menu_setting_defrost: 5
+variable_menu_setting_preset: 10
+variable_menu_setting_quick: 3
+variable_menu_setting_slow: HI
+variable_menu_setting_steam: 12
+variable_menu_setting_sterilize: 15
+variable_power_on_off: on
+variable_name: variable_menu_setting
+actions: ['press_plus_button', 'press_minus_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('turn_on_off', 1), 'variable_power_on_off': 'on'}", "applied action: ('press_menu_button', 1), feedback: {'feature': ('menu', 1), 'variable_menu_index': 'slow', 'variable_menu_time': 'LO'}", "applied action: ('press_plus_button', 1), feedback: {'feature': ('menu', 2), 'variable_menu_time': 'HI', 'variable_menu_index': 'slow'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_time: hi 
+
+
+Comparison result: 
+
+ Given the goal string: 
+
+"We want to have the variable: variable_menu_setting to have a value of HI."
+
+Feedback: `variable_menu_time: hi`
+
+### Step 1: Compare the values using the rules.
+1. **Variable names**: The names `variable_menu_setting` and `variable_menu_time` are different. However, rule #1 explicitly states that the provided variable names are already verified to represent the same item. Therefore, we only compare the values.
+
+2. **Values**: The target value is "HI," and the feedback value is "hi." According to rule #2, capitalization or textual formatting differences (e.g., "HI" vs. "hi") are semantically the same. Therefore, the values match.
+
+Reason = "The feedback value 'hi' matches the goal value 'HI' because capitalization differences are considered semantically equivalent."
+
+Goal_reached = True 
+
+
+Execution failed on attempt 1: invalid syntax (<string>, line 1)
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_menu_setting' to have a value of 'HI'. The feedback received is 'variable_menu_time: hi'. Comparing the values, both contain 'HI', and according to Rule 2, differences in capitalization should be ignored. Additionally, there's no better match in the variable value range, which makes it semantically equivalent."
+
+goal_reached = True 
+
+
+goal state reached: True
+resolution failed or goal not reached or modify code more than 2 times.
+ground truth info {'id': 2, 'command': 'Power on the bottle warmer and use the slow warm function for an 8 oz glass bottle of room temperature milk. Set the slow warm setting to HI.', 'target_state': {'variable_power_on_off': 'on', 'variable_menu_index': 'slow', 'variable_quick_warm_time': 3, 'variable_slow_warm_setting': 'HI', 'variable_defrost_time': 0, 'variable_sterilize_time': 15, 'variable_steam_time': 12, 'variable_preset_time': '1 hr'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_menu_index': 'slow', 'variable_slow_warm_setting': 'HI'}}
+robot's decision {'variable_defrost_time': 0, 'variable_menu_index': 'slow', 'variable_menu_time': 'HI', 'variable_power_on_off': 'on', 'variable_preset_time': '1 hr', 'variable_quick_warm_time': 3, 'variable_slow_warm_setting': 'HI', 'variable_steam_time': 12, 'variable_sterilize_time': 15}

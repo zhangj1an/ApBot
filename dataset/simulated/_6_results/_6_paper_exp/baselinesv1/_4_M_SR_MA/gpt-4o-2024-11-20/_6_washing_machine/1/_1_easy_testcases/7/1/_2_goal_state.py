@@ -1,0 +1,18 @@
+feature_sequence = ["power_adjust", "adjust_cycle_selector", "adjust_temperature", "adjust_spin_speed", "adjust_options", "adjust_delay_end", "start_pause_cycle"]
+feature_choice_reason = "Feature 'power_adjust' is required to turn on the machine. Feature 'adjust_cycle_selector' is needed to set the cycle to Super Eco Wash. Feature 'adjust_temperature' is required to set the water temperature to cold water. Feature 'adjust_spin_speed' is needed to set the spin speed to 800 rpm. Feature 'adjust_options' is required to set the washing option to Soak + Rinse+. Feature 'adjust_delay_end' is needed to set the delay timer to 5 hours. Finally, feature 'start_pause_cycle' is required to start the machine."
+changing_variables = ["variable_power_on_off", "variable_cycle_selector", "variable_temperature", "variable_spin_speed", "variable_option", "variable_delay_end", "variable_start_running"]
+goal_state = ExtendedSimulator()
+# "power_adjust", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "adjust_cycle_selector", step 1, variable_cycle_selector
+goal_state.variable_cycle_selector.set_current_value("Super Eco Wash")
+# "adjust_temperature", step 1, variable_temperature
+goal_state.variable_temperature.set_current_value("Cold water")
+# "adjust_spin_speed", step 1, variable_spin_speed
+goal_state.variable_spin_speed.set_current_value("800")
+# "adjust_options", step 1, variable_option
+goal_state.variable_option.set_current_value("Soak + Rinse+")
+# "adjust_delay_end", step 1, variable_delay_end
+goal_state.variable_delay_end.set_current_value(5) # The number represents hours.
+# "start_pause_cycle", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")

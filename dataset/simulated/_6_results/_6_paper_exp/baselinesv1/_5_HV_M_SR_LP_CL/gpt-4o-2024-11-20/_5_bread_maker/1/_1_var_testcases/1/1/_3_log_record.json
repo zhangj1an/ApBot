@@ -1,0 +1,253 @@
+{
+    "command_id": 1,
+    "command_string": "Make a basic loaf with a medium crust for breakfast, loaf size is 1.5lb, set the delay timer to 10 hours from now and start the bread maker.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "BASIC",
+        "variable_crust_color": "MEDIUM",
+        "variable_loaf_size": "1.5LB",
+        "variable_delay_time": "10",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_color": "MEDIUM",
+        "variable_delay_time": 10,
+        "variable_loaf_size": "1.5LB",
+        "variable_menu_index": "BASIC",
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times = 1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "FRENCH"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'French'.",
+            "reason": "we need to navigate to the 'Basic' menu option, and pressing the 'menu' button advances to the next menu option, starting from 'Basic'.",
+            "reached_goal": false
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times = 1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "WHOLE WHEAT"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'WHOLE WHEAT'.",
+            "reason": "we need to adjust the menu setting to 'Basic', so the next step is to increment the menu index by pressing the menu button once.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=9)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "BAKE"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Basic'.",
+            "reason": "The current menu is 'Whole Wheat', and we need to set it to 'Basic'. Following the menu sequence, 9 presses of the menu button will cycle back to 'Basic'.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BASIC'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'FRENCH'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'WHOLE WHEAT'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'QUICK'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'SWEET'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'GLUTEN FREE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'RAPID BAKE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'DOUGH'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'JAM'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'CAKE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'SANDWICH'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BAKE'}",
+                "applied action: press_menu_button, feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BASIC'}",
+                "executed action: run_action('press_menu_button', execution_times = 0), feedback: {'feature': ('menu_selection', 1), 'variable_menu_index': 'BASIC'}",
+                "executed action: run_action('press_color_button', execution_times=1), feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'DARK'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'LIGHT'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'MEDIUM'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'DARK'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'LIGHT'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_menu_button', execution_times = 0)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "BASIC"
+            },
+            "expected_feedback": "The variable_menu_index becomes 'Basic'.",
+            "reason": "The variable 'variable_menu_index' is already set to the desired value 'Basic', so no action is needed for this step.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_color_button', execution_times=1)",
+            "grounded_action": "press_color_button",
+            "current_observation": {
+                "feature": [
+                    "crust_color_selection",
+                    1
+                ],
+                "variable_crust_color": "DARK"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Medium'.",
+            "reason": "we are adjusting the crust color to 'Medium' as required by the goal.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'LIGHT'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'MEDIUM'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'DARK'}",
+                "applied action: press_color_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'LIGHT'}",
+                "executed action: run_action('press_color_button', execution_times = 1), feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'MEDIUM'}",
+                "executed action: run_action('press_loaf_button', execution_times = 1), feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': '2.0LB'}",
+                "executed action: run_action('press_loaf_button', execution_times = 1), feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': '1.5LB'}",
+                "executed action: run_action('press_plus_button', execution_times=60), feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 4}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 5}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 6}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 7}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 8}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 9}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 10}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 11}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 12}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 13}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 0}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 1}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 2}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 3}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 4}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 5}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_color_button', execution_times = 1)",
+            "grounded_action": "press_color_button",
+            "current_observation": {
+                "feature": [
+                    "crust_color_selection",
+                    1
+                ],
+                "variable_crust_color": "MEDIUM"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'MEDIUM'.",
+            "reason": "the current crust color is 'LIGHT' and we need to set it to 'MEDIUM', so we press the color button once to move to the next setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_loaf_button', execution_times = 1)",
+            "grounded_action": "press_loaf_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "2.0LB"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '2.0LB'.",
+            "reason": "we need to adjust the loaf size to reach the target value of 1.5LB, so we press the 'press_loaf_button' to find the correct setting.",
+            "reached_goal": false
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_loaf_button', execution_times = 1)",
+            "grounded_action": "press_loaf_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "1.5LB"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '1.5LB'.",
+            "reason": "currently, the loaf size is set to '2.0LB', but the target size is '1.5LB', so we press the loaf button to adjust the size.",
+            "reached_goal": true
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_plus_button', execution_times=60)",
+            "grounded_action": "press_plus_button",
+            "current_observation": {
+                "feature": [
+                    "delay_time_setting",
+                    1
+                ],
+                "variable_delay_time": 4
+            },
+            "expected_feedback": "the variable_delay_time becomes '600'.",
+            "reason": "we need to set the delay timer to 10 hours (600 minutes). Since the delay time increments by 10 minutes per press, pressing the button 60 times will set the desired delay time.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 5}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 6}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 7}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 8}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 9}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 10}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 11}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 12}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 13}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 0}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 1}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 2}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 3}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 4}",
+                "applied action: press_plus_button, feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 5}",
+                "executed action: run_action('press_plus_button', execution_times=5), feedback: {'feature': ('delay_time_setting', 1), 'variable_delay_time': 10}",
+                "executed action: run_action('press_start_stop_button', execution_times=1), feedback: {'feature': ('start_stop_operation', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_plus_button', execution_times=5)",
+            "grounded_action": "press_plus_button",
+            "current_observation": {
+                "feature": [
+                    "delay_time_setting",
+                    1
+                ],
+                "variable_delay_time": 10
+            },
+            "expected_feedback": "the variable_delay_time becomes 10.",
+            "reason": "we aim to set the delay timer to 10 hours, and since the current value is 5, we need to press the 'plus' button 5 more times.",
+            "reached_goal": true
+        },
+        {
+            "index": 11,
+            "proposed_action": "run_action('press_start_stop_button', execution_times=1)",
+            "grounded_action": "press_start_stop_button",
+            "current_observation": {
+                "feature": [
+                    "start_stop_operation",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous settings are done, so now we start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 140
+}

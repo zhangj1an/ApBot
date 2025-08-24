@@ -1,0 +1,147 @@
+{
+    "command_id": 1,
+    "command_string": "Cook bean for 40 minutes, starting now.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_menu_index": "Bean",
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 40
+    },
+    "executed_goal_state": {
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 40,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "Bean",
+        "variable_preset_timer_hour": 0,
+        "variable_preset_timer_minute": 0,
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=3)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Soup"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "we need to change the cooking mode to 'Bean', which likely needs pressing the menu button three times.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Reheat'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}"
+            ]
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Reheat"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "we need to change the cooking mode from 'Soup' to 'Bean' by pressing the menu button.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Soup'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Steam'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Reheat'}",
+                "applied action: press_menu_button, feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Glutinous rice'}",
+                "executed action: run_action('press_menu_button', execution_times=2), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_menu_button', execution_times=2)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Bean"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Bean'.",
+            "reason": "We need to set the cooking mode to 'Bean', and currently we are on 'Glutinous rice'. After two presses of the 'Menu' button, the mode should cycle to 'Bean'.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_cooking_time_button",
+                1
+            ],
+            "grounded_action": "press_cooking_time_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            }
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_hr_button', execution_times=0)",
+            "grounded_action": "press_hr_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_hr remains '0'.",
+            "reason": "The target cooking time is 40 minutes, so we do not need to adjust the hour setting as it should remain at 0.",
+            "reached_goal": true
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_min_button', execution_times=40)",
+            "grounded_action": "press_min_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    3
+                ],
+                "variable_cooking_time_minute": 40,
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_min becomes 40.",
+            "reason": "we need to set the cooking time to 40 minutes by pressing the minute button.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start",
+                    1
+                ]
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "The machine needs to be started to prepare for cooking bean with the set time.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct"
+}

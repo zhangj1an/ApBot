@@ -1,0 +1,82 @@
+{
+    "command_id": 10,
+    "command_string": "Initiate the washer to dry bottles for 30 minutes, then enable storage.",
+    "ground_truth_goal_state": {
+        "variable_drying_only_time": 30,
+        "variable_storage_mode": "on",
+        "variable_power_on_off": "on"
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "0",
+        "variable_drying_only_time": "30",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "on"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_on_off_button",
+                1
+            ],
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_drying_only_button",
+                1
+            ],
+            "grounded_action": "press_drying_only_button",
+            "current_observation": {
+                "feature": [
+                    "drying_only",
+                    1
+                ],
+                "variable_drying_only_time": "30"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_drying_only_button",
+                2
+            ],
+            "grounded_action": "press_drying_only_button",
+            "current_observation": {
+                "feature": [
+                    "drying_only",
+                    1
+                ],
+                "variable_drying_only_time": "50"
+            },
+            "mismatch": "The feedback value '50' includes just the number, and the goal value is '30 minutes.' Removing text from both, the numbers '50' and '30' do not match, and '50' is not the best match for '30' even if possible options aren't explicitly provided."
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_storage_button",
+                1
+            ],
+            "grounded_action": "press_storage_button",
+            "current_observation": {
+                "feature": [
+                    "storage_mode",
+                    1
+                ],
+                "variable_storage_mode": "on"
+            }
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 9
+}

@@ -1,0 +1,185 @@
+{
+    "command_id": 2,
+    "command_string": "Start a small, dark-crust wholewheat loaf using wholewheat menu, with 2-hour timer delay, then start the bread maker.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "3 Wholewheat",
+        "variable_loaf_size": "small",
+        "variable_crust_color": "dark",
+        "variable_timer_delay": 2,
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_color": "dark",
+        "variable_loaf_size": "small",
+        "variable_menu_index": "3 Wholewheat",
+        "variable_start_running": "on",
+        "variable_timer_delay": 2
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times = 2)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "3 Wholewheat"
+            },
+            "expected_feedback": "the variable_menu_index becomes '3'.",
+            "reason": "we need to adjust the menu to select 'Wholewheat', which corresponds to menu index 3. Currently, the menu index is at 1, so we press the menu button 2 times to reach the target index.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_crust_button', execution_times=2)",
+            "grounded_action": "press_crust_button",
+            "current_observation": {
+                "feature": [
+                    "crust_color_selection",
+                    1
+                ],
+                "variable_crust_color": "dark"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'dark'.",
+            "reason": "Since we are at the default crust color (light), we need to press the crust button twice to set the variable to 'dark'.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_loaf_size_button', execution_times=1)",
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "large"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '1.5LB'.",
+            "reason": "the target loaf size is small ('1.5LB'), so we press the loaf size button to select this setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'small'}",
+                "applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'large'}",
+                "applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'small'}",
+                "executed action: run_action('press_loaf_size_button', execution_times=1), feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'large'}",
+                "executed action: run_action('press_loaf_size_button', execution_times=1), feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'small'}",
+                "executed action: run_action('press_time_up_button', execution_times=720), feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 6}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 7}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 8}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 9}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 10}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 11}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 12}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 13}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 0}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 1}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 2}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 3}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 4}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 5}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 6}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 7}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_loaf_size_button', execution_times=1)",
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "large"
+            },
+            "expected_feedback": "the variable_loaf_size becomes 'large'.",
+            "reason": "Currently the loaf size is 'small', and we need to toggle to 'large' first as the button alternates between 'small' and 'large'.",
+            "reached_goal": false
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_loaf_size_button', execution_times=1)",
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "small"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '1.5LB'.",
+            "reason": "we need to set the loaf size to small (1.5LB), and pressing this button once is the next step in achieving this setting.",
+            "reached_goal": true
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_time_up_button', execution_times=720)",
+            "grounded_action": "press_time_up_button",
+            "current_observation": {
+                "feature": [
+                    "timer_delay",
+                    1
+                ],
+                "variable_timer_delay": 6
+            },
+            "expected_feedback": "the variable_timer_delay becomes '02:00:00'.",
+            "reason": "we need to adjust the timer delay to 2 hours, so we press the 'press_time_up_button' for the required increments to achieve this goal.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 7}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 8}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 9}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 10}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 11}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 12}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 13}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 0}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 1}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 2}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 3}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 4}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 5}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 6}",
+                "applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 7}",
+                "executed action: run_action('press_time_down_button', execution_times=5), feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 2}",
+                "executed action: run_action('press_start_stop_button', execution_times=1), feedback: {'feature': ('start_stop', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_time_down_button', execution_times=5)",
+            "grounded_action": "press_time_down_button",
+            "current_observation": {
+                "feature": [
+                    "timer_delay",
+                    1
+                ],
+                "variable_timer_delay": 2
+            },
+            "expected_feedback": "the variable_timer_delay becomes '02:00:00'.",
+            "reason": "The current timer delay is at 07:00:00, so to achieve the target value of 02:00:00, I will decrease it by pressing the time down button 5 times (each step decrements by 1 hour).",
+            "reached_goal": true
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_start_stop_button', execution_times=1)",
+            "grounded_action": "press_start_stop_button",
+            "current_observation": {
+                "feature": [
+                    "start_stop",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous settings for the menu, crust color, loaf size, and timer delay are done, so now we start the machine.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 771
+}

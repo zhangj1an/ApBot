@@ -1,0 +1,50 @@
+{
+    "command_id": 10,
+    "command_string": "Power on the dehumidifier and set the timer for 1 hour.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_timer": "1H"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed": "low",
+        "variable_ion_generator": "off",
+        "variable_power_on_off": "on",
+        "variable_sleep_mode": "off",
+        "variable_timer": "1H"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance is currently off, and we need to turn it on to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_timer_button', execution_times=1)",
+            "grounded_action": "press_timer_button",
+            "current_observation": {
+                "feature": [
+                    "set_timer",
+                    1
+                ],
+                "variable_timer": "1H"
+            },
+            "expected_feedback": "the variable_timer becomes '1'.",
+            "reason": "the timer needs to be set to 1 hour, so we press the timer button once to adjust it accordingly.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 2
+}

@@ -1,0 +1,200 @@
+{
+    "command_id": 10,
+    "command_string": "Power on for French bread with medium crust, loaf size at 900g. Use the french menu and initiate a 3-hour delay. Use gluten-free setting. Please ensure the appliance starts.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "2 French",
+        "variable_crust_colour": "Medium",
+        "variable_loaf_size": "900g",
+        "variable_gluten_free": "on",
+        "variable_timer": "3",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_crust_colour": "Medium",
+        "variable_gluten_free": "on",
+        "variable_loaf_size": "900g",
+        "variable_menu_index": "2 French",
+        "variable_start_running": "on",
+        "variable_timer": 3
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "2 French"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'French'.",
+            "reason": "We need to update the menu selection to 'French' to match the target variable value.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_crust_colour_button', execution_times=1)",
+            "grounded_action": "press_crust_colour_button",
+            "current_observation": {
+                "feature": [
+                    "crust_colour_selection",
+                    1
+                ],
+                "variable_crust_colour": "Medium"
+            },
+            "expected_feedback": "the variable_crust_color becomes 'Medium'.",
+            "reason": "We need to adjust the crust color to 'Medium' by cycling through the available options using the press_crust_colour_button action.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_loaf_size_button', execution_times=2)",
+            "grounded_action": "press_loaf_size_button",
+            "current_observation": {
+                "feature": [
+                    "loaf_size_selection",
+                    1
+                ],
+                "variable_loaf_size": "900g"
+            },
+            "expected_feedback": "the variable_loaf_size becomes '900g'.",
+            "reason": "we need to adjust the loaf size to 900g, currently it is set to 450g, and pressing the button cycles through the options.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_timer_down_button', execution_times=3)",
+            "grounded_action": "press_timer_down_button",
+            "current_observation": {
+                "feature": [
+                    "timer_adjustment",
+                    1
+                ],
+                "variable_timer": 13
+            },
+            "expected_feedback": "the variable_timer becomes '03:00:00'.",
+            "reason": "Based on the current menu default timer setting of 03:40:00 for French bread, pressing 'timer down' three times will decrement the timer in 10-minute steps to reach the target 03:00:00.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 12}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 11}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 10}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 9}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 8}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 7}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 6}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 5}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 4}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 3}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 2}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 1}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 0}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 15}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 14}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 13}",
+                "applied action: press_timer_down_button, feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 12}",
+                "executed action: run_action('press_timer_up_button', execution_times=3), feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 15}",
+                "executed action: run_action('press_timer_down_button', execution_times = 1), feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 14}",
+                "executed action: run_action('press_timer_up_button', execution_times=1), feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 15}",
+                "executed action: run_action('press_timer_down_button', execution_times=12), feedback: {'feature': ('timer_adjustment', 1), 'variable_timer': 3}",
+                "executed action: run_action('press_gluten_free_button', execution_times=1), feedback: {'feature': ('gluten_free_selection', 1), 'variable_gluten_free': 'on'}",
+                "executed action: run_action('press_start_cancel_button', execution_times = 1), feedback: {'feature': ('start_cancel_function', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_timer_up_button', execution_times=3)",
+            "grounded_action": "press_timer_up_button",
+            "current_observation": {
+                "feature": [
+                    "timer_adjustment",
+                    1
+                ],
+                "variable_timer": 15
+            },
+            "expected_feedback": "the variable_timer becomes 15.",
+            "reason": "Increase the timer to roll over to the desired value of 3 hours, as the highest current timer value is 15.",
+            "reached_goal": false
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_timer_down_button', execution_times = 1)",
+            "grounded_action": "press_timer_down_button",
+            "current_observation": {
+                "feature": [
+                    "timer_adjustment",
+                    1
+                ],
+                "variable_timer": 14
+            },
+            "expected_feedback": "the variable_timer decreases by 1, changing to 14.",
+            "reason": "I aim to adjust the variable_timer to achieve a 3-hour delay, and the current timer setting is 15, so I need to decrease it one step at a time.",
+            "reached_goal": false
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_timer_up_button', execution_times=1)",
+            "grounded_action": "press_timer_up_button",
+            "current_observation": {
+                "feature": [
+                    "timer_adjustment",
+                    1
+                ],
+                "variable_timer": 15
+            },
+            "expected_feedback": "the variable_timer becomes 15.",
+            "reason": "The variable_timer currently has a value of 14, but we need to achieve a 3-hour delay (value 3). The timer increments from 14 to 15 and cycles back to lower values.",
+            "reached_goal": false
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_timer_down_button', execution_times=12)",
+            "grounded_action": "press_timer_down_button",
+            "current_observation": {
+                "feature": [
+                    "timer_adjustment",
+                    1
+                ],
+                "variable_timer": 3
+            },
+            "expected_feedback": "the variable_timer becomes 3.",
+            "reason": "The target variable value for the timer is 3 hours delay (3:00), and based on the current value (15), this action decreases the timer correctly in one go.",
+            "reached_goal": true
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_gluten_free_button', execution_times=1)",
+            "grounded_action": "press_gluten_free_button",
+            "current_observation": {
+                "feature": [
+                    "gluten_free_selection",
+                    1
+                ],
+                "variable_gluten_free": "on"
+            },
+            "expected_feedback": "the variable_gluten_free_mode becomes 'on'.",
+            "reason": "we need to activate the gluten-free setting as part of the task requirements.",
+            "reached_goal": true
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_start_cancel_button', execution_times = 1)",
+            "grounded_action": "press_start_cancel_button",
+            "current_observation": {
+                "feature": [
+                    "start_cancel_function",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "The previous settings are completed, and now we need to start the appliance to begin the process.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 49
+}

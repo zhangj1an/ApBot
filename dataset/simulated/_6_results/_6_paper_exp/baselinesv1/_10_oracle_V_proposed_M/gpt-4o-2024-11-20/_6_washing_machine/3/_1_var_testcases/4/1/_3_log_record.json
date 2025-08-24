@@ -1,0 +1,192 @@
+{
+    "command_id": 4,
+    "command_string": "Switch the washing machine on, use the Normal program, set the water level to 32 L, and finish in 3 hours. Then start the appliance, then activate the child lock.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_child_lock": "on",
+        "variable_program": "1 Normal",
+        "variable_water_level": "32 L",
+        "variable_preset": "3"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "on",
+        "variable_power_on_off": "on",
+        "variable_preset": 3,
+        "variable_program": "1 Normal",
+        "variable_start_running": "on",
+        "variable_water_level": "32 L"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_button",
+                1
+            ],
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_program_button",
+                1
+            ],
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "program_selection",
+                    1
+                ],
+                "variable_program": "2 Delicate"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_program_button",
+                9
+            ],
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "program_selection",
+                    1
+                ],
+                "variable_program": "1 Normal"
+            }
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_water_level_button",
+                1
+            ],
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "42 L"
+            }
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_water_level_button",
+                1
+            ],
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "37 L"
+            },
+            "mismatch": "The numeric value in the feedback (37) does not match the goal value (32), even after removing the text for comparison."
+        },
+        {
+            "step_index": 6,
+            "proposed_action": [
+                "press_water_level_button",
+                1
+            ],
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "37 L"
+            },
+            "mismatch": "The goal state requires 'variable_water_level' to be '32 L', while the feedback shows 'variable_water_level' as '37 l'. Removing the text, the numerical values are 32 and 37, which are not the same. Thus, the goal has not been reached yet."
+        },
+        {
+            "step_index": 7,
+            "proposed_action": [
+                "press_water_level_button",
+                2
+            ],
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "32 L"
+            }
+        },
+        {
+            "step_index": 8,
+            "proposed_action": [
+                "press_preset_button",
+                1
+            ],
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 2
+            },
+            "mismatch": "The goal state requires the variable 'variable_preset_timer' to have a value of 3. The feedback shows 'variable_preset' with a value of 2. Since both values represent time, we compare them numerically. The feedback value 2 does not match the goal value 3, and there is no closer match in the variable range that satisfies the goal. Therefore, the goal has not been reached yet."
+        },
+        {
+            "step_index": 9,
+            "proposed_action": [
+                "press_preset_button",
+                1
+            ],
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 3
+            }
+        },
+        {
+            "step_index": 10,
+            "proposed_action": [
+                "press_start_pause_button",
+                1
+            ],
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            }
+        },
+        {
+            "step_index": 11,
+            "proposed_action": [
+                "press_and_hold_program_button",
+                1
+            ],
+            "grounded_action": "press_and_hold_program_button",
+            "current_observation": {
+                "feature": [
+                    "child_lock",
+                    1
+                ],
+                "variable_child_lock": "on"
+            }
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct"
+}

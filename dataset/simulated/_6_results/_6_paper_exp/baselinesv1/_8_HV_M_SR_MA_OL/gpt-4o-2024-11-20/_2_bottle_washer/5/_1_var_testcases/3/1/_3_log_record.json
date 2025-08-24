@@ -1,0 +1,51 @@
+{
+    "command_id": 3,
+    "command_string": "Power up the washer and dry the bottles for 40 minutes.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_drying_only_time": 40
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "0",
+        "variable_drying_only_time": "30",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "off"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_on_off_button",
+                1
+            ],
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_drying_only_button",
+                1
+            ],
+            "grounded_action": "press_drying_only_button",
+            "current_observation": {
+                "feature": [
+                    "drying_only",
+                    1
+                ],
+                "variable_drying_only_time": "30"
+            },
+            "mismatch": "The feedback value '30' does not match the goal value '40 minutes', as they represent different durations of time. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_drying_only_time, the value decided by the robot is 30 (type: <class 'str'>), but the ground truth is 40 (type: <class 'int'>)",
+    "step_size": 2
+}

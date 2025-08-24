@@ -1,0 +1,314 @@
+{
+    "command_id": 10,
+    "command_string": "Power on the washing machine, set the Normal program, select a water level of 20 L, and finish in 9 hours. Then start the appliance, then activate the child lock.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_child_lock": "on",
+        "variable_program": "1 Normal",
+        "variable_water_level": "20 L",
+        "variable_preset": "9"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "off",
+        "variable_power_on_off": "on",
+        "variable_preset": 15,
+        "variable_program": "1 Normal",
+        "variable_start_running": "off",
+        "variable_water_level": "20 L"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to turn on the power of the washing machine to proceed with other configurations.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_program_button', execution_times=1)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "program_selection",
+                    1
+                ],
+                "variable_program": "2 Delicate"
+            },
+            "expected_feedback": "the variable_program_selection becomes '2 Delicate'.",
+            "reason": "To navigate through the programs and eventually select the required '1 Normal' program.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_program_button', execution_times=9)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "program_selection",
+                    1
+                ],
+                "variable_program": "1 Normal"
+            },
+            "expected_feedback": "the variable_program_selection becomes '1 Normal'.",
+            "reason": "We need to cycle through the programs to return to '1 Normal' as the program selection is currently on '2 Delicate'.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_water_level_button', execution_times=1)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "42 L"
+            },
+            "expected_feedback": "the variable_water_level becomes '29 L'.",
+            "reason": "We need to adjust the water level to '20 L', and pressing the water level button will cycle through the available water levels.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '37 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '32 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '29 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '20 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '55 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '42 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '37 L'}",
+                "executed action: run_action('press_water_level_button', execution_times=4), feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '55 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '42 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '37 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '32 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '29 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '20 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '55 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '42 L'}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_water_level_button', execution_times=4)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "55 L"
+            },
+            "expected_feedback": "the variable_water_level becomes '20 L'.",
+            "reason": "The current water level is set to '37 L'. We need to press the water level button four times to cycle through to '20 L', which is the target value.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '42 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '37 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '32 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '29 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '20 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '55 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '42 L'}",
+                "executed action: run_action('press_water_level_button', execution_times=4), feedback: {'feature': ('water_level_selection', 1), 'variable_water_level': '20 L'}",
+                "executed action: run_action('press_preset_button', execution_times=7), feedback: {'feature': ('preset_time', 1), 'variable_preset': 8}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 10}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 11}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 13}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 14}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 15}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 16}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 17}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 18}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 19}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 20}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 21}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 22}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 23}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 24}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 0}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 2}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 3}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 4}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 5}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 6}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 7}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 8}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_water_level_button', execution_times=4)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "water_level_selection",
+                    1
+                ],
+                "variable_water_level": "20 L"
+            },
+            "expected_feedback": "the variable_water_level becomes '20 L'.",
+            "reason": "The target water level is '20 L', and we are currently at '42 L'. Based on the observed transitions, pressing the water level button 4 times will update the water level to '20 L'.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_preset_button', execution_times=7)",
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 8
+            },
+            "expected_feedback": "the variable_preset_timer becomes 9.",
+            "reason": "the current preset timer is set to 2 hours, and the target is 9 hours. Each button press increments the timer by 1 hour, so we need 7 presses to reach the target.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 10}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 11}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 13}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 14}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 15}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 16}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 17}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 18}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 19}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 20}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 21}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 22}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 23}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 24}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 0}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 2}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 3}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 4}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 5}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 6}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 7}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 8}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}",
+                "executed action: run_action('press_preset_button', execution_times=1), feedback: {'feature': ('preset_time', 1), 'variable_preset': 10}",
+                "executed action: run_action('press_preset_button', execution_times=1), feedback: {'feature': ('preset_time', 1), 'variable_preset': 11}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 13}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 14}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 15}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 16}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 17}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 18}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 19}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 20}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 21}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 22}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 23}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 24}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 0}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 2}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 3}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 4}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 5}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 6}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 7}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 8}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 10}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 11}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}"
+            ]
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_preset_button', execution_times=1)",
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 10
+            },
+            "expected_feedback": "the variable_preset_timer becomes 10.",
+            "reason": "we are incrementing the preset timer step by step until it reaches the target value of 9 hours.",
+            "reached_goal": false
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_preset_button', execution_times=1)",
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 11
+            },
+            "expected_feedback": "the variable_preset_timer becomes 10.",
+            "reason": "we are currently at 9 hours on the preset timer, and the goal is to finish the process in approximately 9 hours. Pressing the preset button once increments the timer to the desired target value.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 13}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 14}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 15}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 16}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 17}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 18}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 19}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 20}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 21}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 22}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 23}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 24}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 0}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 2}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 3}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 4}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 5}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 6}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 7}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 8}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 9}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 10}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 11}",
+                "applied action: press_preset_button, feedback: {'feature': ('preset_time', 1), 'variable_preset': 12}",
+                "executed action: run_action('press_preset_button', execution_times=3), feedback: {'feature': ('preset_time', 1), 'variable_preset': 15}"
+            ]
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_preset_button', execution_times=3)",
+            "grounded_action": "press_preset_button",
+            "current_observation": {
+                "feature": [
+                    "preset_time",
+                    1
+                ],
+                "variable_preset": 15
+            },
+            "expected_feedback": "the variable_preset_timer becomes 9.",
+            "reason": "The target timer value is 9, and the current value is 12. Pressing the preset button 3 times reduces it to 9, given the observed cycle in the past executed actions.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 10,
+            "error_message": "we fail to adjust variable_preset_timer to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is off (type: <class 'str'>), but the ground truth is on (type: <class 'str'>)",
+    "step_size": 160
+}

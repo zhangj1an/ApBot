@@ -1,0 +1,254 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the microwave and heat up a bowl of soup with the upper element temperature set to 350\u00b0F, the function set to Bake, the lower element temperature set to 450\u00b0F, and the timer set to 30 minutes.",
+    "ground_truth_goal_state": {
+        "variable_upper_element_temperature": "350\u00b0F",
+        "variable_function": "Bake",
+        "variable_lower_element_temperature": "450\u00b0F",
+        "variable_timer": "30"
+    },
+    "executed_goal_state": {
+        "variable_function": "Bake",
+        "variable_lower_element_temperature": "450\u00b0F",
+        "variable_timer": "30",
+        "variable_upper_element_temperature": "350\u00b0F"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_upper_element_temperature_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_upper_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_upper",
+                    1
+                ],
+                "variable_upper_element_temperature": "350\u00b0F"
+            },
+            "expected_feedback": "variable_upper_element_temperature becomes '350'",
+            "reason": "The current upper element temperature needs to be set to 350\u00b0F, and turning the dial clockwise 3 times is expected to reach this value.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Convection'.",
+            "reason": "We are currently adjusting the function dial to set it to 'Bake'. Progressing clockwise brings us closer to the target.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Rotisserie"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Rotisserie'.",
+            "reason": "The current function setting is 'Convection', and the goal is to set it to 'Bake'. By turning the function dial clockwise, we progress towards the target setting.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_function_dial_anticlockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_anticlockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Convection"
+            },
+            "expected_feedback": "variable_function_dial becomes 'Bake'.",
+            "reason": "The function is currently set to 'Rotisserie', and we need to set it to 'Bake'. Turning the dial anticlockwise should achieve this.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Toast/Broil'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection Rotisserie'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Rotisserie'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Convection'}",
+                "applied action: turn_function_dial_anticlockwise, feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Off'}",
+                "executed action: run_action('turn_function_dial_anticlockwise', execution_times=1), feedback: {'feature': ('adjust_function', 1), 'variable_function': 'Bake'}",
+                "executed action: run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': 'Keep Warm'}",
+                "executed action: run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3), feedback: {'feature': ('adjust_lower', 1), 'variable_lower_element_temperature': '450\u00b0F'}",
+                "executed action: run_action('turn_timer_dial_clockwise', execution_times=30), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '20'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '40'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': 'off'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '10'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '20'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('turn_function_dial_anticlockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_anticlockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_function",
+                    1
+                ],
+                "variable_function": "Bake"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Bake'.",
+            "reason": "The goal state requires the function to be set to Bake, and turning the function dial anticlockwise will move closer to this target.",
+            "reached_goal": true
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_lower_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_lower",
+                    1
+                ],
+                "variable_lower_element_temperature": "Keep Warm"
+            },
+            "expected_feedback": "the variable_lower_element_temperature becomes 'Keep Warm'.",
+            "reason": "To set the lower element temperature to 450\u00b0F, I first need to turn the dial clockwise from its initial state.",
+            "reached_goal": false
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('turn_lower_element_temperature_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_lower_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_lower",
+                    1
+                ],
+                "variable_lower_element_temperature": "450\u00b0F"
+            },
+            "expected_feedback": "the variable_lower_element_temperature becomes '450'.",
+            "reason": "we need to set the lower element temperature to 450\u00b0F for this task, and turning the dial clockwise three times should reach it.",
+            "reached_goal": true
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('turn_timer_dial_clockwise', execution_times=30)",
+            "grounded_action": "turn_timer_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": "20"
+            },
+            "expected_feedback": "the variable_timer becomes 30.",
+            "reason": "The timer needs to be set to 30 minutes, so we turn the timer dial clockwise by 30 steps to reach the desired value accurately.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '40'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': 'off'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '10'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '20'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}",
+                "executed action: run_action('turn_timer_dial_clockwise', execution_times=2), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': 'off'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '10'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '20'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '40'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}"
+            ]
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('turn_timer_dial_clockwise', execution_times=2)",
+            "grounded_action": "turn_timer_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": "50"
+            },
+            "expected_feedback": "the variable_timer becomes '30'.",
+            "reason": "Adjusting the timer by turning clockwise twice aligns it with the desired 30-minute setting.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': 'off'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '10'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '20'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '40'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "applied action: turn_timer_dial_clockwise, feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '60'}",
+                "executed action: run_action('turn_timer_dial_anticlockwise', execution_times=1), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '50'}",
+                "executed action: run_action('turn_timer_dial_anticlockwise', execution_times=1), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '40'}",
+                "executed action: run_action('turn_timer_dial_anticlockwise', execution_times=1), feedback: {'feature': ('adjust_timer', 1), 'variable_timer': '30'}"
+            ]
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('turn_timer_dial_anticlockwise', execution_times=1)",
+            "grounded_action": "turn_timer_dial_anticlockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": "50"
+            },
+            "expected_feedback": "the variable_timer becomes '50'.",
+            "reason": "The target value of 30 minutes needs to be achieved by turning the timer dial anticlockwise from the current value, which is 60.",
+            "reached_goal": false
+        },
+        {
+            "index": 11,
+            "proposed_action": "run_action('turn_timer_dial_anticlockwise', execution_times=1)",
+            "grounded_action": "turn_timer_dial_anticlockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": "40"
+            },
+            "expected_feedback": "the variable_timer becomes '40'.",
+            "reason": "We are currently at '50', and need to adjust the timer to '30'. Turning the timer dial anticlockwise will bring it closer to '30'.",
+            "reached_goal": false
+        },
+        {
+            "index": 12,
+            "proposed_action": "run_action('turn_timer_dial_anticlockwise', execution_times=1)",
+            "grounded_action": "turn_timer_dial_anticlockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_timer",
+                    1
+                ],
+                "variable_timer": "30"
+            },
+            "expected_feedback": "the variable_timer becomes '30'.",
+            "reason": "the current value of the timer is '40', and our target is '30', so turning the timer dial anticlockwise once will reduce it to the desired value.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 93
+}

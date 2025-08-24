@@ -1,0 +1,115 @@
+{
+    "command_id": 5,
+    "command_string": "Switch on the washer and execute a 60-minute auto cycle with storage mode.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_auto_mode_time": 60,
+        "variable_storage_mode": "on"
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "60",
+        "variable_drying_only_time": "0",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_on_off_button', execution_times = 1)",
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "we need to turn on the appliance first to proceed with the settings.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_auto_mode_button', execution_times=1)",
+            "grounded_action": "press_auto_mode_button",
+            "current_observation": {
+                "feature": [
+                    "auto_mode",
+                    1
+                ],
+                "variable_auto_mode_time": "35"
+            },
+            "expected_feedback": "the variable_auto_mode_duration becomes '60 minutes'.",
+            "reason": "Pressing the auto mode button once sets the duration to 60 minutes, as required to achieve the goal.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '60'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '0'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '35'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '60'}",
+                "executed action: run_action('press_auto_mode_button', execution_times=1), feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '0'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '35'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '60'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '0'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '35'}"
+            ]
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_auto_mode_button', execution_times=1)",
+            "grounded_action": "press_auto_mode_button",
+            "current_observation": {
+                "feature": [
+                    "auto_mode",
+                    1
+                ],
+                "variable_auto_mode_time": "0"
+            },
+            "expected_feedback": "the variable_auto_mode_duration becomes '60 minutes'.",
+            "reason": "The current value of variable_auto_mode_duration is not '60 minutes', and pressing the auto mode button will allow us to cycle through and reach the desired value.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '35'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '60'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '0'}",
+                "applied action: press_auto_mode_button, feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '35'}",
+                "executed action: run_action('press_auto_mode_button', execution_times = 1), feedback: {'feature': ('auto_mode', 1), 'variable_auto_mode_time': '60'}",
+                "executed action: run_action('press_storage_button', execution_times = 1), feedback: {'feature': ('storage_mode', 1), 'variable_storage_mode': 'on'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_auto_mode_button', execution_times = 1)",
+            "grounded_action": "press_auto_mode_button",
+            "current_observation": {
+                "feature": [
+                    "auto_mode",
+                    1
+                ],
+                "variable_auto_mode_time": "60"
+            },
+            "expected_feedback": "the variable_auto_mode_duration becomes '60 minutes'.",
+            "reason": "The current setting is '35 minutes', and we need to switch to '60 minutes' auto cycle by pressing the auto mode button.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_storage_button', execution_times = 1)",
+            "grounded_action": "press_storage_button",
+            "current_observation": {
+                "feature": [
+                    "storage_mode",
+                    1
+                ],
+                "variable_storage_mode": "on"
+            },
+            "expected_feedback": "the variable_storage_mode becomes 'on'.",
+            "reason": "pressing the storage button once turns on the storage mode, which is required to achieve the goal.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 20
+}

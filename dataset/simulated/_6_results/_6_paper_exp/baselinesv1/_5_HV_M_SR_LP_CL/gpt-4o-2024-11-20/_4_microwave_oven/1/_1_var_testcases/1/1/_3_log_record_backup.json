@@ -1,0 +1,136 @@
+{
+    "command_id": 1,
+    "command_string": "Use time cooking setting to cook at 90% power for 8 minutes. Then start the appliance.",
+    "ground_truth_goal_state": {
+        "variable_microwave_cooking_time": "00:08:00",
+        "variable_microwave_power_level": "PL9",
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_beverage_setting": "1",
+        "variable_child_lock": "unlocked",
+        "variable_clock": "00:00:00",
+        "variable_dinner_plate_setting": "9.0",
+        "variable_frozen_vegetable_setting": "4.0",
+        "variable_kitchen_timer": "00:00:00",
+        "variable_microwave_cooking_time": "00:08:00",
+        "variable_microwave_power_level": "PL9",
+        "variable_pizza_setting": "4.0",
+        "variable_popcorn_setting": "1.75",
+        "variable_potato_setting": "1",
+        "variable_start_running": "on",
+        "variable_time_defrost": "00:00:00",
+        "variable_weight_defrost": 0
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_time_cook_button",
+                1
+            ],
+            "grounded_action": "press_time_cook_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    1
+                ],
+                "variable_microwave_cooking_time": "00:00:00"
+            }
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_number_8_button', execution_times = 1)",
+            "grounded_action": "press_number_8_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:00:08"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:08:00'.",
+            "reason": "we need to press number pads to set the cooking time, starting with '8' for 8 minutes.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_number_0_button', execution_times = 1)",
+            "grounded_action": "press_number_0_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:00:80"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:08:00'.",
+            "reason": "Appending '0' to match the desired time of 8 minutes in the desired format.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_number_0_button', execution_times = 1)",
+            "grounded_action": "press_number_0_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    2
+                ],
+                "variable_microwave_cooking_time": "00:08:00"
+            },
+            "expected_feedback": "the variable_time_cook_time becomes '00:08:00'.",
+            "reason": "The current time set is '00:00:80', which is incorrectly formatted. Pressing '0' button will correct the format to '00:08:00', matching the desired cooking time.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_power_button",
+                1
+            ],
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    3
+                ],
+                "variable_microwave_cooking_time": "00:08:00",
+                "variable_microwave_power_level": "PL10"
+            }
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_number_9_button', execution_times = 1)",
+            "grounded_action": "press_number_9_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    4
+                ],
+                "variable_microwave_power_level": "PL9"
+            },
+            "expected_feedback": "the variable_power becomes 'PL9'.",
+            "reason": "we need to set the power level to 90%, represented by 'PL9'.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 7,
+            "proposed_action": [
+                "press_start_plus_30sec_button",
+                1
+            ],
+            "grounded_action": "press_start_plus_30sec_button",
+            "current_observation": {
+                "feature": [
+                    "microwave_cook",
+                    5
+                ],
+                "variable_microwave_power_level": "PL9"
+            },
+            "error_message": "proposed action can not be grounded, has visual grounding faults."
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct"
+}

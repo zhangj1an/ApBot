@@ -1,0 +1,8 @@
+feature_sequence = ["power_control", "adjust_fan_speed_mode"]
+feature_choice_reason = "Firstly, the power_control feature is required to turn on the appliance. Then, the adjust_fan_speed_mode feature is used to set the fan speed to Level 3 for strong airflow."
+changing_variables = ["variable_power_on_off", "variable_fan_speed_mode"]
+goal_state = ExtendedSimulator()
+# "power_control", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "adjust_fan_speed_mode", step 1, variable_fan_speed_mode
+goal_state.variable_fan_speed_mode.set_current_value("3")

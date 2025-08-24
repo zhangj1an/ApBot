@@ -1,0 +1,49 @@
+{
+    "command_id": 8,
+    "command_string": "Power on the dehumidifier and set to 'turbo' fan speed for fast moisture removal in the basement.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_fan_speed": "turbo"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed": "turbo",
+        "variable_microbe_shield_night_mode": "off",
+        "variable_power_on_off": "on",
+        "variable_timer": "0"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "power_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "the appliance needs to be powered on before further adjustments can be made.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_fan_speed_button', execution_times=3)",
+            "grounded_action": "press_fan_speed_button",
+            "current_observation": {
+                "feature": [
+                    "fan_speed",
+                    1
+                ],
+                "variable_fan_speed": "turbo"
+            },
+            "expected_feedback": "the variable_fan_speed becomes 'turbo'.",
+            "reason": "We are currently using the feature to adjust fan speed and need to select 'turbo' from the available options, which requires cycling through the fan speeds three times.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 4
+}

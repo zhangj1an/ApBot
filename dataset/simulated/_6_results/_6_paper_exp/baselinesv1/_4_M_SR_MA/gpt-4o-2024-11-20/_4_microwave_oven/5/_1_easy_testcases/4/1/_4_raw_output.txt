@@ -1,0 +1,523 @@
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_0_reasoning/_4_proposed_world_model.py. Skipping...
+processing:  _4_microwave_oven 5 var 2
+processing:  _4_microwave_oven 5 2
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/2/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/2/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["general_cooking"]
+feature_choice_reason = "The 'general_cooking' feature allows setting all the required variables: temperature, function dial, selector dial, and timer."
+changing_variables = ["variable_temperature_dial", "variable_function_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "general_cooking", step 1, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("100°C")
+# "general_cooking", step 2, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Convection")
+# "general_cooking", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Bottom Heating")
+# "general_cooking", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("40 minutes")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: Off
+variable_timer_dial: Off
+
+current_state_simulator when it is just created: 
+
+ variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: Off
+variable_timer_dial: Off
+
+goal state:  variable_function_dial: Convection
+variable_selector_dial: Bottom Heating
+variable_temperature_dial: 100°C
+variable_timer_dial: 40 minutes
+current feature:  general_cooking
+step_info:  {'step': 1, 'actions': ['turn_temperature_dial_clockwise'], 'variable': 'variable_temperature_dial'}
+executing action: ('turn_temperature_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+variable_name: variable_temperature_dial
+actions: ['turn_temperature_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '100°C'}"]
+check state....
+Feedback Variable: 
+
+ variable_temperature_dial: 100°c 
+
+
+Comparison result: 
+
+ Let's analyze the feedback and goal requirements.
+
+**Goal:**  
+variable_temperature_dial = "100°C"
+
+**Feedback:**  
+variable_temperature_dial: "100°c"
+
+---
+
+### Step-by-step Comparison Based on Rules:
+
+1. **Variable Name Match:**  
+   - The variable names are identical: `variable_temperature_dial`.  
+   - Proceed to compare the values.
+
+2. **Value Capitalization/Formatting:**  
+   - The goal state's value is "100°C".  
+   - The feedback value is "100°c".  
+   - They differ only in capitalization ("C" vs. "c").  
+   - Per Rule 2, values that differ only by capitalization or formatting (but semantically are the same) are considered equivalent.  
+
+---
+
+### Conclusion:  
+
+reason = "The feedback value '100°c' differs from the goal value '100°C' only in capitalization, which is not semantically significant. Therefore, they match as per Rule 2."  
+goal_reached = True 
+
+
+Execution failed on attempt 1: EOL while scanning string literal (<string>, line 1)
+Comparison result: 
+
+ reason = "The feedback value '100°c' and the target goal value '100°C' only differ in capitalization. Both represent the same value according to Rule 2, as the difference is only in textual formatting."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 2, 'actions': ['turn_function_dial_clockwise'], 'variable': 'variable_function_dial'}
+executing action: ('turn_function_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Off
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Off
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+variable_name: variable_function_dial
+actions: ['turn_function_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '100°C'}", "applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('function', 1), 'variable_function_dial': 'Convection'}"]
+check state....
+Feedback Variable: 
+
+ variable_function_dial: convection 
+
+
+Comparison result: 
+
+ Given the context and rules:
+
+- **Goal:** variable_function_dial = "Convection"
+- **Feedback:** variable_function_dial = "convection"  
+
+We compare the values according to the rules:
+
+1. Both the goal and feedback have the same variable name (`variable_function_dial`), so we only need to compare the values.
+2. The goal value is "Convection" and the feedback value is "convection."
+3. Rule 2 states that if the values differ only in capitalization, they should be considered semantically the same. "Convection" and "convection" only differ by capitalization.
+
+Thus:
+
+reason = "The values 'Convection' and 'convection' only differ in capitalization, which makes them semantically equivalent based on Rule 2."
+goal_reached = True  
+
+
+Execution failed on attempt 1: invalid syntax (<string>, line 1)
+Comparison result: 
+
+ reason = "The goal value is 'Convection,' and the feedback shows 'convection.' Both values are identical except for capitalization, which should be considered semantically the same according to Rule 2."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 3, 'actions': ['turn_selector_dial_clockwise'], 'variable': 'variable_selector_dial'}
+executing action: ('turn_selector_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Bottom Heating
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Top Heating
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+variable_name: variable_selector_dial
+actions: ['turn_selector_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_selector_dial_clockwise', 1)]
+feedbacks:  ["applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('function', 1), 'variable_function_dial': 'Convection'}", "applied action: ('turn_selector_dial_clockwise', 1), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}", "applied action: ('turn_selector_dial_clockwise', 1), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}"]
+check state....
+Feedback Variable: 
+
+ variable_selector_dial: bottom heating 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_selector_dial' to have the value 'Bottom Heating', while the feedback shows 'variable_selector_dial' with the value 'bottom heating'. The two values differ only in capitalization, which does not affect their semantic meaning. Thus, they are considered equal based on the comparison rules (Rule 2)."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 4, 'actions': ['turn_timer_dial_clockwise'], 'variable': 'variable_timer_dial'}
+executing action: ('turn_timer_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Bottom Heating
+variable_temperature_dial: 100°C
+variable_timer_dial: 40 minutes
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Bottom Heating
+variable_temperature_dial: 100°C
+variable_timer_dial: 10 minutes
+variable_name: variable_timer_dial
+actions: ['turn_timer_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_timer_dial_clockwise', 3)]
+feedbacks:  ["applied action: ('turn_selector_dial_clockwise', 1), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Bottom Heating'}", "applied action: ('turn_timer_dial_clockwise', 1), feedback: {'feature': ('timer', 1), 'variable_timer_dial': '10'}", "applied action: ('turn_timer_dial_clockwise', 3), feedback: {'feature': ('timer', 1), 'variable_timer_dial': '40'}"]
+check state....
+Feedback Variable: 
+
+ {'variable_timer_dial': '40'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_timer_dial' to be set at '40 minutes', while the feedback shows '40'. Both values represent the same numerical quantity of time when stripped of the text, and the comparison only involves the numerical portion. Therefore, they match semantically."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 2, 'command': "Turn on the microwave oven to keep dinner warm. Set the temperature to 100°C, function dial to 'Convection', selector dial to 'Bottom Heating', and timer to '40'.", 'target_state': {'variable_function_dial': 'Convection', 'variable_temperature_dial': '100°C', 'variable_selector_dial': 'Bottom Heating', 'variable_timer_dial': '40'}, 'important_target_states': {'variable_function_dial': 'Convection', 'variable_temperature_dial': '100°C', 'variable_selector_dial': 'Bottom Heating', 'variable_timer_dial': '40'}}
+robot's decision {'variable_function_dial': 'Convection', 'variable_selector_dial': 'Bottom Heating', 'variable_temperature_dial': '100°C', 'variable_timer_dial': '40'}
+processing:  _4_microwave_oven 5 var 3
+processing:  _4_microwave_oven 5 3
+trial:  1
+attempt:  0
+Error occurred during execution: The appliance does not have any number pads, so the simulator should not have methods like 'press_number_button', 'get_original_input', 'process_input_string', or variables like 'meta_actions_dict' and 'variable_input_string'. Please remove these methods and variables from the generated code.
+The appliance does not have any number pads, so the simulator should not have methods like 'press_number_button', 'get_original_input', 'process_input_string', or variables like 'meta_actions_dict' and 'variable_input_string'. Please remove these methods and variables from the generated code.
+attempt:  1
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/3/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/3/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes") 
+Error: The following variables are missing from the changing_variables list and should be added in: ['variable_timer_dial_extended']
+
+finishing one round of test...
+attempt:  1
+generated goal state code:  feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial_extended"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial_extended
+goal_state.variable_timer_dial = variable_timer_dial_extended
+goal_state.variable_timer_dial.set_current_value("60 minutes")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial_extended"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial_extended
+goal_state.variable_timer_dial = variable_timer_dial_extended
+goal_state.variable_timer_dial.set_current_value("60 minutes") 
+The following variables are not included in the goal specification: ['variable_timer_dial_extended']
+finishing one round of test...
+attempt:  2
+generated goal state code:  feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes") 
+Error: The following variables are missing from the changing_variables list and should be added in: ['variable_timer_dial_extended']
+
+finishing one round of test...
+attempt:  3
+generated goal state code:  feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial", "variable_timer_dial_extended"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial = variable_timer_dial_extended
+goal_state.variable_timer_dial.set_current_value("60 minutes")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial", "variable_timer_dial_extended"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial = variable_timer_dial_extended
+goal_state.variable_timer_dial.set_current_value("60 minutes") 
+The following variables are not included in the goal specification: ['variable_timer_dial_extended']
+finishing one round of test...
+attempt:  4
+generated goal state code:  feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes")
+formatting done
+ValueError: Your previously generated code was: 
+ feature_sequence = ["rotisserie_use"]
+feature_choice_reason = "The 'rotisserie_use' feature is sufficient to set all required variables: function dial, temperature dial, selector dial, and timer dial for roasting a chicken."
+changing_variables = ["variable_function_dial", "variable_temperature_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "rotisserie_use", step 1, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Rotisserie")
+# "rotisserie_use", step 2, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("250°C")
+# "rotisserie_use", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top Heating")
+# "rotisserie_use", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("60 minutes") 
+Error: The following variables are missing from the changing_variables list and should be added in: ['variable_timer_dial_extended']
+
+finishing one round of test...
+processing:  _4_microwave_oven 5 var 4
+processing:  _4_microwave_oven 5 4
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/4/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_4_microwave_oven/5/_1_easy_testcases/4/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["general_cooking"]
+feature_choice_reason = "The feature 'general_cooking' includes all the necessary variables to set the temperature, function dial, selector dial, and timer for the quick pizza reheating task."
+changing_variables = ["variable_temperature_dial", "variable_function_dial", "variable_selector_dial", "variable_timer_dial"]
+goal_state = ExtendedSimulator()
+# "general_cooking", step 1, variable_temperature_dial
+goal_state.variable_temperature_dial.set_current_value("150°C")
+# "general_cooking", step 2, variable_function_dial
+goal_state.variable_function_dial.set_current_value("Convection")
+# "general_cooking", step 3, variable_selector_dial
+goal_state.variable_selector_dial.set_current_value("Top & Bottom Heating")
+# "general_cooking", step 4, variable_timer_dial
+goal_state.variable_timer_dial.set_current_value("10 minutes")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: Off
+variable_timer_dial: Off
+
+current_state_simulator when it is just created: 
+
+ variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: Off
+variable_timer_dial: Off
+
+goal state:  variable_function_dial: Convection
+variable_selector_dial: Top & Bottom Heating
+variable_temperature_dial: 150°C
+variable_timer_dial: 10 minutes
+current feature:  general_cooking
+step_info:  {'step': 1, 'actions': ['turn_temperature_dial_clockwise'], 'variable': 'variable_temperature_dial'}
+executing action: ('turn_temperature_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: 150°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Off
+variable_selector_dial: Off
+variable_temperature_dial: 100°C
+variable_timer_dial: Off
+variable_name: variable_temperature_dial
+actions: ['turn_temperature_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_temperature_dial_clockwise', 1)]
+feedbacks:  ["applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '100°C'}", "applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '150°C'}"]
+check state....
+Feedback Variable: 
+
+ variable_temperature_dial: 150°c 
+
+
+Comparison result: 
+
+ reason = "Both values, '150°C' from the goal state and '150°c' from the feedback, represent the same temperature. The only difference here is in capitalization, which is semantically the same as per the comparison rules."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 2, 'actions': ['turn_function_dial_clockwise'], 'variable': 'variable_function_dial'}
+executing action: ('turn_function_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Off
+variable_temperature_dial: 150°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Off
+variable_temperature_dial: 150°C
+variable_timer_dial: Off
+variable_name: variable_function_dial
+actions: ['turn_function_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '100°C'}", "applied action: ('turn_temperature_dial_clockwise', 1), feedback: {'feature': ('temp', 1), 'variable_temperature_dial': '150°C'}", "applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('function', 1), 'variable_function_dial': 'Convection'}"]
+check state....
+Feedback Variable: 
+
+ variable_function_dial: convection 
+
+
+Comparison result: 
+
+ reason = "The feedback value 'convection' matches the goal state value 'Convection' when considering rule 2, which states that capitalization differences should be ignored. Both values refer to the same cooking mode."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 3, 'actions': ['turn_selector_dial_clockwise'], 'variable': 'variable_selector_dial'}
+executing action: ('turn_selector_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Top & Bottom Heating
+variable_temperature_dial: 150°C
+variable_timer_dial: Off
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Top Heating
+variable_temperature_dial: 150°C
+variable_timer_dial: Off
+variable_name: variable_selector_dial
+actions: ['turn_selector_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('turn_selector_dial_clockwise', 2)]
+feedbacks:  ["applied action: ('turn_function_dial_clockwise', 1), feedback: {'feature': ('function', 1), 'variable_function_dial': 'Convection'}", "applied action: ('turn_selector_dial_clockwise', 1), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}", "applied action: ('turn_selector_dial_clockwise', 2), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top & Bottom Heating'}"]
+check state....
+Feedback Variable: 
+
+ variable_selector_dial: top & bottom heating 
+
+
+Comparison result: 
+
+ reason = "The feedback for the variable 'variable_selector_dial' is 'top & bottom heating', which is semantically equivalent to the goal value 'Top & Bottom Heating' based on Rule 2 regarding capitalization or textual formatting differences."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 4, 'actions': ['turn_timer_dial_clockwise'], 'variable': 'variable_timer_dial'}
+executing action: ('turn_timer_dial_clockwise', 1)
+goal_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Top & Bottom Heating
+variable_temperature_dial: 150°C
+variable_timer_dial: 10 minutes
+current_state_simulator: variable_function_dial: Convection
+variable_selector_dial: Top & Bottom Heating
+variable_temperature_dial: 150°C
+variable_timer_dial: 10 minutes
+variable_name: variable_timer_dial
+actions: ['turn_timer_dial_clockwise']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('turn_selector_dial_clockwise', 1), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top Heating'}", "applied action: ('turn_selector_dial_clockwise', 2), feedback: {'feature': ('selector', 1), 'variable_selector_dial': 'Top & Bottom Heating'}", "applied action: ('turn_timer_dial_clockwise', 1), feedback: {'feature': ('timer', 1), 'variable_timer_dial': '10'}"]
+check state....
+Feedback Variable: 
+
+ variable_timer_dial: 10 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_timer_dial to be '10 minutes', and the feedback given is '10'. According to rule 3, when comparing time values, we should remove any textual data and compare the numerical values. In this case, both values represent the same number, '10'."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 4, 'command': "Turn on the microwave oven for a quick pizza reheating. Set the temperature to 150°C, function dial to 'Convection', selector dial to 'Top & Bottom Heating', and timer to '10'.", 'target_state': {'variable_function_dial': 'Convection', 'variable_temperature_dial': '150°C', 'variable_selector_dial': 'Top & Bottom Heating', 'variable_timer_dial': '10'}, 'important_target_states': {'variable_function_dial': 'Convection', 'variable_temperature_dial': '150°C', 'variable_selector_dial': 'Top & Bottom Heating', 'variable_timer_dial': '10'}}
+robot's decision {'variable_function_dial': 'Convection', 'variable_selector_dial': 'Top & Bottom Heating', 'variable_temperature_dial': '150°C', 'variable_timer_dial': '10'}

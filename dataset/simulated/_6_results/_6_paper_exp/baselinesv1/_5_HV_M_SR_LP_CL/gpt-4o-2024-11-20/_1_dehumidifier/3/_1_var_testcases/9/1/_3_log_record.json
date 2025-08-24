@@ -1,0 +1,50 @@
+{
+    "command_id": 9,
+    "command_string": "Begin the operation of the dehumidifier and set the fan speed to Level 3 for strong airflow.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_fan_speed_mode": "3"
+    },
+    "executed_goal_state": {
+        "variable_fan_speed_mode": "3",
+        "variable_ionizer": "off",
+        "variable_power_on_off": "on",
+        "variable_timer": "0",
+        "variable_uv_light": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance needs to be powered on before adjusting other settings.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_speed_mode_button', execution_times = 2)",
+            "grounded_action": "press_speed_mode_button",
+            "current_observation": {
+                "feature": [
+                    "fan_speed_mode",
+                    1
+                ],
+                "variable_fan_speed_mode": "3"
+            },
+            "expected_feedback": "the variable_fan_speed_mode becomes '3'.",
+            "reason": "The fan speed is currently at Level 1. We need to cycle through the fan speed options (2 and then 3) to set it to Level 3 as per the goal.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 3
+}

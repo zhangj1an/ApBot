@@ -1,0 +1,50 @@
+{
+    "command_id": 3,
+    "command_string": "Power up the washer and dry the bottles for 40 minutes.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_drying_only_time": 40
+    },
+    "executed_goal_state": {
+        "variable_auto_mode_time": "0",
+        "variable_drying_only_time": "40",
+        "variable_power_on_off": "on",
+        "variable_sterilise_only_time": "0",
+        "variable_storage_mode": "off"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_on_off_button', execution_times=1)",
+            "grounded_action": "press_power_on_off_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The appliance is currently off, so we need to power it on to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_drying_only_button', execution_times=2)",
+            "grounded_action": "press_drying_only_button",
+            "current_observation": {
+                "feature": [
+                    "drying_only",
+                    1
+                ],
+                "variable_drying_only_time": "40"
+            },
+            "expected_feedback": "the variable_drying_only_duration becomes '40 minutes'.",
+            "reason": "40 minutes drying requires pressing the drying only button twice according to the user manual.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 3
+}

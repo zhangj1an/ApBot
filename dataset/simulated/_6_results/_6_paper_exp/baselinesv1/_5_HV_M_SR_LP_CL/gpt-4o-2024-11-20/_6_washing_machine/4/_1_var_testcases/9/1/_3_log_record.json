@@ -1,0 +1,238 @@
+{
+    "command_id": 9,
+    "command_string": "Turn on the washing machine. Activate Powerful mode, using the rinse setting of 'Water-Injection Rinse 2 times' and spin for 6 minutes with a water level of 59 L, then start the machine running.",
+    "ground_truth_goal_state": {
+        "variable_spin_time": 6,
+        "variable_rinse_type": "Water-Injection Rinse 2 times",
+        "variable_water_level": "59 L",
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_program": "P2. Powerful"
+    },
+    "executed_goal_state": {
+        "variable_delay_time": 0,
+        "variable_power_on_off": "on",
+        "variable_program": "P2. Powerful",
+        "variable_rinse_type": "Water-Injection Rinse 2 times",
+        "variable_spin_time": 6,
+        "variable_start_running": "on",
+        "variable_wash_time": 0,
+        "variable_water_level": "59 L"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The washing machine is currently off, and the first step is to turn it on to begin the task.",
+            "reached_goal": false
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_power_button', execution_times=0)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "",
+            "reason": "The power is already on, so there is no need to press the power button again.",
+            "reached_goal": false
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_power_button', execution_times=0)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off remains 'on'.",
+            "reason": "The power is already turned on based on the feedback. No action needed for this step.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_program_button', execution_times=1)",
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_program",
+                    1
+                ],
+                "variable_program": "P2. Powerful"
+            },
+            "expected_feedback": "the variable_program becomes 'P2 (Powerful)'.",
+            "reason": "We need to activate the Powerful mode, so we press the program button to cycle to 'P2 (Powerful)'.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_rinse_button', execution_times=1)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Normal Rinse 1 time"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'Water-Injection Rinse 2 times'.",
+            "reason": "the rinse type needs to be adjusted to 'Water-Injection Rinse 2 times' as part of the goal.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'no rinsing'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 1 time'}",
+                "applied action: press_rinse_button, feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 1 time'}",
+                "executed action: run_action('press_rinse_button', execution_times=1), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Normal Rinse 2 times'}",
+                "executed action: run_action('press_rinse_button', execution_times=1), feedback: {'feature': ('set_rinse_type', 1), 'variable_rinse_type': 'Water-Injection Rinse 2 times'}",
+                "executed action: run_action('press_spin_button', execution_times=6), feedback: {'feature': ('set_spin_time', 1), 'variable_spin_time': 6}",
+                "executed action: run_action('press_water_level_button', execution_times=34), feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '30 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '25 L (Auto)'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '59 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '50 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '40 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '30 L'}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_rinse_button', execution_times=1)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Normal Rinse 2 times"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'Normal Rinse 2 times'.",
+            "reason": "We are adjusting the rinse type to the target value 'Water-Injection Rinse 2 times', and the next state in the sequence is 'Normal Rinse 2 times'.",
+            "reached_goal": false
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_rinse_button', execution_times=1)",
+            "grounded_action": "press_rinse_button",
+            "current_observation": {
+                "feature": [
+                    "set_rinse_type",
+                    1
+                ],
+                "variable_rinse_type": "Water-Injection Rinse 2 times"
+            },
+            "expected_feedback": "the variable_rinse_type becomes 'Water-Injection Rinse 2 times'.",
+            "reason": "The target rinse type 'Water-Injection Rinse 2 times' is one step away if we press the rinse button once from the current value 'Normal Rinse 2 times'.",
+            "reached_goal": true
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_spin_button', execution_times=6)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_time",
+                    1
+                ],
+                "variable_spin_time": 6
+            },
+            "expected_feedback": "the variable_spin_time becomes 6.",
+            "reason": "We need to set the spin time to 6 minutes, and each press of the spin button increases the time by 1 minute. Thus, pressing it 6 times should achieve the target value of 6 minutes.",
+            "reached_goal": true
+        },
+        {
+            "index": 9,
+            "proposed_action": "run_action('press_water_level_button', execution_times=34)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "set_water_level",
+                    1
+                ],
+                "variable_water_level": "35 L"
+            },
+            "expected_feedback": "the variable_water_level becomes 59.",
+            "reason": "We need to adjust the water level to 59 L by pressing the water level button multiple times.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '30 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '25 L (Auto)'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '59 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '50 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '40 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '35 L'}",
+                "applied action: press_water_level_button, feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '30 L'}",
+                "executed action: run_action('press_water_level_button', execution_times=1), feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '25 L (Auto)'}",
+                "executed action: run_action('press_water_level_button', execution_times=1), feedback: {'feature': ('set_water_level', 1), 'variable_water_level': '59 L'}",
+                "executed action: run_action('press_start_pause_button', execution_times=1), feedback: {'feature': ('start_pause', 1), 'variable_start_running': 'on'}"
+            ]
+        },
+        {
+            "index": 10,
+            "proposed_action": "run_action('press_water_level_button', execution_times=1)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "set_water_level",
+                    1
+                ],
+                "variable_water_level": "25 L (Auto)"
+            },
+            "expected_feedback": "the variable_water_level becomes '25 L (Auto)'.",
+            "reason": "The water level needs to cycle through to reach 59 L, as it is currently set to 30 L. Pressing the button will adjust it to the next setting.",
+            "reached_goal": false
+        },
+        {
+            "index": 11,
+            "proposed_action": "run_action('press_water_level_button', execution_times=1)",
+            "grounded_action": "press_water_level_button",
+            "current_observation": {
+                "feature": [
+                    "set_water_level",
+                    1
+                ],
+                "variable_water_level": "59 L"
+            },
+            "expected_feedback": "the variable_water_level becomes '59 L'.",
+            "reason": "The current water level is '30 L', and pressing the water level button cycles through the values. The target value is '59 L'.",
+            "reached_goal": true
+        },
+        {
+            "index": 12,
+            "proposed_action": "run_action('press_start_pause_button', execution_times=1)",
+            "grounded_action": "press_start_pause_button",
+            "current_observation": {
+                "feature": [
+                    "start_pause",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'start'.",
+            "reason": "The machine needs to start running as the previous settings are already configured.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 75
+}

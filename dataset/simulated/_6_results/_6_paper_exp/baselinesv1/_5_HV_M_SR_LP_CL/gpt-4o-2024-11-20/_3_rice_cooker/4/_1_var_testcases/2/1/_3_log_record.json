@@ -1,0 +1,66 @@
+{
+    "command_id": 2,
+    "command_string": "Choose 'BROWN' rice mode with a reservation timer set for 5 hours, then start the machine.",
+    "ground_truth_goal_state": {
+        "variable_menu_index": "BROWN",
+        "variable_delay_timer": 5,
+        "variable_start_running": "on"
+    },
+    "executed_goal_state": {
+        "variable_delay_timer": 5,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "BROWN",
+        "variable_quick_rice": "off",
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu_selection",
+                    1
+                ],
+                "variable_menu_index": "BROWN"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'brown'.",
+            "reason": "we are cycling through the menu to reach 'brown' mode.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_delay_button', execution_times=5)",
+            "grounded_action": "press_delay_button",
+            "current_observation": {
+                "feature": [
+                    "delay_timer",
+                    1
+                ],
+                "variable_delay_timer": 5
+            },
+            "expected_feedback": "the variable_delay_time becomes 5.",
+            "reason": "we need to set the reservation timer to 5 hours, and each press of the delay button increases the timer by 1 hour.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start_running",
+                    1
+                ],
+                "variable_start_running": "on"
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "the previous settings for 'BROWN' rice mode and reservation timer have been done, so now we're starting the cooking process.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 7
+}

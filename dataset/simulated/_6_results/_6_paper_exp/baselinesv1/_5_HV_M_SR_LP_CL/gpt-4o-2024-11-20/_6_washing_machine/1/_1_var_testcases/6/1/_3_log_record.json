@@ -1,0 +1,203 @@
+{
+    "command_id": 6,
+    "command_string": "Power on and remove stains from durable clothes, using Stain Away cycle, 60 \u00b0C temperature, 1400 rpm spin speed, Soak + Rinse+ option, set delay to 5 hours, and start the machine.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_cycle_selector": "Stain Away",
+        "variable_temperature": "60 \u00b0C",
+        "variable_spin_speed": "1400",
+        "variable_option": "Soak + Rinse+",
+        "variable_delay_end": "5"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "off",
+        "variable_cycle_selector": "Stain Away",
+        "variable_delay_end": 0,
+        "variable_option": "off",
+        "variable_power_on_off": "on",
+        "variable_spin_speed": "Rinse Hold",
+        "variable_start_running": "off",
+        "variable_temperature": "60 \u00b0C"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "the variable_power_on_off becomes 'on'.",
+            "reason": "The machine needs to be powered on as the first step.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_cycle_selector_dial_clockwise', execution_times=5)",
+            "grounded_action": "turn_cycle_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "set_cycle",
+                    1
+                ],
+                "variable_cycle_selector": "Stain Away"
+            },
+            "expected_feedback": "the variable_cycle_selector becomes 'Stain Away'.",
+            "reason": "We are using the cycle selector, and need to set it to 'Stain Away'. Since starting from 'Cotton', it requires 5 clockwise turns to reach 'Stain Away'.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_temp_button', execution_times = 3)",
+            "grounded_action": "press_temp_button",
+            "current_observation": {
+                "feature": [
+                    "set_temperature",
+                    1
+                ],
+                "variable_temperature": "30 \u00b0C"
+            },
+            "expected_feedback": "the variable_temperature becomes '60\u00b0C'.",
+            "reason": "We are currently using the feature 'adjust_temperature' to adjust the water temperature to the target value of '60\u00b0C'. Each press of the temp button cycles to the next option, so we need to press it 3 times to achieve '60\u00b0C'.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '40 \u00b0C'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '60 \u00b0C'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '95 \u00b0C'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '0'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': 'Cold water \ud83c\udf21\ufe0f'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '20 \u00b0C'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '30 \u00b0C'}",
+                "applied action: press_temp_button, feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '40 \u00b0C'}",
+                "executed action: run_action('press_temp_button', execution_times = 1), feedback: {'feature': ('set_temperature', 1), 'variable_temperature': '60 \u00b0C'}",
+                "executed action: run_action('press_spin_button', execution_times=3), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '0'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '\ud83d\udeab'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}"
+            ]
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_temp_button', execution_times = 1)",
+            "grounded_action": "press_temp_button",
+            "current_observation": {
+                "feature": [
+                    "set_temperature",
+                    1
+                ],
+                "variable_temperature": "60 \u00b0C"
+            },
+            "expected_feedback": "the variable_temperature becomes '60\u00b0C'.",
+            "reason": "currently the variable_temperature is set to '40 \u00b0C', and we need to adjust it to '60\u00b0C' by cycling through the temperature options.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_spin_button', execution_times=3)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_speed",
+                    1
+                ],
+                "variable_spin_speed": "400"
+            },
+            "expected_feedback": "the variable_spin_speed becomes '1400'.",
+            "reason": "the target variable value for spin speed is '1400 rpm', so we need to cycle through the spin speed options by pressing the 'spin button' three times.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '0'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '\ud83d\udeab'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}",
+                "executed action: run_action('press_spin_button', execution_times = 1), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}",
+                "executed action: run_action('press_spin_button', execution_times=2), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '0'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '\ud83d\udeab'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '0'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}"
+            ]
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_spin_button', execution_times = 1)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_speed",
+                    1
+                ],
+                "variable_spin_speed": "1200"
+            },
+            "expected_feedback": "the variable_spin_speed becomes '1200'.",
+            "reason": "to progress towards setting the spin speed to 1400 rpm, we need to move to the next value in the sequence.",
+            "reached_goal": false
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_spin_button', execution_times=2)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_speed",
+                    1
+                ],
+                "variable_spin_speed": "0"
+            },
+            "expected_feedback": "the variable_spin_speed becomes '1400'.",
+            "reason": "the spin speed target value is 1400 rpm, and the current value is 1200 rpm. Pressing the spin button twice will cycle through to 1400 rpm.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '\ud83d\udeab'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '800'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1200'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '1400'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': '0'}",
+                "applied action: press_spin_button, feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}",
+                "executed action: run_action('press_spin_button', execution_times=7), feedback: {'feature': ('set_spin_speed', 1), 'variable_spin_speed': 'Rinse Hold'}"
+            ]
+        },
+        {
+            "index": 8,
+            "proposed_action": "run_action('press_spin_button', execution_times=7)",
+            "grounded_action": "press_spin_button",
+            "current_observation": {
+                "feature": [
+                    "set_spin_speed",
+                    1
+                ],
+                "variable_spin_speed": "Rinse Hold"
+            },
+            "expected_feedback": "the variable_spin_speed becomes '1400'.",
+            "reason": "We need to adjust the spin speed to '1400 rpm'. Seven presses of the spin button will cycle through the options to reach the target value.",
+            "reached_goal": false
+        },
+        {
+            "step_index": 8,
+            "error_message": "we fail to adjust variable_spin_speed to its target value within 5 trials."
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is off (type: <class 'str'>), but the ground truth is on (type: <class 'str'>)",
+    "step_size": 69
+}

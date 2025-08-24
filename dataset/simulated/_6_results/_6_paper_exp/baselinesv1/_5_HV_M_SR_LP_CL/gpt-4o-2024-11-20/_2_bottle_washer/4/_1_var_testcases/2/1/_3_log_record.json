@@ -1,0 +1,83 @@
+{
+    "command_id": 2,
+    "command_string": "Power on the bottle warmer and use the slow warm function for an 8 oz glass bottle of room temperature milk. Set the slow warm setting to HI.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_menu_index": "slow",
+        "variable_slow_warm_setting": "HI"
+    },
+    "executed_goal_state": {
+        "variable_defrost_time": 0,
+        "variable_menu_index": "slow",
+        "variable_menu_time": "HI",
+        "variable_power_on_off": "on",
+        "variable_preset_time": "1 hr",
+        "variable_quick_warm_time": 3,
+        "variable_slow_warm_setting": "HI",
+        "variable_steam_time": 12,
+        "variable_sterilize_time": 15
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_power_button', execution_times=1)",
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            },
+            "expected_feedback": "variable_power_on_off becomes 'on'.",
+            "reason": "The appliance is currently turned off, and I need to power it on to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('press_menu_button', execution_times=1)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    1
+                ],
+                "variable_menu_index": "slow",
+                "variable_menu_time": "LO"
+            },
+            "expected_feedback": "the variable_menu_index becomes 'Slow'.",
+            "reason": "We need to change the menu function to 'Slow' to proceed with the task.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_plus_button', execution_times=1)",
+            "grounded_action": "press_plus_button",
+            "current_observation": {
+                "feature": [
+                    "menu",
+                    2
+                ],
+                "variable_menu_time": "HI",
+                "variable_menu_index": "slow"
+            },
+            "expected_feedback": "the variable_menu_setting becomes 'HI'.",
+            "reason": "The current variable_menu_setting is 'LO', and we need to adjust it to 'HI' using the plus button.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "end",
+            "current_observation": "",
+            "expected_feedback": "",
+            "reason": "The goal has been reached as the power is on, the menu index is set to 'Slow', and the slow warm setting is adjusted to 'HI'."
+        },
+        {
+            "step_index": 5,
+            "error_message": "we fail to adjust variable_menu_setting to its target value within 5 trials."
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 5
+}

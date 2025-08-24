@@ -1,0 +1,104 @@
+{
+    "command_id": 4,
+    "command_string": "Turn on the washing machine and set to Soak mode. Set washing time to 18 minutes, with 30 L of water, and spin for 3 minutes only. Set rinse type to 'Normal Rinse 2 times', then start the machine running.",
+    "ground_truth_goal_state": {
+        "variable_spin_time": 3,
+        "variable_rinse_type": "Normal Rinse 2 times",
+        "variable_water_level": "30 L",
+        "variable_program": "P5. Soak",
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_wash_time": 18
+    },
+    "executed_goal_state": {
+        "variable_delay_time": 0,
+        "variable_power_on_off": "on",
+        "variable_program": "P5. Soak",
+        "variable_rinse_type": "no rinsing",
+        "variable_spin_time": 0,
+        "variable_start_running": "off",
+        "variable_wash_time": 8,
+        "variable_water_level": "25 L (Auto)"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_button",
+                1
+            ],
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_program_button",
+                1
+            ],
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_program",
+                    1
+                ],
+                "variable_program": "P2. Powerful"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "press_program_button",
+                3
+            ],
+            "grounded_action": "press_program_button",
+            "current_observation": {
+                "feature": [
+                    "select_program",
+                    1
+                ],
+                "variable_program": "P5. Soak"
+            }
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_wash_button",
+                1
+            ],
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 3
+            }
+        },
+        {
+            "step_index": 5,
+            "proposed_action": [
+                "press_wash_button",
+                5
+            ],
+            "grounded_action": "press_wash_button",
+            "current_observation": {
+                "feature": [
+                    "set_wash_time",
+                    1
+                ],
+                "variable_wash_time": 8
+            },
+            "mismatch": "The goal state requires 'variable_washing_time' to have a value of 18 minutes. The feedback shows 'variable_wash_time' with a value of 8. Both values represent time, so we compare them directly as numbers. Since 8 is not equal to 18, the goal has not been reached yet. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_spin_time, the value decided by the robot is 0 (type: <class 'int'>), but the ground truth is 3 (type: <class 'int'>)",
+    "step_size": 11
+}

@@ -1,0 +1,143 @@
+{
+    "command_id": 6,
+    "command_string": "Steam vegetables using the steam function for 10 minutes, then start.",
+    "ground_truth_goal_state": {
+        "variable_start_running": "on",
+        "variable_menu_index": "Steam",
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 10
+    },
+    "executed_goal_state": {
+        "variable_cooking_time_hour": 0,
+        "variable_cooking_time_minute": 10,
+        "variable_keep_warm_cancel": "off",
+        "variable_menu_index": "Steam",
+        "variable_preset_timer_hour": 0,
+        "variable_preset_timer_minute": 0,
+        "variable_start_running": "on"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('press_menu_button', execution_times=4)",
+            "grounded_action": "press_menu_button",
+            "current_observation": {
+                "feature": [
+                    "cooking",
+                    1
+                ],
+                "variable_menu_index": "Steam"
+            },
+            "expected_feedback": "the variable_cooking_mode becomes 'Steam'.",
+            "reason": "to change the cooking mode to 'Steam', we need to press the 'Menu' button multiple times until it cycles to the desired mode.",
+            "reached_goal": true
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "press_cooking_time_button",
+                1
+            ],
+            "grounded_action": "press_cooking_time_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            }
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('press_hr_button', execution_times=0)",
+            "grounded_action": "press_hr_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    1
+                ],
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_hr remains 0.",
+            "reason": "The target hour value for the cooking time is already set to 0, no further action is needed to adjust this variable.",
+            "reached_goal": true
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('press_min_button', execution_times=10)",
+            "grounded_action": "press_min_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    3
+                ],
+                "variable_cooking_time_minute": 40,
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_min becomes 10.",
+            "reason": "we need to adjust the cooking time to 10 minutes, so we press the 'press_min_button' 10 times.",
+            "reached_goal": false,
+            "calibration_attempt": [
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 0, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 10, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 20, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 30, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 40, 'variable_cooking_time_hour': 0}",
+                "applied action: press_min_button, feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 50, 'variable_cooking_time_hour': 0}",
+                "executed action: run_action('press_min_button', execution_times=1), feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 0, 'variable_cooking_time_hour': 0}",
+                "executed action: run_action('press_min_button', execution_times=1), feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 10, 'variable_cooking_time_hour': 0}",
+                "executed action: run_action('press_start_button', execution_times=1), feedback: {'feature': ('start', 1)}"
+            ]
+        },
+        {
+            "index": 5,
+            "proposed_action": "run_action('press_min_button', execution_times=1)",
+            "grounded_action": "press_min_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    3
+                ],
+                "variable_cooking_time_minute": 0,
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_min becomes 0.",
+            "reason": "Currently, the variable_cooking_time_min is at 50, and the goal is to set it to 10. Pressing the 'press_min_button' will progress the value circularly based on its step value of 10.",
+            "reached_goal": false
+        },
+        {
+            "index": 6,
+            "proposed_action": "run_action('press_min_button', execution_times=1)",
+            "grounded_action": "press_min_button",
+            "current_observation": {
+                "feature": [
+                    "adjust_cooking_time",
+                    3
+                ],
+                "variable_cooking_time_minute": 10,
+                "variable_cooking_time_hour": 0
+            },
+            "expected_feedback": "the variable_cooking_time_min becomes 10.",
+            "reason": "we need to increment the variable_cooking_time_min so that it matches the target value of 10.",
+            "reached_goal": true
+        },
+        {
+            "index": 7,
+            "proposed_action": "run_action('press_start_button', execution_times=1)",
+            "grounded_action": "press_start_button",
+            "current_observation": {
+                "feature": [
+                    "start",
+                    1
+                ]
+            },
+            "expected_feedback": "the variable_start_running becomes 'on'.",
+            "reason": "The feature is 'start_appliance', and we need to press the 'start' button to turn the appliance on and start the operation.",
+            "reached_goal": true
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 28
+}

@@ -1,0 +1,52 @@
+{
+    "command_id": 1,
+    "command_string": "Turn on the microwave and heat up a bowl of soup with the upper element temperature set to 350\u00b0F, the function set to Bake, the lower element temperature set to 450\u00b0F, and the timer set to 30 minutes.",
+    "ground_truth_goal_state": {
+        "variable_upper_element_temperature": "350\u00b0F",
+        "variable_function": "Bake",
+        "variable_lower_element_temperature": "450\u00b0F",
+        "variable_timer": "30"
+    },
+    "executed_goal_state": {
+        "variable_function": "Off",
+        "variable_lower_element_temperature": "off",
+        "variable_timer": "off",
+        "variable_upper_element_temperature": "450\u00b0F"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "turn_upper_element_temperature_dial_clockwise",
+                1
+            ],
+            "grounded_action": "turn_upper_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_upper",
+                    1
+                ],
+                "variable_upper_element_temperature": "Keep Warm"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "turn_upper_element_temperature_dial_clockwise",
+                3
+            ],
+            "grounded_action": "turn_upper_element_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "adjust_upper",
+                    1
+                ],
+                "variable_upper_element_temperature": "450\u00b0F"
+            },
+            "mismatch": "The goal state requires the variable_upper_element_temperature to have a value of '350'. The feedback value is '450\u00b0f'. By rule 3, we remove the text and compare only the numbers. The values '350' and '450' are different, and the feedback does not match the goal state. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_upper_element_temperature, the value decided by the robot is 450\u00b0F (type: <class 'str'>), but the ground truth is 350\u00b0F (type: <class 'str'>)",
+    "step_size": 4
+}

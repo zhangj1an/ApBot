@@ -1,0 +1,228 @@
+defining variables...
+attempt:  0
+Attempt 1 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+syntax error 4: Error: Features 'adjust_cooking_time_hr' and 'adjust_cooking_time_min' have the same step 1 action: press_cooking_time_button. The first possibility is the features you created are parts of features with longer steps. Then you should merge existing features into bigger ones. The second possibility is the first step itself is a seperate feature. Then single out the first step as a feature, the rest steps as another feature. 
+Attempt 2 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+syntax error 4: Error: Features 'adjust_cooking_time_hr' and 'set_preset_time_hr' have the same step 1 action: press_hr_button. The first possibility is the features you created are parts of features with longer steps. Then you should merge existing features into bigger ones. The second possibility is the first step itself is a seperate feature. Then single out the first step as a feature, the rest steps as another feature. 
+Attempt 3 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+passed syntax check 4
+passed syntax check 5
+passed syntax check 6
+passed syntax check 7
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/1/_0_reasoning/_3_proposed_feature_list.py
+
+Attempt to generate world model: 0
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/1/_0_reasoning/_4_proposed_world_model.py
+processing:  _3_rice_cooker 1 var 1
+processing:  _3_rice_cooker 1 1
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_easy_testcases/1/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_3_rice_cooker/1/_1_easy_testcases/1/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["set_cooking_mode", "adjust_cooking_time", "start_appliance"]
+feature_choice_reason = "Feature 'set_cooking_mode' is used to set the cooking mode to 'Bean'. Feature 'adjust_cooking_time' is used to set the cooking time to 40 minutes. Feature 'start_appliance' is used to start the appliance after all configurations are set."
+changing_variables = ["variable_cooking_mode", "variable_cooking_time_hr", "variable_cooking_time_min", "variable_start_running"]
+goal_state = ExtendedSimulator()
+# "set_cooking_mode", step 1, variable_cooking_mode
+goal_state.variable_cooking_mode.set_current_value("Bean")
+# "adjust_cooking_time", step 2, variable_cooking_time_hr
+goal_state.variable_cooking_time_hr.set_current_value(0) # each number represents an hour.
+# "adjust_cooking_time", step 3, variable_cooking_time_min
+goal_state.variable_cooking_time_min.set_current_value(40) # each number represents a minute.
+# "start_appliance", step 1, variable_start_running
+goal_state.variable_start_running.set_current_value("on")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_cooking_time_hour: 0
+variable_cooking_time_minute: 0
+variable_keep_warm_cancel: off
+variable_menu_index: Glutinous rice
+variable_preset_timer_hour: 0
+variable_preset_timer_minute: 0
+variable_start_running: off
+
+current_state_simulator when it is just created: 
+
+ variable_cooking_mode: Glutinous rice
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 0
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+
+goal state:  variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 40
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: on
+current feature:  set_cooking_mode
+step_info:  {'step': 1, 'actions': ['press_menu_button'], 'variable': 'variable_cooking_mode'}
+executing action: ('press_menu_button', 1)
+goal state string:  We want to have the variable: variable_cooking_mode to have a value of Bean. 
+goal_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 0
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+current_state_simulator: variable_cooking_mode: Porridge
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 0
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+variable_name: variable_cooking_mode
+actions: ['press_menu_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_menu_button', 1)]
+feedbacks:  ["applied action: ('press_menu_button', 1), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Porridge'}", "applied action: ('press_menu_button', 1), feedback: {'feature': ('cooking', 1), 'variable_menu_index': 'Bean'}"]
+check state....
+Feedback Variable: 
+
+ variable_menu_index: bean 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_mode' to have a value of 'Bean'. The feedback shows 'variable_menu_index' with a value of 'bean'. Since the variable names represent the same item and the values 'Bean' and 'bean' differ only in capitalization, they are considered semantically the same according to the rules."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_cooking_time
+step_info:  {'step': 1, 'actions': ['press_cooking_time_button']}
+executing action: ('press_cooking_time_button', 1)
+step_info:  {'step': 2, 'actions': ['press_hr_button'], 'variable': 'variable_cooking_time_hr'}
+executing action: ('press_hr_button', 1)
+goal state string:  We want to have the variable: variable_cooking_time_hr to have a value of 0. 
+goal_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 0
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+current_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 1
+variable_cooking_time_min: 0
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+variable_name: variable_cooking_time_hr
+actions: ['press_hr_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_hr_button', 59)]
+feedbacks:  ["applied action: ('press_cooking_time_button', 1), feedback: {'feature': ('adjust_cooking_time', 1), 'variable_cooking_time_hour': 0}", "applied action: ('press_hr_button', 1), feedback: {'feature': ('adjust_cooking_time', 2), 'variable_cooking_time_hour': 1, 'variable_cooking_time_minute': 0}", "applied action: ('press_hr_button', 59), feedback: {'feature': ('adjust_cooking_time', 2), 'variable_cooking_time_hour': 0, 'variable_cooking_time_minute': 0}"]
+check state....
+Feedback Variable: 
+
+ variable_cooking_time_hour: 0 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time_hr' to have a value of 0. The feedback shows 'variable_cooking_time_hour' with a value of 0. Since the variable names are verified to represent the same item and the values are numerically identical, the goal is achieved."
+goal_reached = True 
+
+
+goal state reached: True
+step_info:  {'step': 3, 'actions': ['press_min_button'], 'variable': 'variable_cooking_time_min'}
+executing action: ('press_min_button', 1)
+goal state string:  We want to have the variable: variable_cooking_time_min to have a value of 40. 
+goal_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 40
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+current_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 1
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: off
+variable_name: variable_cooking_time_min
+actions: ['press_min_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_min_button', 39)]
+feedbacks:  ["applied action: ('press_hr_button', 59), feedback: {'feature': ('adjust_cooking_time', 2), 'variable_cooking_time_hour': 0, 'variable_cooking_time_minute': 0}", "applied action: ('press_min_button', 1), feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 10, 'variable_cooking_time_hour': 0}", "applied action: ('press_min_button', 39), feedback: {'feature': ('adjust_cooking_time', 3), 'variable_cooking_time_minute': 40, 'variable_cooking_time_hour': 0}"]
+check state....
+Feedback Variable: 
+
+ variable_cooking_time_minute: 40 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_cooking_time_min' to have a value of 40. The feedback provides 'variable_cooking_time_minute' with a value of 40. Both variable names represent the same item, and the values are numerically identical. According to the comparison rules, this is a match."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  start_appliance
+step_info:  {'step': 1, 'actions': ['press_start_button'], 'variable': 'variable_start_running', 'comment': 'value always set to on'}
+executing action: ('press_start_button', 1)
+goal state string:  We want to have the variable: variable_start_running to have a value of on. 
+goal_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 40
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: on
+current_state_simulator: variable_cooking_mode: Bean
+variable_cooking_time_hr: 0
+variable_cooking_time_min: 40
+variable_keep_warm_cancel: keep_warm
+variable_preset_time_hr: 0
+variable_preset_time_min: 0
+variable_rice_type: white
+variable_start_running: on
+variable_name: variable_start_running
+actions: ['press_start_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_start_button', 1), feedback: {'feature': ('start', 1)}"]
+check state....
+Feedback Variable: 
+
+ variable_start: 1 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_start_running' to have a value of 'on'. The feedback shows 'variable_start' with a value of '1'. Based on Rule 6, the combination of variable name and value means the same thing, as '1' indicates the appliance has started running, which aligns with the goal state value of 'on'."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 1, 'command': 'Cook bean for 40 minutes, starting now.', 'target_state': {'variable_start_running': 'on', 'variable_menu_index': 'Bean', 'variable_cooking_time_hour': 0, 'variable_cooking_time_minute': 40, 'variable_preset_timer_hour': 0, 'variable_preset_timer_minute': 0, 'variable_keep_warm_cancel': 'off'}, 'important_target_states': {'variable_start_running': 'on', 'variable_menu_index': 'Bean', 'variable_cooking_time_hour': 0, 'variable_cooking_time_minute': 40}}
+robot's decision {'variable_cooking_time_hour': 0, 'variable_cooking_time_minute': 40, 'variable_keep_warm_cancel': 'off', 'variable_menu_index': 'Bean', 'variable_preset_timer_hour': 0, 'variable_preset_timer_minute': 0, 'variable_start_running': 'on'}

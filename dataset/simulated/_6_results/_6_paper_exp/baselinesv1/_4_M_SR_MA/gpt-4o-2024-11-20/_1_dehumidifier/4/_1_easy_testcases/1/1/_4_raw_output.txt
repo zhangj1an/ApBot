@@ -1,0 +1,113 @@
+extracting control panel labels...
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_0_reasoning' created successfully.
+Control panel details saved to: /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_0_reasoning/_1_control_panel_label_details.txt
+defining variables...
+attempt:  0
+Attempt 1 to generate valid feature list.
+passed syntax check 1
+syntax error 2: There are actions being proposed but not modelled in the feature list. Missing actions: {'press_and_hold_power_button'}. If any action cannot be added to any of the features, add this action in feature_list['null'].
+Attempt 2 to generate valid feature list.
+passed syntax check 1
+passed syntax check 2
+passed syntax check 3
+passed syntax check 4
+passed syntax check 5
+passed syntax check 6
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_0_reasoning/_3_proposed_feature_list.py
+
+Attempt to generate world model: 0
+Task list saved to /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_0_reasoning/_4_proposed_world_model.py
+processing:  _1_dehumidifier 4 var 1
+processing:  _1_dehumidifier 4 1
+trial:  1
+attempt:  0
+Directory '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_1_easy_testcases/1/1' created successfully.
+appliance capability is modelled in /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_4_M_SR_MA/gpt-4o-2024-11-20/_1_dehumidifier/4/_1_easy_testcases/1/1/_1_world_model_specific_to_command.py.
+attempt:  0
+generated goal state code:  feature_sequence = ["power_on_off", "adjust_fan_speed"]
+feature_choice_reason = "Feature 'power_on_off' is required to turn on the appliance. Feature 'adjust_fan_speed' is required to set the fan speed to 'low'."
+changing_variables = ["variable_power_on_off", "variable_fan_speed"]
+goal_state = ExtendedSimulator()
+# "power_on_off", step 1, variable_power_on_off
+goal_state.variable_power_on_off.set_current_value("on")
+# "adjust_fan_speed", step 1, variable_fan_speed
+goal_state.variable_fan_speed.set_current_value("low")
+All changing_variables are correctly assigned.
+formatting done
+setting agnostic
+initial appliance state:  variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: off
+variable_timer: 0
+
+current_state_simulator when it is just created: 
+
+ variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: off
+variable_timer: off
+
+goal state:  variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: on
+variable_timer: off
+current feature:  power_on_off
+step_info:  {'step': 1, 'actions': ['press_power_button'], 'variable': 'variable_power_on_off'}
+executing action: ('press_power_button', 1)
+goal_state_simulator: variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: on
+variable_timer: off
+current_state_simulator: variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: on
+variable_timer: off
+variable_name: variable_power_on_off
+actions: ['press_power_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  []
+feedbacks:  ["applied action: ('press_power_button', 1), feedback: {'feature': ('power_on_off', 1), 'variable_power_on_off': 'on'}"]
+check state....
+Feedback Variable: 
+
+ variable_power_on_off: on 
+
+
+Comparison result: 
+
+ reason = "The feedback 'variable_power_on_off: on' exactly matches the goal state, which requires 'variable_power_on_off' to have a value of 'on'. According to the rules, their values are the same, and the goal has been reached for this variable."
+goal_reached = True 
+
+
+goal state reached: True
+current feature:  adjust_fan_speed
+step_info:  {'step': 1, 'actions': ['press_fan_speed_button'], 'variable': 'variable_fan_speed'}
+executing action: ('press_fan_speed_button', 1)
+goal_state_simulator: variable_fan_speed: low
+variable_microbe_shield_night_mode: off
+variable_power_on_off: on
+variable_timer: off
+current_state_simulator: variable_fan_speed: medium
+variable_microbe_shield_night_mode: off
+variable_power_on_off: on
+variable_timer: off
+variable_name: variable_fan_speed
+actions: ['press_fan_speed_button']
+astarsearch: <class 'AStarSearch'>
+planning_result:  [('press_fan_speed_button', 3)]
+feedbacks:  ["applied action: ('press_fan_speed_button', 1), feedback: {'feature': ('fan_speed', 1), 'variable_fan_speed': 'medium'}", "applied action: ('press_fan_speed_button', 3), feedback: {'feature': ('fan_speed', 1), 'variable_fan_speed': 'low'}"]
+check state....
+Feedback Variable: 
+
+ variable_fan_speed: low 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable 'variable_fan_speed' to have a value of 'low', and the feedback clearly confirms 'variable_fan_speed: low'. Both values are identical in meaning, and no rule is violated."
+goal_reached = True 
+
+
+goal state reached: True
+ground truth info {'id': 1, 'command': "Turn on the dehumidifier and set the fan speed to 'low' for a quiet operation while you're working.", 'target_state': {'variable_power_on_off': 'on', 'variable_microbe_shield_night_mode': 'off', 'variable_fan_speed': 'low', 'variable_timer': '0'}, 'important_target_states': {'variable_power_on_off': 'on', 'variable_fan_speed': 'low'}}
+robot's decision {'variable_fan_speed': 'low', 'variable_microbe_shield_night_mode': 'off', 'variable_power_on_off': 'on', 'variable_timer': '0'}

@@ -1,0 +1,502 @@
+setting agnostic
+current feature:  set_menu_and_setting
+step_info:  {'step': 1, 'actions': ['press_menu_button'], 'variable': 'variable_menu_index'}
+Response: 
+ proposed_action = "run_action('press_menu_button', execution_times=4)"
+expected_feedback = "the variable_menu_index becomes '5'."
+reason = "we need to set the menu to '5' to select the sweet menu, which aligns with the goal task."
+Proposed action in function propose_action:  run_action('press_menu_button', execution_times=4)
+proposed action:  run_action('press_menu_button', execution_times=4)
+expected feedback:  the variable_menu_index becomes '5'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_name': 'variable_menu_index', 'value': '5 sweet'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_menu_index' to be '5', which corresponds to the sweet menu. The feedback value is '5 sweet', which contains the number '5' and the word 'sweet', aligning semantically with the goal value '5'. Additionally, the feedback confirms the sweet menu selection, and there is no better match in the variable range."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ 'variable_menu_index': '5 sweet' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_menu_index' to be '5', and the feedback shows 'variable_menu_index' as '5 sweet'. According to Rule 4, if the goal string only contains strings but feedback contains numbers, we should remove numbers from the feedback completely and compare the two strings. After removing '5' from '5 sweet', the remaining string 'sweet' does not match the goal value '5'. Therefore, the feedback does not match the goal state."
+
+goal_reached = False 
+
+
+reached expectation:  False
+reached goal
+current feature:  adjust_crust_color
+step_info:  {'step': 1, 'actions': ['press_crust_button'], 'variable': 'variable_crust_color'}
+Response: 
+ proposed_action = "run_action('press_crust_button', execution_times=1)"
+expected_feedback = "the variable_crust_color becomes 'light'."
+reason = "The sweet bread requires a light crust, so we adjust the crust color to 'light' by pressing the crust button."
+Proposed action in function propose_action:  run_action('press_crust_button', execution_times=1)
+proposed action:  run_action('press_crust_button', execution_times=1)
+expected feedback:  the variable_crust_color becomes 'light'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_crust_color': 'medium'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_crust_color' to be 'light', but the feedback shows 'variable_crust_color' as 'medium'. Since 'medium' is not the same as 'light' and there is a better matching option ('light') in the variable range, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ 'variable_crust_color': 'medium' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_crust_color to be 'light', but the feedback shows the value as 'medium'. According to Rule 5, if there is an option that matches the goal value better than the feedback value, the goal has not been reached yet. Since 'light' is a better match than 'medium' for the goal, the goal has not been reached."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_crust_color: dark
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 0
+debug record string: step: 0, applied action: press_crust_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'dark'}
+step: 1, applied action: press_crust_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'light'}
+step: 2, applied action: press_crust_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'medium'}
+step: 3, applied action: press_crust_button, feedback: {'feature': ('crust_color_selection', 1), 'variable_crust_color': 'dark'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is press_crust_button. The first observed action is press_crust_button.
+Analysis results: The variable variable_crust_color is DiscreteVariable with value ranges to be ['dark', 'light', 'medium']. The current value is dark. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_crust_color is DiscreteVariable with value ranges to be ['dark', 'light', 'medium']. The current value is dark.
+
+variable_crust_color = DiscreteVariable(
+    value_range=["dark", "light", "medium"], 
+    current_value="dark"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('press_menu_button', execution_times=4)", "run_action('press_crust_button', execution_times=1)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_crust_color: dark
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 0 
+
+Response: 
+ proposed_action = "run_action('press_crust_button', execution_times=1)"
+expected_feedback = "the variable_crust_color becomes 'light'."
+reason = "The target crust color for the sweet bread is 'light', and the current value is 'dark', so we need to press the crust button once to change it to 'light'."
+Proposed action in function propose_action:  run_action('press_crust_button', execution_times=1)
+proposed action:  run_action('press_crust_button', execution_times=1)
+expected feedback:  the variable_crust_color becomes 'light'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_crust_color': 'light'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_crust_color' to be 'light', and the feedback also shows 'variable_crust_color' as 'light'. Based on Rule 1, the values are identical and represent the same thing."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_crust_color': 'light'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_crust_color to be 'light', and the feedback also shows 'light'. Since the values are identical and there are no better matching options in the variable range, the goal has been achieved."
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  adjust_loaf_size
+step_info:  {'step': 1, 'actions': ['press_loaf_size_button'], 'variable': 'variable_loaf_size'}
+Response: 
+ proposed_action = "run_action('press_loaf_size_button', execution_times=1)"
+expected_feedback = "the variable_loaf_size becomes '1.5LB'."
+reason = "we need to adjust the loaf size to small (1.5LB) as per the task requirements."
+Proposed action in function propose_action:  run_action('press_loaf_size_button', execution_times=1)
+proposed action:  run_action('press_loaf_size_button', execution_times=1)
+expected feedback:  the variable_loaf_size becomes '1.5LB'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_loaf_size': 'large'} 
+
+
+Comparison result: 
+
+ reason = "The goal requires 'variable_loaf_size' to be set to '1.5LB', which represents a small loaf size. However, the feedback shows 'variable_loaf_size' as 'large'. Since 'large' does not align with the goal value of '1.5LB', the goal has not been reached."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ 'variable_loaf_size': 'large' 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_loaf_size' to be '1.5LB', but the feedback shows 'variable_loaf_size' is 'large'. Since 'large' and '1.5LB' are not semantically the same and there is a better match ('1.5LB') in the variable range, the goal has not been reached yet."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_crust_color: light
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 0
+debug record string: step: 0, applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'small'}
+step: 1, applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'large'}
+step: 2, applied action: press_loaf_size_button, feedback: {'feature': ('loaf_size_selection', 1), 'variable_loaf_size': 'small'}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is press_loaf_size_button. The first observed action is press_loaf_size_button.
+Analysis results: The variable variable_loaf_size is DiscreteVariable with value ranges to be ['small', 'large']. The current value is small. 
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_loaf_size is DiscreteVariable with value ranges to be ['small', 'large']. The current value is small.
+
+variable_loaf_size = DiscreteVariable(
+    value_range=["small", "large"],
+    current_value="small"
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('press_menu_button', execution_times=4)", "run_action('press_crust_button', execution_times=1)", "run_action('press_crust_button', execution_times=1)", "run_action('press_loaf_size_button', execution_times=1)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_crust_color: light
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 0 
+
+Response: 
+ proposed_action = "run_action('press_loaf_size_button', execution_times=1)"
+expected_feedback = "the variable_loaf_size becomes 'large'."
+reason = "The current loaf size is set to 'small,' and to verify we're on the right loop of values to achieve the small size as the correct goal, we will press once to check."
+Proposed action in function propose_action:  run_action('press_loaf_size_button', execution_times=1)
+proposed action:  run_action('press_loaf_size_button', execution_times=1)
+expected feedback:  the variable_loaf_size becomes 'large'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_loaf_size': 'large'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_loaf_size' to be set to '1.5LB', which represents a small loaf size. The feedback, however, shows 'variable_loaf_size' as 'large', which does not match the goal state. Based on Rule 5, there is a better option ('1.5LB') in the variable range that matches the goal value better than the feedback value ('large'). Hence, the goal has not been reached yet."
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_loaf_size': 'large'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_loaf_size' to be 'large', and the feedback shows 'variable_loaf_size' is 'large'. Both values match exactly, so the goal has been achieved."
+goal_reached = True 
+
+
+reached expectation:  True
+Response: 
+ proposed_action = "run_action('press_loaf_size_button', execution_times = 1)"
+expected_feedback = "the variable_loaf_size becomes 'small'."
+reason = "The goal is to set the variable_loaf_size to 'small', and pressing the loaf size button toggles between 'large' and 'small'. The current value is 'large', so one press will achieve the desired value."
+Proposed action in function propose_action:  run_action('press_loaf_size_button', execution_times = 1)
+proposed action:  run_action('press_loaf_size_button', execution_times = 1)
+expected feedback:  the variable_loaf_size becomes 'small'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_loaf_size': 'small'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_loaf_size to be '1.5LB', which represents a small loaf size. The feedback value is 'small'. Since '1.5LB' and 'small' are semantically the same, the feedback aligns with the goal state based on the comparison rules."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_loaf_size': 'small'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_loaf_size' to be 'small', and the feedback also shows 'variable_loaf_size' as 'small'. The values match exactly, and there are no better options in the variable range that match the goal value better than the feedback value."
+
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  adjust_timer_delay
+step_info:  {'step': 1, 'actions': ['press_time_up_button', 'press_time_down_button'], 'variable': 'variable_timer_delay'}
+Response: 
+ proposed_action = "run_action('press_time_up_button', execution_times=24)"
+expected_feedback = "the variable_timer_delay becomes '04:00:00'."
+reason = "The target timer delay is 4 hours, and since the timer increases at 10-minute increments, executing 'press_time_up_button' 24 times will achieve the desired delay."
+Proposed action in function propose_action:  run_action('press_time_up_button', execution_times=24)
+proposed action:  run_action('press_time_up_button', execution_times=24)
+expected feedback:  the variable_timer_delay becomes '04:00:00'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 10} 
+
+
+Comparison result: 
+
+ reason = "The feedback value for 'variable_timer_delay' is 10, which represents time. The goal state requires 'variable_timer_delay' to be '04:00:00', which also represents time. To compare these, we need to convert both values to the same time unit (e.g., minutes). '04:00:00' is equivalent to 240 minutes, while the feedback value of 10 is equivalent to 10 minutes. Since 10 minutes does not match 240 minutes, the goal has not been reached."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 10} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires `variable_timer_delay` to be '04:00:00', which represents a time value. The feedback value is '10', which does not represent a valid time format or match the goal value. Therefore, the feedback does not meet the goal state requirements."
+
+goal_reached = False 
+
+
+reached expectation:  False
+current state of appliance simulator:  variable_crust_color: light
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 11
+debug record string: step: 0, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 11}
+step: 1, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 12}
+step: 2, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 13}
+step: 3, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 0}
+step: 4, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 1}
+step: 5, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 2}
+step: 6, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 3}
+step: 7, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 4}
+step: 8, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 5}
+step: 9, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 6}
+step: 10, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 7}
+step: 11, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 8}
+step: 12, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 9}
+step: 13, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 10}
+step: 14, applied action: press_time_up_button, feedback: {'feature': ('timer_delay', 1), 'variable_timer_delay': 11}
+
+Attempt 1: Trying to analyse the past debug record.
+The effective action is press_time_up_button. The first observed action is press_time_up_button.
+Analysis results: The variable variable_timer_delay is ContinuousVariable with value ranges and step values to be [[0, 13, 1]]. The current value is 11.  
+Located Var Format
+Attempt 1: Trying to update variable definition.
+Updated Variable code: # The variable variable_timer_delay is ContinuousVariable with value ranges and step values to be [[0, 13, 1]]. The current value is 11.   
+
+variable_timer_delay = ContinuousVariable(
+    value_ranges_steps=[[0, 13, 1]],
+    current_value=11
+)
+Updated variable code saved to temp_generated_variable.py.
+Successfully updated the variable definition and saved to temp_generated_variable.py.
+generated_code filepaths:  ['temp_generated_variable.py', 'temp_generated_feature.py', 'temp_generated_world_model.py']
+Attempt 1: Trying to update world model code.
+checking input string compatibility
+check 1
+Execution successful, returning the code.
+Updated world model code saved to temp_generated_world_model.py.
+past actions:  ["run_action('press_menu_button', execution_times=4)", "run_action('press_crust_button', execution_times=1)", "run_action('press_crust_button', execution_times=1)", "run_action('press_loaf_size_button', execution_times=1)", "run_action('press_loaf_size_button', execution_times=1)", "run_action('press_loaf_size_button', execution_times = 1)", "run_action('press_time_up_button', execution_times=24)"]
+#### after updating goal and var, reverting to previous state, 
+ appliance simulator: variable_crust_color: light
+variable_loaf_size: small
+variable_menu_index: 5 Sweet
+variable_start_running: off
+variable_timer_delay: 11 
+
+Response: 
+ proposed_action = "run_action('press_time_up_button', execution_times=1)"
+expected_feedback = "the variable_timer_delay becomes 12."
+reason = "the timer needs to be set to 4 hours, and the current value of 11 requires incrementing."
+Proposed action in function propose_action:  run_action('press_time_up_button', execution_times=1)
+proposed action:  run_action('press_time_up_button', execution_times=1)
+expected feedback:  the variable_timer_delay becomes 12.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 12} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_timer_delay' to be '04:00:00', which represents 4 hours. The feedback shows 'variable_timer_delay' as 12, which is a numerical value. When comparing time, we need to ensure both values represent the same amount of time. '04:00:00' (4 hours) does not match 12 hours. Thus, the feedback value does not align with the goal state."
+
+goal_reached = False 
+
+
+reached goal:  False
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 12} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires the variable_timer_delay to be 12. The feedback shows variable_timer_delay as 12. Both values are numerically identical, and there is no better option in the variable range that matches the goal value better than the feedback value. Thus, the goal has been achieved."
+
+goal_reached = True 
+
+
+reached expectation:  True
+Response: 
+ proposed_action = "run_action('press_time_down_button', execution_times=8)"
+expected_feedback = "the variable_timer_delay becomes '04:00:00'."
+reason = "The current timer delay is '12', and we need to achieve '4'. Pressing the time down button 8 times will decrease the timer delay to the target value of 4 hours."
+Proposed action in function propose_action:  run_action('press_time_down_button', execution_times=8)
+proposed action:  run_action('press_time_down_button', execution_times=8)
+expected feedback:  the variable_timer_delay becomes '04:00:00'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 4} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_timer_delay' to be '04:00:00', which represents 4 hours. The feedback shows 'variable_timer_delay' as 4. Since both values represent the same time duration (4 hours), they are semantically equivalent as per the comparison rules for time units."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_timer_delay': 4} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_timer_delay' to be '04:00:00', which represents a time duration of 4 hours. The feedback shows 'variable_timer_delay' as 4, which can also be interpreted as 4 hours. Since both values represent the same time duration, they are semantically equivalent when comparing time units."
+
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+current feature:  start_stop_operation
+step_info:  {'step': 1, 'actions': ['press_start_stop_button'], 'variable': 'variable_start_running', 'comment': 'value always set to on or off'}
+Response: 
+ proposed_action = "run_action('press_start_stop_button', execution_times=1)"
+expected_feedback = "the variable_start_running becomes 'on'."
+reason = "All settings are configured; we now start the bread maker."
+Proposed action in function propose_action:  run_action('press_start_stop_button', execution_times=1)
+proposed action:  run_action('press_start_stop_button', execution_times=1)
+expected feedback:  the variable_start_running becomes 'on'.
+checking for mismatch
+check state....
+Feedback Variable: 
+
+ {'variable_start_running': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_start_running' to be 'on', and the feedback also shows 'variable_start_running' as 'on'. Both values are identical, meaning the goal state aligns with the feedback. Additionally, there are no better-matching options in the variable range that would suggest otherwise."
+goal_reached = True 
+
+
+reached goal:  True
+check state....
+Feedback Variable: 
+
+ {'variable_start_running': 'on'} 
+
+
+Comparison result: 
+
+ reason = "The goal state requires 'variable_start_running' to be 'on', and the feedback shows 'variable_start_running' is 'on'. Both values are identical, and there are no better matching options in the variable range. Therefore, the goal is achieved."
+
+goal_reached = True 
+
+
+reached expectation:  True
+reached goal
+ground truth info {'id': 3, 'command': 'Bake a small, light-crust sweet bread using the sweet menu, with a 4-hour timer delay, then start the bread maker.', 'target_state': {'variable_menu_index': 4, 'variable_loaf_size': 'small', 'variable_crust_color': 'light', 'variable_timer_delay': 4, 'variable_start_running': 'on'}, 'important_target_states': {'variable_menu_index': '5 Sweet', 'variable_loaf_size': 'small', 'variable_crust_color': 'light', 'variable_timer_delay': 4, 'variable_start_running': 'on'}}
+robot's decision {'variable_crust_color': 'light', 'variable_loaf_size': 'small', 'variable_menu_index': '5 Sweet', 'variable_start_running': 'on', 'variable_timer_delay': 4}
+Backup of '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_1_var_testcases/3/1/_3_log_record.json' created as '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_1_var_testcases/3/1/_3_log_record_backup.json'.
+Existing file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_1_var_testcases/3/1/_3_log_record.json' has been deleted.
+New file '/data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/2/_1_var_testcases/3/1/_3_log_record.json' created.
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/3/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/4/_0_reasoning/_4_proposed_world_model.py. Skipping...
+variable list files available
+Feature list already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_3_proposed_feature_list.py
+World model already exists at /data/home/jian/TextToActions/datasetv2/simulated/_6_results/_6_paper_exp/baselinesv1/_5_HV_M_SR_LP_CL/gpt-4o-2024-11-20/_5_bread_maker/5/_0_reasoning/_4_proposed_world_model.py. Skipping...

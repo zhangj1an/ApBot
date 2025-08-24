@@ -1,0 +1,92 @@
+{
+    "command_id": 10,
+    "command_string": "Turn on the microwave oven to prepare fish sticks. Set the temperature to 200\u00b0C, function dial to 'Convection', selector dial to 'Top & Bottom Heating', and timer to '20'.",
+    "ground_truth_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_temperature_dial": "200\u00b0C",
+        "variable_selector_dial": "Top & Bottom Heating",
+        "variable_timer_dial": "20"
+    },
+    "executed_goal_state": {
+        "variable_function_dial": "Convection",
+        "variable_selector_dial": "Top & Bottom Heating",
+        "variable_temperature_dial": "200\u00b0C",
+        "variable_timer_dial": "20"
+    },
+    "execution_history": [
+        {
+            "index": 1,
+            "proposed_action": "run_action('turn_temperature_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_temperature_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "temp",
+                    1
+                ],
+                "variable_temperature_dial": "200\u00b0C"
+            },
+            "expected_feedback": "200\u00b0C",
+            "reason": "We need to adjust the temperature dial to 200\u00b0C, which is three steps from the current 'Off' position.",
+            "reached_goal": true
+        },
+        {
+            "index": 2,
+            "proposed_action": "run_action('turn_function_dial_clockwise', execution_times=1)",
+            "grounded_action": "turn_function_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "function",
+                    1
+                ],
+                "variable_function_dial": "Convection"
+            },
+            "expected_feedback": "the variable_function_dial becomes 'Convection'.",
+            "reason": "The goal is to set the function dial to 'Convection', so we need to turn the dial clockwise to achieve the target value.",
+            "reached_goal": true
+        },
+        {
+            "index": 3,
+            "proposed_action": "run_action('turn_selector_dial_clockwise', execution_times=3)",
+            "grounded_action": "turn_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "selector",
+                    1
+                ],
+                "variable_selector_dial": "Top & Bottom Heating"
+            },
+            "expected_feedback": "variable_selector_dial becomes 'Top & Bottom Heating'.",
+            "reason": "The goal requires the selector dial to be set to 'Top & Bottom Heating', and turning it clockwise three times from its initial position achieves the target value.",
+            "reached_goal": false
+        },
+        {
+            "index": 4,
+            "proposed_action": "run_action('turn_timer_dial_clockwise', execution_times=2)",
+            "grounded_action": "turn_timer_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "timer",
+                    1
+                ],
+                "variable_timer_dial": "20"
+            },
+            "expected_feedback": "the variable_timer_dial becomes '20 minutes'.",
+            "reason": "the selector dial is already set to 'Top & Bottom Heating', so now we adjust the timer to the desired duration of 20 minutes as per the goal.",
+            "reached_goal": true
+        },
+        {
+            "index": 5,
+            "proposed_action": "end",
+            "current_observation": "",
+            "expected_feedback": "",
+            "reason": "All the target variable values have already been achieved according to the feedback from executed actions, so the task is complete."
+        },
+        {
+            "step_index": 6,
+            "error_message": "we fail to adjust variable_timer_dial to its target value within 5 trials."
+        }
+    ],
+    "score": 1,
+    "score_comments": "everything is correct",
+    "step_size": 11
+}

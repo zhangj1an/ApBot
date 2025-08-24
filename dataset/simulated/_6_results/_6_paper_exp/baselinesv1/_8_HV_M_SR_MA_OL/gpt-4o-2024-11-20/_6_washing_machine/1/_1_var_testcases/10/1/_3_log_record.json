@@ -1,0 +1,89 @@
+{
+    "command_id": 10,
+    "command_string": "Power on and hand wash delicate clothes, using hand wash cycle, 20 \u00b0C temperature, 1200 rpm spin speed, Soak + Rinse+ option, set delay to 5 hours, and start the machine.",
+    "ground_truth_goal_state": {
+        "variable_power_on_off": "on",
+        "variable_start_running": "on",
+        "variable_cycle_selector": "Hand Wash",
+        "variable_temperature": "20 \u00b0C",
+        "variable_spin_speed": "1200",
+        "variable_option": "Soak + Rinse+",
+        "variable_delay_end": "5"
+    },
+    "executed_goal_state": {
+        "variable_child_lock": "off",
+        "variable_cycle_selector": "Hand Wash",
+        "variable_delay_end": 0,
+        "variable_option": "off",
+        "variable_power_on_off": "on",
+        "variable_spin_speed": "0",
+        "variable_start_running": "off",
+        "variable_temperature": "Cold water \ud83c\udf21\ufe0f"
+    },
+    "execution_history": [
+        {
+            "step_index": 1,
+            "proposed_action": [
+                "press_power_button",
+                1
+            ],
+            "grounded_action": "press_power_button",
+            "current_observation": {
+                "feature": [
+                    "turn_on_off",
+                    1
+                ],
+                "variable_power_on_off": "on"
+            }
+        },
+        {
+            "step_index": 2,
+            "proposed_action": [
+                "turn_cycle_selector_dial_clockwise",
+                1
+            ],
+            "grounded_action": "turn_cycle_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "set_cycle",
+                    1
+                ],
+                "variable_cycle_selector": "Synthetics"
+            }
+        },
+        {
+            "step_index": 3,
+            "proposed_action": [
+                "turn_cycle_selector_dial_clockwise",
+                8
+            ],
+            "grounded_action": "turn_cycle_selector_dial_clockwise",
+            "current_observation": {
+                "feature": [
+                    "set_cycle",
+                    1
+                ],
+                "variable_cycle_selector": "Hand Wash"
+            }
+        },
+        {
+            "step_index": 4,
+            "proposed_action": [
+                "press_temp_button",
+                1
+            ],
+            "grounded_action": "press_temp_button",
+            "current_observation": {
+                "feature": [
+                    "set_temperature",
+                    1
+                ],
+                "variable_temperature": "Cold water \ud83c\udf21\ufe0f"
+            },
+            "mismatch": "The goal state requires the variable_temperature to be '20\u00b0C', while the past feedback shows the value as 'cold water \ud83c\udf21\ufe0f'. The feedback value does not match the goal value. Additionally, 'cold water \ud83c\udf21\ufe0f' is not an equivalent or better match for '20\u00b0C' when considering semantic meaning or possible options. Therefore, the goal has not been reached. Since this is open loop execution, given a wrong model, we will terminate now. "
+        }
+    ],
+    "score": 0,
+    "score_comments": "for the variable variable_start_running, the value decided by the robot is off (type: <class 'str'>), but the ground truth is on (type: <class 'str'>)",
+    "step_size": 11
+}
